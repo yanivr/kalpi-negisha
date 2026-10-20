@@ -1,0 +1,276 @@
+{
+  "at": "2026-10-20T10:23:24.012Z",
+  "electionId": "knesset-26",
+  "totals": {
+    "stations": 12018,
+    "accessibleStations": 6208,
+    "specialStations": 3620,
+    "voters": 7331981,
+    "compounds": 4399,
+    "localities": 1224
+  },
+  "report137Totals": {
+    "בעלי זכות בחירה": 7331981,
+    "ישובים": 1224,
+    "סה\"כ ריכוזים": 4399,
+    "סה\"כ קלפיות": 12018,
+    "סה\"כ קלפיות נגישות": 6208,
+    "סה\"כ קלפיות נגישה מיוחדת": 3620
+  },
+  "checks": [
+    {
+      "id": "report137.total-row",
+      "ok": true,
+      "detail": "national total row present"
+    },
+    {
+      "id": "report137.sum.בעלי זכות בחירה",
+      "ok": true,
+      "detail": "sum of committees 7331981 vs total row 7331981"
+    },
+    {
+      "id": "report137.sum.ישובים",
+      "ok": true,
+      "detail": "sum of committees 1224 vs total row 1224"
+    },
+    {
+      "id": "report137.sum.סה\"כ ריכוזים",
+      "ok": true,
+      "detail": "sum of committees 4399 vs total row 4399"
+    },
+    {
+      "id": "report137.sum.סה\"כ קלפיות",
+      "ok": true,
+      "detail": "sum of committees 12018 vs total row 12018"
+    },
+    {
+      "id": "report137.sum.סה\"כ קלפיות נגישות",
+      "ok": true,
+      "detail": "sum of committees 6208 vs total row 6208"
+    },
+    {
+      "id": "report137.sum.סה\"כ קלפיות נגישה מיוחדת",
+      "ok": true,
+      "detail": "sum of committees 3620 vs total row 3620"
+    },
+    {
+      "id": "stations.no-quarantine",
+      "ok": true,
+      "detail": "0 station rows quarantined"
+    },
+    {
+      "id": "stations.total-vs-137",
+      "ok": true,
+      "detail": "12018 vs 12018"
+    },
+    {
+      "id": "stations.accessible-vs-137",
+      "ok": true,
+      "detail": "6208 vs 6208"
+    },
+    {
+      "id": "stations.special-vs-137",
+      "ok": true,
+      "detail": "3620 vs 3620"
+    },
+    {
+      "id": "stations.voters-vs-137",
+      "ok": true,
+      "detail": "7331981 vs 7331981"
+    },
+    {
+      "id": "committee.1.counts",
+      "ok": true,
+      "detail": "ירושלים: 736/290/199"
+    },
+    {
+      "id": "committee.2.counts",
+      "ok": true,
+      "detail": "יהודה: 561/311/212"
+    },
+    {
+      "id": "committee.3.counts",
+      "ok": true,
+      "detail": "צפת: 215/135/108"
+    },
+    {
+      "id": "committee.4.counts",
+      "ok": true,
+      "detail": "כנרת: 187/101/78"
+    },
+    {
+      "id": "committee.5.counts",
+      "ok": true,
+      "detail": "יזרעאל: 720/396/252"
+    },
+    {
+      "id": "committee.6.counts",
+      "ok": true,
+      "detail": "עכו: 427/261/165"
+    },
+    {
+      "id": "committee.7.counts",
+      "ok": true,
+      "detail": "חיפה: 437/168/97"
+    },
+    {
+      "id": "committee.8.counts",
+      "ok": true,
+      "detail": "קריות: 455/245/132"
+    },
+    {
+      "id": "committee.9.counts",
+      "ok": true,
+      "detail": "חדרה: 608/357/194"
+    },
+    {
+      "id": "committee.10.counts",
+      "ok": true,
+      "detail": "השרון (נתניה): 676/336/201"
+    },
+    {
+      "id": "committee.11.counts",
+      "ok": true,
+      "detail": "פתח תקווה: 596/313/158"
+    },
+    {
+      "id": "committee.12.counts",
+      "ok": true,
+      "detail": "רמלה-לוד: 580/338/166"
+    },
+    {
+      "id": "committee.13.counts",
+      "ok": true,
+      "detail": "רחובות: 834/410/203"
+    },
+    {
+      "id": "committee.14.counts",
+      "ok": true,
+      "detail": "תל-אביב: 766/379/213"
+    },
+    {
+      "id": "committee.15.counts",
+      "ok": true,
+      "detail": "דן: 739/310/190"
+    },
+    {
+      "id": "committee.16.counts",
+      "ok": true,
+      "detail": "איילון: 605/264/126"
+    },
+    {
+      "id": "committee.17.counts",
+      "ok": true,
+      "detail": "אשקלון: 832/436/247"
+    },
+    {
+      "id": "committee.18.counts",
+      "ok": true,
+      "detail": "באר שבע: 1038/555/350"
+    },
+    {
+      "id": "committee.19.counts",
+      "ok": true,
+      "detail": "מרכז-צפון: 566/337/179"
+    },
+    {
+      "id": "committee.20.counts",
+      "ok": true,
+      "detail": "כרמיאל: 440/266/150"
+    },
+    {
+      "id": "report104.rows-match-stations",
+      "ok": true,
+      "detail": "0 mismatching rows"
+    },
+    {
+      "id": "report104.covers-all-accessible",
+      "ok": true,
+      "detail": "6208 rows vs 6208 accessible stations"
+    },
+    {
+      "id": "concentrations.count-vs-137",
+      "ok": true,
+      "detail": "4399 vs 4399"
+    },
+    {
+      "id": "concentrations.total-row",
+      "ok": true,
+      "detail": "total row 12018 vs 12018"
+    },
+    {
+      "id": "stations.all-in-known-compounds",
+      "ok": true,
+      "detail": "0 station groups without a compound row"
+    },
+    {
+      "id": "stations.address-agrees-with-compound",
+      "ok": true,
+      "detail": "0 compounds with address/place conflicts"
+    },
+    {
+      "id": "electionId.national-totals",
+      "ok": true,
+      "detail": "identified as knesset-26 by exact match of national totals with report 137 and published figures"
+    }
+  ],
+  "quarantined": [],
+  "siteWarnings": [
+    {
+      "siteId": "k26-3400-1",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-3616-28",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-4000-291",
+      "reason": "conflict:compound-special-count(1≠0), conflict:compound-accessible-count(1≠0)"
+    },
+    {
+      "siteId": "k26-4000-293",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-4000-295",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-6800-99",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-9500-31",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-654-3",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-654-4",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-637-1",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-637-4",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-28-8",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-8600-141",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    },
+    {
+      "siteId": "k26-6600-108",
+      "reason": "no official coordinates (X/Y missing or 0)"
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1",
+  "electionId": "knesset-26",
+  "dataset": {
+    "file": "dataset-b9713bf75679e99f.json",
+    "sha256": "b9713bf75679e99f20cc90c246c118dfb99b9f774e2a40ae4127ab4ae22bd8e3",
+    "releaseId": "k26-e87085168214",
+    "verifiedAt": "2026-10-20T10:23:24.012Z",
+    "verifiedHow": "manual-files",
+    "contentChangedAt": "2026-10-20T09:29:09.777Z",
+    "sourceChecksums": {
+      "cec-k26-stations": "039f96569b6bd292c28225bc4039c783fe6a980df33206ca3a6a820579968c1a",
+      "cec-k26-report104": "36caac222723735263b9c62e49d5ee4dbaf1d377fd4ed4bd46f3d4c370a32bd7",
+      "cec-k26-concentrations": "48fc8c2f97b2c774b0f00f88e66351e41386aba2da18bc28a647d1891c2f866a",
+      "cec-k26-report137": "efbfd93a054b5657ce2afe0e9edffd4f3f7d82eb39aa8ca01457d2ecdd4a0217"
+    },
+    "sourceMeta": {
+      "cec-k26-stations": {
+        "title": "קובץ קלפיות סופי",
+        "createdAt": "2026-09-08T09:30:04.000Z",
+        "modifiedAt": "2026-09-24T09:36:40.000Z",
+        "rows": 12018,
+        "bytes": 896508
+      },
+      "cec-k26-report104": {
+        "title": "דוח 104 קלפיות למוגבלי ניידות",
+        "createdAt": "2026-09-08T14:47:29.000Z",
+        "modifiedAt": "2026-09-24T09:41:17.000Z",
+        "rows": 6208,
+        "bytes": 446903
+      },
+      "cec-k26-concentrations": {
+        "title": "קובץ ריכוזים שלישי 1330 סופי",
+        "createdAt": "2026-09-23T08:36:51.000Z",
+        "modifiedAt": "2026-09-24T09:45:10.000Z",
+        "rows": 4400,
+        "bytes": 529547
+      },
+      "cec-k26-report137": {
+        "title": "דוח 137 טופס ב' סופי",
+        "createdAt": "2026-09-08T09:29:16.000Z",
+        "modifiedAt": "2026-09-24T09:28:16.000Z",
+        "rows": 21,
+        "bytes": 15683
+      }
+    },
+    "nationwideCoverage": "verified",
+    "counts": {
+      "sourceRows": 12018,
+      "acceptedRows": 12018,
+      "quarantinedRows": 0
+    },
+    "coverage": {
+      "specialStations": 3620,
+      "specialSites": 3332,
+      "localities": 1137,
+      "recommendableSites": 3182
+    }
+  },
+  "rules": {
+    "ruleId": "k26-special-accessible-mobility",
+    "version": "2026-10-20.2",
+    "excerptSha256": "7b2bcbf728f597f203066136a9809d580e83e69b42d96bcbfaef72735da25f53",
+    "officialDocSha256": "2781b6711cca12d306ece09498be1ca1582bf22ac7071a4a34d8ba7ff0954c62",
+    "verifiedAt": "2026-10-20T10:24:22.368Z"
+  },
+  "lastAttemptAt": "2026-10-20T10:24:22.368Z",
+  "lastAttemptResult": "failed",
+  "blockingReasons": [],
+  "attempts": [
+    {
+      "at": "2026-10-20T09:29:09.777Z",
+      "result": "verified-changed",
+      "detail": [
+        "manual ingest"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:23:24.012Z",
+      "result": "verified-unchanged",
+      "detail": [
+        "manual ingest"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:24:22.368Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: baseline recorded for official document (2781b6711cca)"
+      ]
+    }
+  ]
+}
