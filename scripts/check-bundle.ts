@@ -25,7 +25,7 @@ const forbidden: Array<[RegExp, string]> = [
   [/google-analytics|googletagmanager|gtag\(|hotjar|sentry|facebook\.net|clarity\.ms/i, 'tracking'],
   [/dangerouslySetInnerHTML:\s*\{/, 'raw HTML injection'],
 ];
-const allowedHosts = new Set(['waze.com', 'www.google.com', 'www.gov.il', 'react.dev', 'www.w3.org', 'reactjs.org', 'json-schema.org' /* identifier string inside zod, never fetched */]);
+const allowedHosts = new Set(['asakim.ai' /* credit link only, never fetched */, 'waze.com', 'www.google.com', 'www.gov.il', 'react.dev', 'www.w3.org', 'reactjs.org', 'json-schema.org' /* identifier string inside zod, never fetched */]);
 const problems: string[] = [];
 for (const f of files) {
   const s = await readFile(f, 'utf8');
