@@ -1,5 +1,5 @@
 import { Dataset, type PollingSite } from '../../src/domain/schema';
-import { specialStationsOf } from '../../src/domain/match';
+import { regularAccessibleStationsOf, specialStationsOf } from '../../src/domain/match';
 import { ingestCecK26, type IngestResult, type SourceFile } from '../sources/cec-k26';
 import { sha256 } from './xlsx';
 import { writeStateFile, type PipelineState } from './state';
@@ -17,13 +17,15 @@ export interface RegistrySource {
 }
 
 /**
- * Builds the shipped dataset from an ingest result: only places that have at least one special-accessible station,
- * and only their special-accessible stations (the product never offers ordinary stations as alternatives — spec §8.4).
+ * Builds the shipped dataset from an ingest result: places that have at least one accessible station, with only their
+ * accessible stations (special and regular). Non-accessible stations are never shipped. Owner decision 20.10.2026:
+ * regular accessible stations are shown separately and clearly marked as being for assigned voters only.
  */
 export function toDataset(result: IngestResult, registry: RegistrySource[], releaseId: string, generatedAt: string, acquisition: 'manual' | 'automatic'): Dataset {
+  const accessibleOf = (s: PollingSite) => [...specialStationsOf(s), ...regularAccessibleStationsOf(s)];
   const sites: PollingSite[] = result.sites
-    .filter((s) => specialStationsOf(s).length > 0)
-    .map((s) => ({ ...s, stations: specialStationsOf(s) }));
+    .filter((s) => accessibleOf(s).length > 0)
+    .map((s) => ({ ...s, stations: s.stations.filter((x) => x.kind === 'accessible_special' || x.kind === 'accessible_assigned') }));
   const sources = registry
     .filter((r) => r.status === 'approved' && r.role)
     .map((r) => {
@@ -82,6 +84,7 @@ export async function ingestAndCommit(opts: {
 
   const prev = opts.state.dataset;
   const changed = !prev || prev.sha256 !== datasetSha;
+  const specialSites = dataset.sites.filter((s) => specialStationsOf(s).length > 0);
   const recommendable = dataset.sites.filter((s) => s.publicAccess.value === 'yes' && s.blockedReasons.length === 0);
   opts.state.dataset = {
     file,
@@ -105,9 +108,9 @@ export async function ingestAndCommit(opts: {
     },
     coverage: {
       specialStations: result.report.totals.specialStations,
-      specialSites: dataset.sites.length,
-      localities: new Set(dataset.sites.map((s) => s.localityCode)).size,
-      recommendableSites: recommendable.length,
+      specialSites: specialSites.length,
+      localities: new Set(specialSites.map((s) => s.localityCode)).size,
+      recommendableSites: recommendable.filter((s) => specialStationsOf(s).length > 0).length,
     },
   };
   opts.state.blockingReasons = [];

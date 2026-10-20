@@ -105,7 +105,7 @@ test('results: one card per building, institutions excluded, places without coor
   await expect(page.locator('.results .note').filter({ hasText: 'בתי אבות' })).toBeVisible();
   // compound 2 has stations 4.1 and 4.2 in a single card
   await expect(page.locator('.card').filter({ hasText: 'מתנ"ס בדיקה' })).toHaveCount(1);
-  await expect(page.locator('.card .num')).toHaveCount(0);
+  await expect(page.locator('.card').filter({ hasText: 'מתנ"ס בדיקה' }).locator('.kind-special .num')).toHaveText(['4.1', '4.2']);
   // official access instructions are shown verbatim
   await expect(page.getByText('כניסה לבדיקה משער צדדי')).toBeVisible();
 
@@ -167,6 +167,24 @@ test('locality is typed, not picked from a long list: partial unique name resolv
   await expect(page.locator('#locality-suggestions')).toHaveCount(0);
   await page.locator('#search-submit').click();
   await expect(page.locator('#results-h')).toBeFocused();
+  expect(await axe(page)).toEqual([]);
+});
+
+test('special and regular accessible stations are clearly told apart, with an explanation of the difference', async ({ page }) => {
+  await page.goto('/he/');
+  await page.getByText('מה ההבדל בין קלפי נגישה לקלפי נגישה מיוחדת?').click();
+  await expect(page.locator('.diff-body')).toContainText('רק הבוחרים שרשומים אליה רשאים להצביע בה');
+  await expect(page.locator('.diff-body')).toContainText('במעטפה כפולה');
+  await searchLocality(page, 'בדיקה-א');
+  const mixed = page.locator('.card').filter({ hasText: 'כניסה לבדיקה משער צדדי' });
+  await expect(mixed.locator('.kind-special .kind-badge')).toContainText('קלפי נגישה מיוחדת');
+  await expect(mixed.locator('.kind-special .num')).toHaveText(['1']);
+  await expect(mixed.locator('.kind-regular')).toContainText('רק הבוחרים שרשומים אליה');
+  await expect(mixed.locator('.kind-regular .num')).toHaveText(['2']);
+  // the non-accessible station 3 is never shown
+  await expect(page.locator('.num', { hasText: /^3$/ })).toHaveCount(0);
+  // a building with only special stations has no regular note
+  await expect(page.locator('.card').filter({ hasText: 'מתנ"ס בדיקה' }).locator('.kind-regular')).toHaveCount(0);
   expect(await axe(page)).toEqual([]);
 });
 

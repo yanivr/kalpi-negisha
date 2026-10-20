@@ -93,8 +93,8 @@ describe('release', () => {
     const { Dataset } = await import('../../src/domain/schema');
     expect(Dataset.safeParse(JSON.parse(ds)).success).toBe(true); // what the browser will validate
     expect(JSON.parse(ds).releaseId).toBe(m.releaseId);
-    // Only special-accessible stations are shipped.
-    expect(JSON.parse(ds).sites.every((s: any) => s.stations.every((st: any) => st.kind === 'accessible_special'))).toBe(true);
+    // Only accessible stations are shipped (special and regular); never non-accessible ones.
+    expect(JSON.parse(ds).sites.every((s: any) => s.stations.every((st: any) => st.kind === 'accessible_special' || st.kind === 'accessible_assigned'))).toBe(true);
   });
 
   it('marks the phase ended after polls close', async () => {

@@ -14,6 +14,18 @@ describe('searchByPoint', () => {
     expect(out.results.map((r) => r.site.siteId)).toEqual(['far-special']);
   });
 
+  it('in a building with both kinds, separates special stations from regular accessible ones; regular-only buildings never appear', () => {
+    const sites = [
+      site({ id: 'mixed', lat: north(300), stations: [station('9'), station('7', 'accessible_assigned'), station('8', 'accessible_assigned')] }),
+      site({ id: 'regular-only', lat: north(100), stations: [station('3', 'accessible_assigned')] }),
+    ];
+    const out = searchByPoint(sites, q());
+    expect(out.results).toHaveLength(1);
+    expect(out.results[0]!.specialStations.map((s) => s.officialNumber)).toEqual(['9']);
+    expect(out.results[0]!.regularStations.map((s) => s.officialNumber)).toEqual(['7', '8']);
+    expect(searchByLocality(sites, sites[0]!.localityCode).results.map((r) => r.site.siteId)).toEqual(['mixed']);
+  });
+
   it('excludes institutions whose public access is not confirmed and reports them', () => {
     const sites = [
       site({ id: 'home-for-elderly', lat: north(100), publicAccess: { value: 'unknown', reason: 'institution-type:בית אבות' } }),

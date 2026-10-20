@@ -11,7 +11,10 @@ export interface PlaceResult {
   /** Representative site (first in stable order); `sites` holds every official compound merged into this place. */
   site: PollingSite;
   sites: PollingSite[];
+  /** Special-accessible stations of the place: open to voters with mobility impairments not assigned there. */
   specialStations: Station[];
+  /** Regular accessible stations in the same building: only voters assigned to them may vote there. Never a result by themselves. */
+  regularStations: Station[];
   distanceMeters: number | null;
   /** True only when both the searched point and the site point are precise enough to compare distances. */
   distanceReliable: boolean;
@@ -34,6 +37,11 @@ export function specialStationsOf(site: PollingSite): Station[] {
   return site.stations.filter((s) => s.kind === 'accessible_special' && s.active === 'yes');
 }
 
+export function regularAccessibleStationsOf(site: PollingSite): Station[] {
+  return site.stations.filter((s) => s.kind === 'accessible_assigned' && s.active === 'yes');
+}
+
+/** Only places with a special-accessible station are ever offered (owner decision, critical): never regular-only ones. */
 function isCandidate(site: PollingSite): boolean {
   return specialStationsOf(site).length > 0;
 }
@@ -86,6 +94,7 @@ function toPlace(group: PollingSite[], distanceMeters: number | null, distanceRe
     site,
     sites: group,
     specialStations: group.flatMap(specialStationsOf),
+    regularStations: group.flatMap(regularAccessibleStationsOf),
     distanceMeters,
     distanceReliable,
   };

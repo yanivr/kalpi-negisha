@@ -47,6 +47,8 @@ for (const [loc, street, house, maxM] of cases) {
   const name = await p.locator('.card h3').first().innerText();
   const m = /כ־([\d.,]+)\s*(מטר|ק"מ|ק״מ)/.exec(first);
   const meters = m ? Number(m[1].replace(',', '.')) * (m[2] === 'מטר' ? 1 : 1000) : Infinity;
+  const specialCards = await p.locator('.cards > li .kind-special').count();
+  ok(specialCards === cards, `${loc} · ${street}: every offered place is special-accessible (${specialCards}/${cards})`);
   ok(cards >= 1 && meters <= maxM, `${loc} · ${street} ${house}: ${cards} places, nearest ≈ ${meters} m — ${name}`);
 }
 ok(errors.length === 0, `no page errors ${errors.length ? JSON.stringify(errors) : ''}`);

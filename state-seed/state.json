@@ -2,12 +2,12 @@
   "schemaVersion": "1",
   "electionId": "knesset-26",
   "dataset": {
-    "file": "dataset-b9713bf75679e99f.json",
-    "sha256": "b9713bf75679e99f20cc90c246c118dfb99b9f774e2a40ae4127ab4ae22bd8e3",
+    "file": "dataset-5698034a332ba543.json",
+    "sha256": "5698034a332ba5435d5f557b5e22fd2dd150cda4ff461466b7ed30480252b713",
     "releaseId": "k26-e87085168214",
-    "verifiedAt": "2026-10-20T10:23:24.012Z",
+    "verifiedAt": "2026-10-20T11:57:51.443Z",
     "verifiedHow": "manual-files",
-    "contentChangedAt": "2026-10-20T09:29:09.777Z",
+    "contentChangedAt": "2026-10-20T11:57:51.443Z",
     "sourceChecksums": {
       "cec-k26-stations": "039f96569b6bd292c28225bc4039c783fe6a980df33206ca3a6a820579968c1a",
       "cec-k26-report104": "36caac222723735263b9c62e49d5ee4dbaf1d377fd4ed4bd46f3d4c370a32bd7",
@@ -61,11 +61,11 @@
     "ruleId": "k26-special-accessible-mobility",
     "version": "2026-10-20.2",
     "excerptSha256": "7b2bcbf728f597f203066136a9809d580e83e69b42d96bcbfaef72735da25f53",
-    "officialDocSha256": null,
-    "verifiedAt": "2026-10-20T09:59:01.586Z"
+    "officialDocSha256": "2781b6711cca12d306ece09498be1ca1582bf22ac7071a4a34d8ba7ff0954c62",
+    "verifiedAt": "2026-10-20T11:51:36.746Z"
   },
-  "lastAttemptAt": "2026-10-20T10:23:24.012Z",
-  "lastAttemptResult": "verified-unchanged",
+  "lastAttemptAt": "2026-10-20T11:57:51.443Z",
+  "lastAttemptResult": "verified-changed",
   "blockingReasons": [],
   "attempts": [
     {
@@ -78,6 +78,149 @@
     {
       "at": "2026-10-20T10:23:24.012Z",
       "result": "verified-unchanged",
+      "detail": [
+        "manual ingest"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:24:22.368Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: baseline recorded for official document (2781b6711cca)"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:25:09.662Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:25:54.405Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:26:52.268Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:27:53.294Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:29:12.105Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:35:13.236Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:36:35.681Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:41:48.464Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T10:43:26.728Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:04:24.014Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:06:33.815Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:11:10.114Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:27:50.077Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:28:42.638Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:32:37.273Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:51:36.746Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:57:51.443Z",
+      "result": "verified-changed",
       "detail": [
         "manual ingest"
       ]

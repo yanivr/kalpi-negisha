@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import type { PlaceResult } from '../domain/match';
+import { compareStationNumbers } from '../domain/match';
 import { roundDistance } from '../domain/geo';
 import { isAllowedExternalUrl, navigationLinks } from '../domain/navigation';
 import { format, formatDate, formatNumber, type Dict, type Locale } from '../i18n';
@@ -20,6 +21,8 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
   const id = useId();
   const site = place.site;
   const nav = navigationLinks(site);
+  const special = [...new Set(place.specialStations.map((s) => s.officialNumber))].sort(compareStationNumbers);
+  const regular = [...new Set(place.regularStations.map((s) => s.officialNumber))].sort(compareStationNumbers);
   const instructions = [...new Set(place.specialStations.map((s) => s.accessInstructions).filter((x): x is string => !!x))];
 
   let distanceText: string | null = null;
@@ -54,7 +57,19 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
           {site.address.raw}, {site.localityName}
         </bdi>
       </p>
-      <p className="classification">{t.classification}</p>
+      <div className="kind kind-special">
+        <p className="kind-badge">
+          <span className="kind-mark" aria-hidden="true">★</span> {t.badgeSpecial}
+          {special.length > 0 && (
+            <>
+              {' · '}
+              {renderNumbers(t.specialNumbers, special)}
+            </>
+          )}
+        </p>
+        <p>{t.specialMeaning}</p>
+      </div>
+      {regular.length > 0 && <p className="kind kind-regular">{renderNumbers(t.regularHere, regular)}</p>}
       {instructions.length > 0 ? (
         <div className="instructions">
           <p>
@@ -93,5 +108,25 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
         {t.navNotVerified} {nav.target === 'coordinates' ? t.navBuildingPoint : t.navAddressOnly}
       </p>
     </article>
+  );
+}
+
+/** Inserts station numbers (kept left-to-right, so "11.2" never flips in RTL) into a translated sentence. */
+function renderNumbers(template: string, numbers: string[]) {
+  return template.split(/(\{numbers\})/).map((p, i) =>
+    p === '{numbers}' ? (
+      <span key={i}>
+        {numbers.map((n, j) => (
+          <span key={n}>
+            {j > 0 && ', '}
+            <bdi dir="ltr" className="num">
+              {n}
+            </bdi>
+          </span>
+        ))}
+      </span>
+    ) : (
+      <span key={i}>{p}</span>
+    ),
   );
 }

@@ -15,6 +15,9 @@
   --info-border: #0b4f8a;
   --error: #b00020; /* 6.5:1 on white */
   --card-label-bg: #e8f1fb;
+  --special: #146c43;
+  --special-fg: #0b4a2e; /* 9.9:1 on --special-bg */
+  --special-bg: #e6f4ec;
   --font: 'Noto Sans', 'Noto Sans Hebrew', 'Noto Sans Arabic', 'Noto Sans Ethiopic', system-ui, Arial, sans-serif;
   color-scheme: light;
 }
@@ -37,6 +40,9 @@
     --info-border: #8cc4ff;
     --error: #ff8a9a;
     --card-label-bg: #13253a;
+    --special: #5fd39a;
+    --special-fg: #9be8c0;
+    --special-bg: #10261c;
     color-scheme: dark;
   }
 }
@@ -57,6 +63,9 @@
     --info-border: #8cc4ff;
     --error: #ff8a9a;
     --card-label-bg: #13253a;
+    --special: #5fd39a;
+    --special-fg: #9be8c0;
+    --special-bg: #10261c;
   color-scheme: dark;
 }
 
@@ -187,7 +196,7 @@ a:hover {
 }
 
 details.rules {
-  margin-block: 0.75rem 1rem;
+  margin-block: 0.75rem 0;
 }
 details.rules summary {
   cursor: pointer;
@@ -556,4 +565,83 @@ input:disabled,
 select:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* Kind of accessible station: marked by text and shape, never by colour alone. */
+.kind {
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  margin-block: 0.5rem;
+}
+.kind p {
+  margin: 0;
+}
+.kind-special {
+  background: var(--special-bg);
+  border-inline-start: 6px solid var(--special);
+  display: grid;
+  gap: 0.35rem;
+}
+.kind-badge {
+  font-weight: 700;
+  color: var(--special-fg);
+}
+.kind-mark {
+  margin-inline-end: 0.15em;
+}
+.kind-regular {
+  border: 2px dashed var(--border);
+  color: var(--text);
+}
+details.diff {
+  margin-block: 0 1rem;
+}
+details.diff summary {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  min-block-size: 44px;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  list-style: none;
+}
+details.diff summary::-webkit-details-marker {
+  display: none;
+}
+details.diff summary::before {
+  content: '';
+  inline-size: 0.5em;
+  block-size: 0.5em;
+  border-block-end: 2px solid currentColor;
+  border-inline-end: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-block-start: -0.2em;
+}
+details.diff[open] summary::before {
+  transform: rotate(-135deg);
+  margin-block-start: 0.2em;
+}
+.diff-body {
+  border-inline-start: 3px solid var(--border);
+  padding-inline-start: 1rem;
+}
+.diff-body dt {
+  font-weight: 700;
+  margin-block-start: 0.6rem;
+}
+.diff-body dd {
+  margin: 0;
+}
+@media (forced-colors: active) {
+  .kind-special,
+  .kind-regular {
+    border: 2px solid CanvasText;
+  }
+}
+
+.diff-note {
+  margin-block-start: 0.6rem !important;
+  font-style: italic;
 }

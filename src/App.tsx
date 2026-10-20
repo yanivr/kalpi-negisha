@@ -444,6 +444,19 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
               <summary>{t.whoCanVote}</summary>
               <RulesBlock rules={rules} locale={locale} />
             </details>
+            <details className="diff">
+              <summary>{t.diffTitle}</summary>
+              <dl className="diff-body">
+                <dt>{t.diffAccessibleTitle}</dt>
+                <dd>{t.diffAccessible}</dd>
+                <dt>
+                  <span aria-hidden="true">★ </span>
+                  {t.diffSpecialTitle}
+                </dt>
+                <dd>{t.diffSpecial}</dd>
+                <dd className="diff-note">{t.diffNote}</dd>
+              </dl>
+            </details>
 
             <StatusBlock service={service} manifestState={manifestState} datasetState={datasetState} locale={locale} onRetry={() => void refreshManifest()} />
 
