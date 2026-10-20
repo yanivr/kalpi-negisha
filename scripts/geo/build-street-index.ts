@@ -16,6 +16,7 @@
 import { createOSMStream } from 'osm-pbf-parser-node';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { airDistanceMeters } from '../../src/domain/geo';
 import { normaliseHouse, normaliseStreet, tokenKey, type OfficialStreet } from '../../src/domain/streets';
@@ -24,7 +25,7 @@ const { values } = parseArgs({ options: { pbf: { type: 'string' }, out: { type: 
 const PBF = values.pbf!;
 const OUT = path.resolve(values.out ?? 'geo-index');
 const GEOREF = values.georef ?? path.join(process.env.STATE_DIR ?? 'state', 'geo-ref.json');
-const STREETS_DIR = values.streets ?? 'node_modules/@il-address/data/generated/streets';
+const STREETS_DIR = values.streets ?? path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../node_modules/@il-address/data/generated/streets');
 const MARGIN_DEG = 0.012; // ≈ 1.3 km
 const SAMPLE_M = 120;
 

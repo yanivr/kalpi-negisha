@@ -6,6 +6,7 @@
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 export interface GeoSummary {
   source: 'osm+official' | 'official-only';
@@ -19,7 +20,7 @@ export async function emitGeo(outDir: string, localityCodes: string[]): Promise<
   const geoDir = path.join(outDir, 'geo');
   await mkdir(geoDir, { recursive: true });
   const indexDir = process.env.GEO_INDEX_DIR;
-  const pkg = 'node_modules/@il-address/data';
+  const pkg = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../node_modules/@il-address/data');
   const manifest = JSON.parse(await readFile(path.join(pkg, 'manifest.json'), 'utf8'));
   if (indexDir && existsSync(path.join(indexDir, 'geo'))) {
     const report = JSON.parse(await readFile(path.join(indexDir, 'geo-report.json'), 'utf8'));
