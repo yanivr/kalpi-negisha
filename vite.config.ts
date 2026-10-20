@@ -3,7 +3,6 @@ import react from '@vitejs/plugin-react';
 import { readFileSync } from 'node:fs';
 import he from './src/i18n/he';
 
-const contact = JSON.parse(readFileSync('config/contact.json', 'utf8')) as { email: string; phone: string; phoneE164: string };
 const base = process.env.BASE_PATH ?? '/';
 
 export const CSP = [
@@ -39,9 +38,6 @@ export default defineConfig({
     },
   ],
   define: {
-    'import.meta.env.VITE_CONTACT_EMAIL': JSON.stringify(contact.email),
-    'import.meta.env.VITE_CONTACT_PHONE': JSON.stringify(contact.phone),
-    'import.meta.env.VITE_CONTACT_PHONE_E164': JSON.stringify(contact.phoneE164),
     'import.meta.env.VITE_A11Y_STATEMENT_DATE': JSON.stringify(process.env.A11Y_STATEMENT_DATE ?? '2026-10-20'),
   },
   build: {

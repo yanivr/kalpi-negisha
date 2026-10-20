@@ -9,7 +9,7 @@ import path from 'node:path';
 const root = process.cwd();
 const work = await mkdtemp(path.join(os.tmpdir(), 'kalpi-e2e-'));
 await mkdir(path.join(work, 'config'));
-for (const f of ['election.json', 'source-registry.json', 'contact.json']) await cp(path.join(root, 'config', f), path.join(work, 'config', f));
+for (const f of ['election.json', 'source-registry.json']) await cp(path.join(root, 'config', f), path.join(work, 'config', f));
 const rules = JSON.parse(await readFile(path.join(root, 'config/rules.json'), 'utf8'));
 rules.rules[0].status = 'approved';
 rules.rules[0].localeReview.he = { status: 'approved' };

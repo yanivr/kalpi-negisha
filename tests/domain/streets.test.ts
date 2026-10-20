@@ -76,3 +76,28 @@ describe('locateHouse', () => {
     expect(locateHouse(nums, '40')).toBeNull();
   });
 });
+
+import { exactLocality, suggestLocalities, type LocalityOption } from '../../src/domain/streets';
+describe('locality matching', () => {
+  const L: LocalityOption[] = [
+    { code: '5000', name: 'תל אביב - יפו', aliases: ['Tel Aviv - Yafo', 'ת"א', 'תל אביב'] },
+    { code: '2800', name: 'קרית שמונה', aliases: ['Qiryat Shemona'] },
+    { code: '7900', name: 'פתח תקווה', aliases: ['Petah Tiqwa'] },
+    { code: '1200', name: 'מודיעין-מכבים-רעות', aliases: ['מודיעין'] },
+    { code: '3797', name: 'מודיעין עילית', aliases: [] },
+  ];
+  it('accepts spelling variants and short forms', () => {
+    expect(exactLocality(L, 'קריית שמונה')?.code).toBe('2800');
+    expect(exactLocality(L, 'פתח תקוה')?.code).toBe('7900');
+    expect(exactLocality(L, 'ת"א')?.code).toBe('5000');
+    expect(exactLocality(L, 'תל-אביב')?.code).toBe('5000');
+    expect(exactLocality(L, 'tel aviv yafo')?.code).toBe('5000');
+    expect(exactLocality(L, 'מודיעין')?.code).toBe('1200');
+  });
+  it('suggests by prefix and word start, exact first', () => {
+    expect(suggestLocalities(L, 'מודי').map((l) => l.code).sort()).toEqual(['1200', '3797']);
+    expect(suggestLocalities(L, 'יפו').map((l) => l.code)).toEqual(['5000']);
+    expect(suggestLocalities(L, 'qir').map((l) => l.code)).toEqual(['2800']);
+    expect(suggestLocalities(L, 'xyz')).toEqual([]);
+  });
+});

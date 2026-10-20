@@ -14,7 +14,7 @@ await p.goto(base);
 await p.locator('#f-locality').waitFor();
 for (const [loc, street, house] of cases) {
   if (await p.locator('#results-h').count()) await p.getByRole('button', { name: 'ניקוי החיפוש' }).click();
-  await p.locator('#f-locality').selectOption({ label: loc });
+  await p.locator('#f-locality').fill(loc);
   if (street) {
     await p.locator('#f-street').fill(street.slice(0, -1));
     await p.waitForTimeout(150);

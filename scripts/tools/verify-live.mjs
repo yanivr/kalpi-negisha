@@ -24,7 +24,9 @@ p.on('pageerror', (e) => errors.push(e.message));
 for (const l of ['he', 'ar', 'ru', 'am']) {
   const r = await p.goto(`${base}${l}/`);
   await p.locator('#f-locality').waitFor({ timeout: 20000 });
-  ok(r.status() === 200 && (await p.locator('#f-locality option').count()) > 1000, `/${l}/ loads with the locality list`);
+  await p.locator('#f-locality').fill('רחו');
+  const sug = await p.locator('#locality-suggestions .suggestion').allInnerTexts().catch(() => []);
+  ok(r.status() === 200 && sug.includes('רחובות'), `/${l}/ loads; typing a locality suggests it`);
 }
 await p.goto(`${base}he/`);
 await p.locator('#f-locality').waitFor();
@@ -34,7 +36,7 @@ const cases = [
 ];
 for (const [loc, street, house, maxM] of cases) {
   if (await p.locator('#results-h').count()) await p.getByRole('button', { name: 'ניקוי החיפוש' }).click();
-  await p.locator('#f-locality').selectOption({ label: loc });
+  await p.locator('#f-locality').fill(loc);
   await p.locator('#f-street').fill(street.slice(0, -1));
   await p.locator('.suggestion', { hasText: new RegExp(`(^| )${street}$`) }).first().click({ timeout: 10000 });
   if (house) await p.locator('#f-house').fill(house);

@@ -49,7 +49,7 @@ npm run dev                            # http://localhost:5173/he/
 ### מבנה הנתונים בזמן ריצה
 
 ```
-config/            election.json, source-registry.json, rules.json, contact.json
+config/            election.json, source-registry.json, rules.json
 scripts/           ingest / refresh / build-release / approve-rules / build-pages / check-bundle
 state-seed/        מצב התחלתי (dataset נגזר + state.json)
 data-state (ענף)   מצב מתמשך בין ריצות; לא נשען על Actions cache
@@ -69,7 +69,8 @@ public/data/       נבנה בכל פריסה: manifest.json + dataset-<hash>.js
 
 - פרטיות: `docs/privacy.md`
 - רישיון קוד: MIT (`LICENSE`); נתונים: `DATA-LICENSE.md`
-- נגישות: `docs/accessibility-audit.md`; פניות: yaniv247@gmail.com, 054-3077100
+- נגישות: `docs/accessibility-audit.md`
+- האתר נבנה על ידי [יניב רונן, יועץ בינה מלאכותית](https://asakim.ai/yaniv-ronen/)
 
 ## אבטחה
 

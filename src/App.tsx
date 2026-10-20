@@ -4,7 +4,9 @@ import { deriveClock, evaluateState, type ServiceState } from './domain/freshnes
 import type { Dataset } from './domain/schema';
 import { RADIUS_STEPS_KM, searchByLocality, searchByPoint, searchNearPoints, type SearchOutcome } from './domain/match';
 import type { LatLon } from './domain/geo';
-import { exactStreet, locateHouse, normaliseHouse, suggestStreets, type OfficialStreet } from './domain/streets';
+import { exactLocality, exactStreet, locateHouse, normaliseHouse, suggestLocalities, suggestStreets, type LocalityOption, type OfficialStreet } from './domain/streets';
+import LOCALITY_EN from './data/locality-names-en.json';
+import { LOCALITY_ALIASES } from './data/locality-aliases';
 import { loadLocalityStreets, type LocalityStreets } from './services/streets';
 import { loadDataset, loadManifest, loadRules, SnapshotError, type LoadedManifest, type PublicRules } from './services/snapshot';
 import { PlaceCard } from './components/PlaceCard';
@@ -49,7 +51,7 @@ type Query =
     };
 
 interface FieldErrors {
-  locality?: 'errorLocalityRequired';
+  locality?: 'errorLocalityRequired' | 'errorLocalityChoose';
   street?: 'errorStreetChoose';
 }
 
@@ -148,7 +150,8 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   };
 
   // ---- search ----
-  const [localityCode, setLocalityCode] = useState('');
+  const [localityText, setLocalityText] = useState('');
+  const [localityChosen, setLocalityChosen] = useState<string | null>(null);
   const [street, setStreet] = useState('');
   const [streetCode, setStreetCode] = useState<number | null>(null);
   const [house, setHouse] = useState('');
@@ -161,16 +164,36 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   const [streets, setStreets] = useState<{ code: string; data: LocalityStreets } | null>(null);
   const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
-  const localityRef = useRef<HTMLSelectElement>(null);
+  const localityRef = useRef<HTMLInputElement>(null);
   const streetRef = useRef<HTMLInputElement>(null);
   const houseRef = useRef<HTMLInputElement>(null);
 
   const dataset = datasetState.status === 'ok' ? datasetState.value : null;
-  const localities = useMemo(
-    () => (dataset ? [...dataset.localities].sort((a, b) => a.name.localeCompare(b.name, 'he')) : []),
+  const localities: LocalityOption[] = useMemo(
+    () =>
+      dataset
+        ? dataset.localities.map((l) => ({
+            code: l.code,
+            name: l.name,
+            aliases: [(LOCALITY_EN as Record<string, string>)[l.code], ...(LOCALITY_ALIASES[l.code] ?? [])].filter((x): x is string => !!x),
+          }))
+        : [],
     [dataset],
   );
   const localityName = (code: string) => localities.find((l) => l.code === code)?.name ?? '';
+  // The locality is known once the user picked a suggestion or typed a name that matches exactly one locality.
+  const localityCode = localityChosen ?? exactLocality(localities, localityText)?.code ?? '';
+  const localitySuggestions = useMemo(
+    () => (!localityCode && localityText.trim() ? suggestLocalities(localities, localityText, 8) : []),
+    [localities, localityText, localityCode],
+  );
+  const chooseLocality = (l: LocalityOption) => {
+    setLocalityText(l.name);
+    setLocalityChosen(l.code);
+    setStreetCode(null);
+    setErrors((e) => ({ ...e, locality: undefined }));
+    requestAnimationFrame(() => streetRef.current?.focus());
+  };
 
   // Street list of the chosen locality, loaded on demand (local data; nothing is sent anywhere).
   useEffect(() => {
@@ -243,6 +266,20 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     }
   }, [phase, outcome, t]);
 
+  /** Arrow keys move between suggestion buttons; Escape returns to the field. */
+  const suggestionKeys = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    const list = [...(e.currentTarget.closest('ul')?.querySelectorAll<HTMLButtonElement>('button') ?? [])];
+    const i = list.indexOf(e.currentTarget);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      const next = list[i + (e.key === 'ArrowDown' ? 1 : -1)];
+      if (next) next.focus();
+      else if (e.key === 'ArrowUp') (e.currentTarget.closest('.field')?.querySelector('input') as HTMLInputElement | null)?.focus();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      (e.currentTarget.closest('.field')?.querySelector('input') as HTMLInputElement | null)?.focus();
+    }
+  };
   const chooseStreet = (s: OfficialStreet) => {
     setStreet(s.nameHe);
     setStreetCode(s.code);
@@ -265,13 +302,23 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   const runSearch = async () => {
     if (phase === 'searching') return;
     const errs: FieldErrors = {};
-    if (!localityCode) errs.locality = 'errorLocalityRequired';
+    let locCode = localityCode;
+    if (!locCode && localityText.trim()) {
+      const sug = suggestLocalities(localities, localityText, 2);
+      if (sug.length === 1) {
+        locCode = sug[0]!.code;
+        setLocalityText(sug[0]!.name);
+        setLocalityChosen(locCode);
+      }
+    }
+    if (!locCode) errs.locality = localityText.trim() ? 'errorLocalityChoose' : 'errorLocalityRequired';
+    const localityCodeResolved = locCode;
     const typed = street.trim();
     let data: LocalityStreets | null = null;
     let chosen: OfficialStreet | null = null;
-    if (localityCode && typed) {
+    if (localityCodeResolved && typed) {
       setPhase('searching');
-      data = await loadLocalityStreets(localityCode).catch(() => ({ list: [], geo: new Map() }) as LocalityStreets);
+      data = await loadLocalityStreets(localityCodeResolved).catch(() => ({ list: [], geo: new Map() }) as LocalityStreets);
       setPhase('form');
       chosen =
         (streetCode !== null ? data.list.find((x) => x.code === streetCode) ?? null : null) ??
@@ -288,22 +335,22 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
       return;
     }
     if (!typed || !chosen || !data) {
-      showResults({ mode: 'locality', localityCode });
+      showResults({ mode: 'locality', localityCode: localityCodeResolved });
       return;
     }
     setStreet(chosen.nameHe);
     setStreetCode(chosen.code);
     const geo = data.geo.get(chosen.code);
     if (!geo) {
-      showResults({ mode: 'locality', localityCode, unlocatedStreet: chosen.nameHe });
+      showResults({ mode: 'locality', localityCode: localityCodeResolved, unlocatedStreet: chosen.nameHe });
       return;
     }
     const h = house.trim() ? normaliseHouse(house) : null;
     const located = h ? locateHouse(geo.numbers, h) : null;
-    const label = `${chosen.nameHe}${h ? ` ${h}` : ''}, ${localityName(localityCode)}`;
+    const label = `${chosen.nameHe}${h ? ` ${h}` : ''}, ${localityName(localityCodeResolved)}`;
     showResults({
       mode: 'street',
-      localityCode,
+      localityCode: localityCodeResolved,
       label,
       points: located ? [located.point] : geo.points,
       precise: !!located,
@@ -313,7 +360,8 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   };
 
   const clearSearch = () => {
-    setLocalityCode('');
+    setLocalityText('');
+    setLocalityChosen(null);
     setStreet('');
     setStreetCode(null);
     setHouse('');
@@ -415,37 +463,62 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                   </legend>
                   <div className="field">
                     <label htmlFor="f-locality">{t.localityLabel}</label>
-                    {t.localityHint && (
-                      <p className="hint" id="f-locality-hint">
-                        {t.localityHint}
-                      </p>
-                    )}
+                    <p className="hint" id="f-locality-hint">
+                      {t.localityHint}
+                    </p>
                     {errors.locality && (
                       <p className="field-error" id="f-locality-error">
                         {t[errors.locality]}
                       </p>
                     )}
-                    <select
+                    <input
                       id="f-locality"
                       ref={localityRef}
-                      value={localityCode}
+                      type="text"
+                      value={localityText}
                       onChange={(e) => {
-                        setLocalityCode(e.target.value);
+                        setLocalityText(e.target.value);
+                        setLocalityChosen(null);
                         setStreetCode(null);
                         setErrors((x) => ({ ...x, locality: undefined }));
                       }}
-                      onKeyDown={onFieldKey}
+                      onKeyDown={(e) => {
+                        if (e.key === 'ArrowDown' && localitySuggestions.length) {
+                          e.preventDefault();
+                          document.querySelector<HTMLButtonElement>('#locality-suggestions button')?.focus();
+                        } else onFieldKey(e);
+                      }}
                       aria-invalid={errors.locality ? true : undefined}
-                      aria-describedby={[t.localityHint && 'f-locality-hint', errors.locality && 'f-locality-error'].filter(Boolean).join(' ') || undefined}
+                      aria-describedby={['f-locality-hint', errors.locality && 'f-locality-error'].filter(Boolean).join(' ')}
+                      aria-controls={localitySuggestions.length > 0 ? 'locality-suggestions' : undefined}
                       autoComplete="off"
-                    >
-                      <option value="">{t.localityChoose}</option>
-                      {localities.map((l) => (
-                        <option key={l.code} value={l.code} lang="he">
-                          {l.name}
-                        </option>
-                      ))}
-                    </select>
+                      spellCheck={false}
+                      enterKeyHint="next"
+                    />
+                    <p className="visually-hidden" aria-live="polite">
+                      {!localityCode && localityText.trim()
+                        ? localitySuggestions.length
+                          ? format(t.localitySuggestionsCount, { n: localitySuggestions.length })
+                          : t.localityNoMatch
+                        : ''}
+                    </p>
+                    {localitySuggestions.length > 0 && (
+                      <div className="suggestions">
+                        <p id="locality-suggestions-label" className="hint">
+                          {t.localitySuggestionsLabel}
+                        </p>
+                        <ul id="locality-suggestions" aria-labelledby="locality-suggestions-label">
+                          {localitySuggestions.map((l) => (
+                            <li key={l.code}>
+                              <button type="button" className="suggestion" lang="he" dir="rtl" onClick={() => chooseLocality(l)} onKeyDown={suggestionKeys}>
+                                {l.name}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {!localityCode && localityText.trim() && localitySuggestions.length === 0 && <p className="hint">{t.localityNoMatch}</p>}
                   </div>
                   <div className="field">
                     <label htmlFor="f-street">{t.streetLabel}</label>
@@ -466,15 +539,20 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                         setStreet(e.target.value);
                         setStreetCode(null);
                       }}
-                      onKeyDown={onFieldKey}
+                      onKeyDown={(e) => {
+                        if (e.key === 'ArrowDown' && suggestions.length) {
+                          e.preventDefault();
+                          document.querySelector<HTMLButtonElement>('#street-suggestions button')?.focus();
+                        } else onFieldKey(e);
+                      }}
                       autoComplete="off"
+                      spellCheck={false}
+                      enterKeyHint="next"
                       aria-invalid={errors.street ? true : undefined}
                       aria-describedby={['f-street-hint', errors.street && 'f-street-error'].filter(Boolean).join(' ')}
                       aria-controls={suggestions.length > 0 ? 'street-suggestions' : undefined}
                       lang="he"
                       dir="rtl"
-                      disabled={!localityCode}
-                      aria-disabled={!localityCode || undefined}
                     />
                     <p className="visually-hidden" aria-live="polite">
                       {streetCode === null && street.trim() && localityCode
@@ -491,7 +569,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                         <ul id="street-suggestions" aria-labelledby="street-suggestions-label">
                           {suggestions.map((s) => (
                             <li key={s.code}>
-                              <button type="button" className="suggestion" lang="he" dir="rtl" onClick={() => chooseStreet(s)}>
+                              <button type="button" className="suggestion" lang="he" dir="rtl" onClick={() => chooseStreet(s)} onKeyDown={suggestionKeys}>
                                 {s.nameHe}
                               </button>
                             </li>
@@ -502,6 +580,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                     {streetCode === null && street.trim() && localityCode && streets?.code === localityCode && suggestions.length === 0 && (
                       <p className="hint">{t.streetNoMatch}</p>
                     )}
+                    {street.trim() && !localityCode && <p className="hint">{t.streetNeedsLocality}</p>}
                   </div>
                   <div className="field narrow">
                     <label htmlFor="f-house">{t.houseLabel}</label>
@@ -515,8 +594,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       onKeyDown={onFieldKey}
                       autoComplete="off"
                       dir="ltr"
-                      disabled={!localityCode}
-                      aria-disabled={!localityCode || undefined}
+                      enterKeyHint="search"
                     />
                   </div>
                 </fieldset>
@@ -629,7 +707,6 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                 {outcome.withoutCoordinatesInLocality > 0 && <p className="note">{format(t.withoutCoordinates, { n: outcome.withoutCoordinatesInLocality })}</p>}
                 {outcome.excludedInstitutional > 0 && <p className="note">{format(t.excludedInstitutional, { n: outcome.excludedInstitutional })}</p>}
                 {outcome.excludedConflict > 0 && <p className="note">{format(t.excludedConflict, { n: outcome.excludedConflict })}</p>}
-                {query.mode === 'street' && <p className="attribution">{t.mapAttribution}</p>}
                 {(outcome.results.length === 0 || outcome.excludedInstitutional > 0) && <OfficialRoute locale={locale} />}
               </section>
             )}

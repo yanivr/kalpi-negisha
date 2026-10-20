@@ -105,7 +105,6 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
       <p className="note">
         {t.navNotVerified} {nav.target === 'coordinates' ? t.navBuildingPoint : t.navAddressOnly}
       </p>
-      <p className="source">{format(t.sourceLine, { date: formatDate(verifiedAt, locale) ?? '' })}</p>
     </article>
   );
 }

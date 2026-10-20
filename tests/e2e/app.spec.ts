@@ -21,7 +21,7 @@ async function axe(page: Page) {
 }
 
 async function searchLocality(page: Page, name: string) {
-  await page.locator('#f-locality').selectOption({ label: name });
+  await page.locator('#f-locality').fill(name);
   await page.locator('#search-submit').click();
   await expect(page.locator('#results-h')).toBeFocused();
 }
@@ -65,11 +65,13 @@ test('keyboard-only: skip link, choose locality, submit, focus moves to results,
   await expect(page.locator('.skip-link')).toBeFocused();
   await page.keyboard.press('Enter');
   await page.locator('#f-locality').focus();
-  // Choose the option with the keyboard only.
+  // Type part of the name, move into the suggestions with the arrow key and choose with Enter.
+  await page.keyboard.type('בדיק');
+  await expect(page.locator('#locality-suggestions .suggestion')).toHaveCount(3);
   await page.keyboard.press('ArrowDown');
-  const value = await page.locator('#f-locality').inputValue();
-  expect(value).not.toBe('');
-  await page.keyboard.press('Tab');
+  await expect(page.locator('#locality-suggestions .suggestion').first()).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#f-locality')).toHaveValue('בדיקה-א');
   await expect(page.locator('#f-street')).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(page.locator('#f-house')).toBeFocused();
@@ -151,6 +153,20 @@ test('language switch keeps the search and results, and updates lang/dir', async
   await expect(page.locator('#results-h')).toHaveText('Результаты');
   await expect(page.locator('.cards > li')).toHaveCount(2);
   expect(new URL(page.url()).pathname).toBe('/ru/');
+});
+
+test('locality is typed, not picked from a long list: partial unique name resolves, unknown name gets a clear error', async ({ page }) => {
+  await page.goto('/he/');
+  await expect(page.locator('select')).toHaveCount(0);
+  await page.locator('#f-locality').fill('לא קיים');
+  await expect(page.locator('#f-locality ~ .hint')).toContainText('לא נמצא יישוב');
+  await page.locator('#search-submit').click();
+  await expect(page.locator('.error-summary')).toContainText('בחרו את שם היישוב מהרשימה');
+  await page.locator('#f-locality').fill('בדיקה-ב');
+  await expect(page.locator('#locality-suggestions')).toHaveCount(0);
+  await page.locator('#search-submit').click();
+  await expect(page.locator('#results-h')).toBeFocused();
+  expect(await axe(page)).toEqual([]);
 });
 
 test('clear search removes the address and results', async ({ page }) => {
@@ -249,13 +265,13 @@ test('works inside a sandboxed frame that forbids form submission (hosted embedd
   );
   await page.goto('/__host');
   const fr = page.frameLocator('#f');
-  await fr.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+  await fr.locator('#f-locality').fill('בדיקה-א');
   await fr.locator('#search-submit').click();
   await expect(fr.locator('#results-h')).toBeVisible();
   await expect(fr.locator('.cards > li')).toHaveCount(2);
   // Enter in the field also searches
   await fr.getByRole('button', { name: 'שינוי כתובת' }).click();
-  await fr.locator('#f-locality').selectOption({ label: 'בדיקה-ב' });
+  await fr.locator('#f-locality').fill('בדיקה-ב');
   await fr.locator('#f-locality').press('Enter');
   await expect(fr.locator('#results-h')).toBeVisible();
 });
@@ -264,7 +280,7 @@ test('works inside a sandboxed frame that forbids form submission (hosted embedd
 test.describe('search by street', () => {
   test('type part of the street, pick it, add a house number: nearest place by exact address', async ({ page }) => {
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('הבד');
     await page.getByRole('button', { name: 'הבדיקה' }).click();
     await expect(page.locator('#f-house')).toBeFocused();
@@ -281,7 +297,7 @@ test.describe('search by street', () => {
 
   test('street without house number: distance from the street, clearly labelled', async ({ page }) => {
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('הניסוי');
     await page.locator('#f-street').press('Enter');
     await expect(page.locator('.card-label').first()).toHaveText('האפשרות הקרובה ביותר לרחוב שהזנתם');
@@ -292,7 +308,7 @@ test.describe('search by street', () => {
 
   test('house number not on the map falls back to the street, and says so', async ({ page }) => {
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('הבדיקה');
     await page.locator('#f-house').fill('99');
     await page.locator('#search-submit').click();
@@ -301,7 +317,7 @@ test.describe('search by street', () => {
 
   test('unknown street: linked error, no guessing', async ({ page }) => {
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('רחוב שלא קיים');
     await expect(page.getByText('לא נמצא רחוב בשם הזה ביישוב שבחרתם.').first()).toBeVisible();
     await page.locator('#search-submit').click();
@@ -311,7 +327,7 @@ test.describe('search by street', () => {
 
   test('official street without map location: all places in the locality with an explanation', async ({ page }) => {
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('הנעלם');
     await page.locator('#search-submit').click();
     await expect(page.getByText('לא מצאנו את מיקום הרחוב הנעלם במפה')).toBeVisible();
@@ -321,7 +337,7 @@ test.describe('search by street', () => {
   test('street search sends nothing over the network', async ({ page }) => {
     const external = watchExternal(page);
     await page.goto('/he/');
-    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-locality').fill('בדיקה-א');
     await page.locator('#f-street').fill('הבדיקה');
     await page.locator('#f-house').fill('1');
     await page.locator('#search-submit').click();

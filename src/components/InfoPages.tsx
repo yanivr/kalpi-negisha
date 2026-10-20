@@ -3,7 +3,7 @@ import type { ServiceState } from '../domain/freshness';
 import type { ReleaseManifest } from '../domain/schema';
 import { format, formatDate, formatDateTime, formatNumber, type Dict, type Locale } from '../i18n';
 import { loadReport, type PublicReport } from '../services/snapshot';
-import { A11Y_STATEMENT_DATE, CONTACT, OFFICIAL_INFO_URL, OFFICIAL_LIST_URL } from '../config';
+import { OFFICIAL_INFO_URL, OFFICIAL_LIST_URL } from '../config';
 
 interface HeadingProps {
   headingRef: RefObject<HTMLHeadingElement | null>;
@@ -78,6 +78,7 @@ export function SourcesPage({ t, locale, manifest, service, headingRef }: { t: D
           </ul>
         </>
       )}
+      <p>{t.mapAttribution}</p>
       <h2>{t.limitationsTitle}</h2>
       <ul>
         {t.limitations.map((l) => (
@@ -113,12 +114,7 @@ export function AccessibilityPage({ t, locale, headingRef }: { t: Dict; locale: 
       <p>{t.a11yGoal}</p>
       <p>{format(t.a11yTested, { tested: t.a11yTestedList })}</p>
       <p>{format(t.a11yNotTested, { untested: t.a11yUntestedList })}</p>
-      {CONTACT.email && CONTACT.phone && (
-        <p>
-          {renderContact(t.a11yContact, CONTACT.email, CONTACT.phone, CONTACT.phoneE164 ?? CONTACT.phone)}
-        </p>
-      )}
-      {A11Y_STATEMENT_DATE && <p>{format(t.a11yUpdated, { date: formatDate(A11Y_STATEMENT_DATE, locale) ?? A11Y_STATEMENT_DATE })}</p>}
+      <p>{renderBuiltBy(t.builtBy, t.builtByName, t.opensNewWindow)}</p>
       <p>
         <a href={OFFICIAL_INFO_URL} rel="noopener noreferrer" referrerPolicy="no-referrer">
           {t.officialInfoLink}
@@ -128,17 +124,15 @@ export function AccessibilityPage({ t, locale, headingRef }: { t: Dict; locale: 
   );
 }
 
-/** Inserts real links for {email} and {phone} into the translated sentence without using HTML injection. */
-function renderContact(template: string, email: string, phone: string, tel: string) {
-  const parts = template.split(/(\{email\}|\{phone\})/);
-  return parts.map((p, i) =>
-    p === '{email}' ? (
-      <a key={i} href={`mailto:${email}`} dir="ltr">
-        {email}
-      </a>
-    ) : p === '{phone}' ? (
-      <a key={i} href={`tel:${tel}`} dir="ltr">
-        <bdi>{phone}</bdi>
+export const BUILT_BY_URL = 'https://asakim.ai/yaniv-ronen/';
+
+/** "Built by {name}" with the name as a real link (no HTML injection). */
+export function renderBuiltBy(template: string, name: string, newWindow: string) {
+  return template.split(/(\{name\})/).map((p, i) =>
+    p === '{name}' ? (
+      <a key={i} href={BUILT_BY_URL} target="_blank" rel="noopener noreferrer" referrerPolicy="no-referrer">
+        {name}
+        <span className="visually-hidden"> {newWindow}</span>
       </a>
     ) : (
       <span key={i}>{p}</span>

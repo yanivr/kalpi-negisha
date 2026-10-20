@@ -120,3 +120,5 @@ jobs:
         run: |
           sleep 30
           BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" node scripts/tools/verify-live.mjs
+      - name: Mobile and accessibility audit of the live site (7 screen sizes × 4 languages, WCAG 2.2 AA)
+        run: BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" node scripts/tools/audit-mobile.mjs

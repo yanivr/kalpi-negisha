@@ -13,7 +13,7 @@ page.on('pageerror', e => console.log('pageerror', e.message)); page.on('console
 await page.goto('http://127.0.0.1:4182/host');
 const fr = page.frameLocator('#f');
 await fr.locator('#f-locality').waitFor({ timeout: 20000 });
-await fr.locator('#f-locality').selectOption({ label: 'רחובות' });
+await fr.locator('#f-locality').fill('רחובות');
 console.log('value', await fr.locator('#f-locality').inputValue());
 await fr.locator('form.search button[type=submit]').click();
 await page.waitForTimeout(2000);

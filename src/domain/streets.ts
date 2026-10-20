@@ -105,3 +105,45 @@ export function locateHouse(
   const near = [lower, higher].filter((x): x is NonNullable<typeof x> => !!x && Math.abs(x.n - n) <= 6).sort((a, b) => Math.abs(a.n - n) - Math.abs(b.n - n))[0];
   return near ? { point: near.p, kind: 'nearby' } : null;
 }
+
+/** Comparison form of a locality name: street normalisation plus spelling variants (קריית/קרית, תקווה/תקוה) and case. */
+export function localityKey(name: string): string {
+  return normaliseStreet(name).replace(/יי/g, 'י').replace(/וו/g, 'ו').toLowerCase();
+}
+
+export interface LocalityOption {
+  code: string;
+  name: string;
+  /** Other accepted names: the official English name and common abbreviations. */
+  aliases: string[];
+}
+
+/** Suggestions for a typed locality: exact, then prefix, then word-start, then contains; each locality once. */
+export function suggestLocalities(list: LocalityOption[], typed: string, limit = 8): LocalityOption[] {
+  const q = localityKey(typed);
+  if (!q) return [];
+  const scored: Array<[number, LocalityOption]> = [];
+  for (const l of list) {
+    let best = Infinity;
+    for (const n of [l.name, ...l.aliases]) {
+      const k = localityKey(n);
+      if (k === q) best = Math.min(best, 0);
+      else if (k.startsWith(q)) best = Math.min(best, 1);
+      else if (k.split(' ').some((w) => w.startsWith(q))) best = Math.min(best, 2);
+      else if (q.length >= 2 && k.includes(q)) best = Math.min(best, 3);
+    }
+    if (best < Infinity) scored.push([best, l]);
+  }
+  return scored
+    .sort((a, b) => a[0] - b[0] || a[1].name.length - b[1].name.length || a[1].name.localeCompare(b[1].name, 'he'))
+    .slice(0, limit)
+    .map(([, l]) => l);
+}
+
+/** The one locality whose name or alias equals the typed text, else null. */
+export function exactLocality(list: LocalityOption[], typed: string): LocalityOption | null {
+  const q = localityKey(typed);
+  if (!q) return null;
+  const hits = list.filter((l) => [l.name, ...l.aliases].some((n) => localityKey(n) === q));
+  return hits.length === 1 ? hits[0]! : null;
+}
