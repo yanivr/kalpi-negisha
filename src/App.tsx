@@ -4,7 +4,7 @@ import { deriveClock, evaluateState, type ServiceState } from './domain/freshnes
 import type { Dataset } from './domain/schema';
 import { RADIUS_STEPS_KM, searchByLocality, searchByPoint, searchNearPoints, type SearchOutcome } from './domain/match';
 import type { LatLon } from './domain/geo';
-import { exactStreet, normaliseHouse, suggestStreets, type OfficialStreet } from './domain/streets';
+import { exactStreet, locateHouse, normaliseHouse, suggestStreets, type OfficialStreet } from './domain/streets';
 import { loadLocalityStreets, type LocalityStreets } from './services/streets';
 import { loadDataset, loadManifest, loadRules, SnapshotError, type LoadedManifest, type PublicRules } from './services/snapshot';
 import { PlaceCard } from './components/PlaceCard';
@@ -42,9 +42,10 @@ type Query =
       localityCode: string;
       label: string;
       points: LatLon[];
-      /** True when the exact house number was found: distances are from the address itself. */
+      /** True when the house was located (exactly or from neighbouring numbers): distances are from the address. */
       precise: boolean;
       houseNotFound: string | null;
+      houseApprox: string | null;
     };
 
 interface FieldErrors {
@@ -298,15 +299,16 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
       return;
     }
     const h = house.trim() ? normaliseHouse(house) : null;
-    const exact = h && geo.numbers?.[h] ? geo.numbers[h]! : null;
+    const located = h ? locateHouse(geo.numbers, h) : null;
     const label = `${chosen.nameHe}${h ? ` ${h}` : ''}, ${localityName(localityCode)}`;
     showResults({
       mode: 'street',
       localityCode,
       label,
-      points: exact ? [exact] : geo.points,
-      precise: !!exact,
-      houseNotFound: h && !exact ? h : null,
+      points: located ? [located.point] : geo.points,
+      precise: !!located,
+      houseNotFound: h && !located ? h : null,
+      houseApprox: h && located && located.kind !== 'exact' ? h : null,
     });
   };
 
@@ -559,6 +561,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                 {query.mode === 'locality' && query.unlocatedStreet && (
                   <p className="notice info">{format(t.streetUnlocatedNote, { street: query.unlocatedStreet })}</p>
                 )}
+                {query.mode === 'street' && query.houseApprox && <p className="note">{format(t.houseApproxNote, { house: query.houseApprox })}</p>}
                 {query.mode === 'street' && !query.precise && (
                   <p className="note">{query.houseNotFound ? format(t.houseNotFoundNote, { house: query.houseNotFound }) : t.streetApproxNote}</p>
                 )}

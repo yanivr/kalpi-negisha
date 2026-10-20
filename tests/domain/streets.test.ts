@@ -60,3 +60,19 @@ describe('search near a street line', () => {
     expect(out.results[0]!.distanceMeters!).toBeLessThan(150);
   });
 });
+
+import { locateHouse } from '../../src/domain/streets';
+describe('locateHouse', () => {
+  const nums = { '2': { lat: 32, lon: 34 }, '10': { lat: 32.008, lon: 34 }, '5': { lat: 31, lon: 35 }, '12א': { lat: 33, lon: 33 } };
+  it('exact', () => expect(locateHouse(nums, '10')).toEqual({ point: nums['10'], kind: 'exact' }));
+  it('interpolates on the same side of the street', () => {
+    const r = locateHouse(nums, '6')!;
+    expect(r.kind).toBe('interpolated');
+    expect(r.point.lat).toBeCloseTo(32.004, 6);
+  });
+  it('uses a near number on the same side only', () => {
+    expect(locateHouse(nums, '14')).toEqual({ point: nums['10'], kind: 'nearby' });
+    expect(locateHouse(nums, '7')).toEqual({ point: nums['5'], kind: 'nearby' });
+    expect(locateHouse(nums, '40')).toBeNull();
+  });
+});

@@ -58,6 +58,7 @@ const he = {
   labelNearestToStreet: 'האפשרות הקרובה ביותר לרחוב שהזנתם',
   distanceFromStreet: 'מרחק מהרחוב בקו אווירי: כ־{distance}',
   mapAttribution: 'מיקומי רחובות: © תורמי OpenStreetMap. שמות רחובות: רשות האוכלוסין וההגירה.',
+  houseApproxNote: 'מספר הבית {house} לא מופיע במפה, ולכן המיקום חושב לפי מספרי בתים סמוכים באותו רחוב.',
   labelNearest: 'האפשרות הקרובה ביותר מבין התוצאות המאומתות',
   labelInArea: 'אפשרות באזור שחיפשתם',
   labelAlternative: 'חלופה {n}',

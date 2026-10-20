@@ -60,6 +60,7 @@ const am: Dict = {
   labelNearestToStreet: 'ላስገቡት መንገድ በጣም ቅርብ የሆነው አማራጭ',
   distanceFromStreet: 'ከመንገዱ ያለው ቀጥተኛ ርቀት፦ ወደ {distance} ገደማ',
   mapAttribution: 'የመንገዶች ቦታ፦ © የOpenStreetMap አስተዋጽኦ አድራጊዎች። የመንገዶች ስሞች፦ የሕዝብና የኢሚግሬሽን ባለሥልጣን።',
+  houseApproxNote: 'የቤት ቁጥር {house} በካርታው ላይ የለም፤ ስለዚህ ቦታው የተሰላው በዚያው መንገድ ላይ ባሉ አጎራባች የቤት ቁጥሮች ነው።',
   labelNearest: 'ከተረጋገጡት ውጤቶች መካከል በጣም ቅርብ የሆነው አማራጭ',
   labelInArea: 'በፈለጉት አካባቢ ያለ አማራጭ',
   labelAlternative: 'ሌላ አማራጭ {n}',

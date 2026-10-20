@@ -60,6 +60,7 @@ const ar: Dict = {
   labelNearestToStreet: 'الخيار الأقرب إلى الشارع الذي أدخلتموه',
   distanceFromStreet: 'المسافة من الشارع بخطّ مستقيم: نحو {distance}',
   mapAttribution: 'مواقع الشوارع: © المساهمون في OpenStreetMap. أسماء الشوارع: سلطة السكان والهجرة.',
+  houseApproxNote: 'رقم البيت {house} غير موجود على الخريطة، لذلك حُسب الموقع وفق أرقام بيوت قريبة في الشارع نفسه.',
   labelNearest: 'الخيار الأقرب من بين النتائج الموثَّقة',
   labelInArea: 'خيار في المنطقة التي بحثتم فيها',
   labelAlternative: 'بديل {n}',

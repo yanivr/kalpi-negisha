@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs';
 import { gunzipSync } from 'node:zlib';
-import { normaliseStreet, tokenKey } from '/home/claude/kalpi-negisha/src/domain/streets';
+import { normaliseStreet, tokenKey } from '../../src/domain/streets';
 const d = JSON.parse(gunzipSync(readFileSync(process.argv[2]!)).toString());
 const loc = process.argv[3]!;
-const off = JSON.parse(readFileSync(`/home/claude/kalpi-negisha/node_modules/@il-address/data/generated/streets/${loc}.json`, 'utf8'));
+const off = JSON.parse(readFileSync(`node_modules/@il-address/data/generated/streets/${loc}.json`, 'utf8'));
 const osmNames = new Map<string, string>();
 for (const [names] of d.assigned[loc].ways) for (const n of names) osmNames.set(normaliseStreet(n), n);
 for (const [n] of d.assigned[loc].addrs) osmNames.set(normaliseStreet(n), n);

@@ -1,6 +1,6 @@
-import { chromium } from '/home/claude/kalpi-negisha/node_modules/playwright/index.mjs';
+import { chromium } from 'playwright';
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
-const root = '/home/claude/kalpi-negisha/dist-artifact';
+const root = new URL('../../dist-artifact', import.meta.url).pathname;
 const types = { '.html':'text/html; charset=utf-8', '.js':'text/javascript', '.css':'text/css' };
 const srv = http.createServer((q, r) => { let p = decodeURIComponent(q.url.split('?')[0]);
   if (p === '/host') { r.writeHead(200, { 'content-type': 'text/html' }); return r.end('<iframe id="f" src="/" sandbox="allow-scripts allow-same-origin" style="width:400px;height:900px"></iframe>'); }

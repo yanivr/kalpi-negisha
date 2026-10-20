@@ -1,8 +1,8 @@
 // Deep check of the hosted build under hostile conditions: /data/* is refused (403), page runs inside a sandboxed iframe.
-import { chromium } from '/home/claude/kalpi-negisha/node_modules/playwright/index.mjs';
-import AxeBuilder from '/home/claude/kalpi-negisha/node_modules/@axe-core/playwright/dist/index.mjs';
+import { chromium } from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
 import http from 'node:http'; import fs from 'node:fs'; import path from 'node:path';
-const root = '/home/claude/kalpi-negisha/dist-artifact';
+const root = new URL('../../dist-artifact', import.meta.url).pathname;
 const types = { '.html':'text/html; charset=utf-8', '.js':'text/javascript', '.css':'text/css', '.woff2':'font/woff2', '.woff':'font/woff' };
 const srv = http.createServer((q, r) => {
   let p = decodeURIComponent(q.url.split('?')[0]);

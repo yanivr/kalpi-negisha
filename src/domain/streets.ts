@@ -79,3 +79,29 @@ export function normaliseHouse(h: string): string | null {
   const m = /^\s*(\d{1,4})\s*([א-ת])?\s*$/.exec(h);
   return m ? `${Number(m[1])}${m[2] ?? ''}` : null;
 }
+
+/**
+ * Locates a house number from the known numbers on the same street: exact match, else linear interpolation between
+ * the nearest lower and higher numbers on the same side (same parity, at most 40 apart), else the nearest number on
+ * the same side within 6. Returns null when the street has no usable neighbours.
+ */
+export function locateHouse(
+  numbers: Record<string, { lat: number; lon: number }> | null,
+  house: string,
+): { point: { lat: number; lon: number }; kind: 'exact' | 'interpolated' | 'nearby' } | null {
+  if (!numbers) return null;
+  if (numbers[house]) return { point: numbers[house]!, kind: 'exact' };
+  const n = Number(/^\d+/.exec(house)?.[0]);
+  if (!Number.isFinite(n)) return null;
+  const known = Object.entries(numbers)
+    .map(([k, p]) => ({ n: Number(/^\d+/.exec(k)?.[0]), p, plain: /^\d+$/.test(k) }))
+    .filter((x) => Number.isFinite(x.n) && x.plain && x.n % 2 === n % 2);
+  const lower = known.filter((x) => x.n < n).sort((a, b) => b.n - a.n)[0];
+  const higher = known.filter((x) => x.n > n).sort((a, b) => a.n - b.n)[0];
+  if (lower && higher && higher.n - lower.n <= 40) {
+    const f = (n - lower.n) / (higher.n - lower.n);
+    return { point: { lat: lower.p.lat + (higher.p.lat - lower.p.lat) * f, lon: lower.p.lon + (higher.p.lon - lower.p.lon) * f }, kind: 'interpolated' };
+  }
+  const near = [lower, higher].filter((x): x is NonNullable<typeof x> => !!x && Math.abs(x.n - n) <= 6).sort((a, b) => Math.abs(a.n - n) - Math.abs(b.n - n))[0];
+  return near ? { point: near.p, kind: 'nearby' } : null;
+}
