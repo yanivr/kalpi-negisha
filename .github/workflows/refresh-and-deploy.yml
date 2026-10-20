@@ -82,8 +82,6 @@ jobs:
       - name: Build site
         env:
           BASE_PATH: /${{ github.event.repository.name }}/
-          # Browser key restricted (HTTP referrer) to the Pages domain. Optional: without it the site searches by locality only.
-          VITE_GOOGLE_MAPS_BROWSER_KEY: ${{ vars.GOOGLE_MAPS_BROWSER_KEY }}
         run: npx vite build && npx tsx scripts/build-pages.ts dist
       - name: Privacy guard on the built bundle
         run: npx tsx scripts/check-bundle.ts dist

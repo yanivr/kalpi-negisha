@@ -5,7 +5,6 @@ import he from './src/i18n/he';
 
 const contact = JSON.parse(readFileSync('config/contact.json', 'utf8')) as { email: string; phone: string; phoneE164: string };
 const base = process.env.BASE_PATH ?? '/';
-const googleKey = process.env.VITE_GOOGLE_MAPS_BROWSER_KEY ?? '';
 
 export const CSP = [
   "default-src 'self'",
@@ -13,7 +12,7 @@ export const CSP = [
   "style-src 'self'",
   "img-src 'self' data:",
   "font-src 'self' data:",
-  `connect-src 'self'${googleKey ? ' https://maps.googleapis.com' : ''}`,
+  "connect-src 'self'",
   "object-src 'none'",
   "base-uri 'none'",
   "form-action 'none'",
