@@ -45,7 +45,9 @@ jobs:
           curl -fsSL --retry 3 -o osm.pbf https://download.geofabrik.de/asia/israel-and-palestine-latest.osm.pbf
           ls -la osm.pbf
       - name: Build index
-        run: NODE_OPTIONS=--max-old-space-size=6144 npx tsx scripts/geo/build-street-index.ts --pbf osm.pbf --out geo-index --georef state/geo-ref.json
+        run: |
+          NODE_OPTIONS=--max-old-space-size=6144 npx tsx scripts/geo/build-street-index.ts --pbf osm.pbf --out geo-index --georef state/geo-ref.json
+          npx tsx scripts/geo/match.ts --assigned geo-index/osm-assigned.json.gz --georef state/geo-ref.json --out geo-index
       - name: Publish to geo-index branch
         run: |
           cd geo-index
