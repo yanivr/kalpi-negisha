@@ -110,6 +110,7 @@ test('results: one card per building, institutions excluded, places without coor
   await expect(page.getByText('כניסה לבדיקה משער צדדי')).toBeVisible();
 
   await page.getByRole('button', { name: 'שינוי כתובת' }).click();
+  await expect(page.locator('#f-street')).toBeFocused(); // focus moves to the street field (next frame)
   await searchLocality(page, 'בדיקה-ב');
   const google = await page.locator('.card a[href*="google.com"]').getAttribute('href');
   expect(google).toContain('/maps/search/');
@@ -159,6 +160,8 @@ test('language switch keeps the search and results, and updates lang/dir', async
 test('locality is typed, not picked from a long list: partial unique name resolves, unknown name gets a clear error', async ({ page }) => {
   await page.goto('/he/');
   await expect(page.locator('select')).toHaveCount(0);
+  // the address form is a search landmark that contains every field (screen readers can jump to it)
+  await expect(page.getByRole('search').locator('#f-locality, #f-street, #f-house')).toHaveCount(3);
   await page.locator('#f-locality').fill('לא קיים');
   await expect(page.locator('#f-locality ~ .hint')).toContainText('לא נמצא יישוב');
   await page.locator('#search-submit').click();
@@ -291,6 +294,7 @@ test('works inside a sandboxed frame that forbids form submission (hosted embedd
   await expect(fr.locator('.cards > li')).toHaveCount(2);
   // Enter in the field also searches
   await fr.getByRole('button', { name: 'שינוי כתובת' }).click();
+  await expect(fr.locator('#f-street')).toBeFocused(); // focus moves to the street field (next frame)
   await fr.locator('#f-locality').fill('בדיקה-ב');
   await fr.locator('#f-locality').press('Enter');
   await expect(fr.locator('#results-h')).toBeVisible();

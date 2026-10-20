@@ -463,7 +463,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
             {active && datasetState.status === 'loading' && <p role="status">{t.loadingData}</p>}
 
             {active && dataset && phase !== 'results' && (
-              <form className="search" onSubmit={onSubmit} noValidate>
+              <form className="search" role="search" onSubmit={onSubmit} noValidate>
                 {errorList.length > 0 && (
                   <div className="error-summary" ref={errorSummaryRef} tabIndex={-1} role="alert">
                     <p>
