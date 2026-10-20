@@ -50,10 +50,15 @@ function isRecommendable(site: PollingSite): boolean {
   return isCandidate(site) && site.publicAccess.value === 'yes' && site.blockedReasons.length === 0;
 }
 
-/** Physical-place key: identical official coordinates, or identical locality + official address string. */
+/**
+ * Place key: compounds are shown as one card only when they have the same official place name AND either identical
+ * official coordinates or an identical official address. Differently named compounds (another wing, another school,
+ * or an address that is only the locality name) always stay separate cards, so every name shown matches its stations.
+ */
 export function placeKeysOf(site: PollingSite): string[] {
-  const keys = [`addr:${site.localityCode}|${normaliseAddress(site.address.raw)}`];
-  if (site.point) keys.push(`pt:${site.point.lat.toFixed(5)},${site.point.lon.toFixed(5)}`);
+  const name = site.officialName.replace(/\s+/g, ' ').trim();
+  const keys = [`addr:${site.localityCode}|${name}|${normaliseAddress(site.address.raw)}`];
+  if (site.point) keys.push(`pt:${name}|${site.point.lat.toFixed(5)},${site.point.lon.toFixed(5)}`);
   return keys;
 }
 

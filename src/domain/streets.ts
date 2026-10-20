@@ -108,7 +108,10 @@ export function locateHouse(
 
 /** Comparison form of a locality name: street normalisation plus spelling variants (קריית/קרית, תקווה/תקוה) and case. */
 export function localityKey(name: string): string {
-  return normaliseStreet(name).replace(/יי/g, 'י').replace(/וו/g, 'ו').toLowerCase();
+  const k = normaliseStreet(name).replace(/יי/g, 'י').replace(/וו/g, 'ו').toLowerCase();
+  // Latin spellings: the official English names use a strict transliteration (Qiryat, Tiqwa, Elat, Herzeliyya);
+  // people type Kiryat, Tikva, Eilat. Both sides are reduced the same way, so only spelling noise is ignored.
+  return /[a-z]/.test(k) ? k.replace(/q/g, 'k').replace(/w/g, 'v').replace(/ei/g, 'e').replace(/([a-z])\1+/g, '$1') : k;
 }
 
 export interface LocalityOption {
@@ -122,6 +125,7 @@ export interface LocalityOption {
 export function suggestLocalities(list: LocalityOption[], typed: string, limit = 8): LocalityOption[] {
   const q = localityKey(typed);
   if (!q) return [];
+  const qc = /[a-z]/.test(q) ? consonants(q) : '';
   const scored: Array<[number, LocalityOption]> = [];
   for (const l of list) {
     let best = Infinity;
@@ -131,6 +135,7 @@ export function suggestLocalities(list: LocalityOption[], typed: string, limit =
       else if (k.startsWith(q)) best = Math.min(best, 1);
       else if (k.split(' ').some((w) => w.startsWith(q))) best = Math.min(best, 2);
       else if (q.length >= 2 && k.includes(q)) best = Math.min(best, 3);
+      else if (qc.length >= 3 && consonants(k).startsWith(qc)) best = Math.min(best, 4);
     }
     if (best < Infinity) scored.push([best, l]);
   }
@@ -138,6 +143,11 @@ export function suggestLocalities(list: LocalityOption[], typed: string, limit =
     .sort((a, b) => a[0] - b[0] || a[1].name.length - b[1].name.length || a[1].name.localeCompare(b[1].name, 'he'))
     .slice(0, limit)
     .map(([, l]) => l);
+}
+
+/** Latin text without vowels: "kiryat shmona" and "qiryat shemona" both become "kryt shmn". Suggestions only. */
+function consonants(k: string): string {
+  return k.replace(/[aeiouy']/g, '').replace(/\s+/g, ' ').trim();
 }
 
 /** The one locality whose name or alias equals the typed text, else null. */

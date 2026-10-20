@@ -38,8 +38,8 @@ describe('searchByPoint', () => {
 
   it('shows three stations in one building as one card and takes alternatives from other places', () => {
     const sites = [
-      site({ id: 'b1-a', lat: north(100), address: { locality: 'x', street: 'א', house: '1', raw: 'א,1' }, stations: [station('11.1')] }),
-      site({ id: 'b1-b', lat: north(100), address: { locality: 'x', street: 'א', house: '1', raw: 'א,1' }, stations: [station('11.2'), station('11.3')] }),
+      site({ id: 'b1-a', officialName: 'בדיקה אולם', lat: north(100), address: { locality: 'x', street: 'א', house: '1', raw: 'א,1' }, stations: [station('11.1')] }),
+      site({ id: 'b1-b', officialName: 'בדיקה אולם', lat: north(100), address: { locality: 'x', street: 'א', house: '1', raw: 'א,1' }, stations: [station('11.2'), station('11.3')] }),
       site({ id: 'b2', lat: north(500) }),
       site({ id: 'b3', lat: north(800) }),
       site({ id: 'b4', lat: north(1200) }),
@@ -50,10 +50,26 @@ describe('searchByPoint', () => {
     expect(out.results.map((r) => r.site.siteId)).toEqual(['b1-a', 'b2', 'b3']);
   });
 
-  it('merges two official compounds at identical coordinates', () => {
-    const sites = [site({ id: 'c1', lat: north(300) }), site({ id: 'c2', lat: north(300) }), site({ id: 'c3', lat: north(600) })];
+  it('merges compounds at identical coordinates only when the official place name is the same', () => {
+    const sites = [
+      site({ id: 'c1', officialName: 'בדיקה מתנ"ס', lat: north(300) }),
+      site({ id: 'c2', officialName: 'בדיקה מתנ"ס', lat: north(300) }),
+      site({ id: 'c3', lat: north(600) }),
+    ];
+    expect(searchByPoint(sites, q()).results.map((r) => r.sites.map((s) => s.siteId))).toEqual([['c1', 'c2'], ['c3']]);
+  });
+
+  it('never merges differently named compounds, even at the same point or the same address (another wing / school)', () => {
+    const same = { locality: 'x', street: null, house: null, raw: 'בדיקה-עיר' } as const;
+    const sites = [
+      site({ id: 'wing-a', officialName: 'בדיקה תיכון-אגף מינהלה', lat: north(300), address: { ...same }, stations: [station('37'), station('42')] }),
+      site({ id: 'wing-b', officialName: 'בדיקה תיכון-אגף מורות', lat: north(300), address: { ...same }, stations: [station('41.1')] }),
+    ];
     const out = searchByPoint(sites, q());
-    expect(out.results.map((r) => r.sites.map((s) => s.siteId))).toEqual([['c1', 'c2'], ['c3']]);
+    expect(out.results.map((r) => [r.site.officialName, r.specialStations.map((s) => s.officialNumber)])).toEqual([
+      ['בדיקה תיכון-אגף מינהלה', ['37', '42']],
+      ['בדיקה תיכון-אגף מורות', ['41.1']],
+    ]);
   });
 
   it('does not pad results to three', () => {

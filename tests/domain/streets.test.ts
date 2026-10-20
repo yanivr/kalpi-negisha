@@ -101,3 +101,28 @@ describe('locality matching', () => {
     expect(suggestLocalities(L, 'xyz')).toEqual([]);
   });
 });
+
+describe('English locality spellings', () => {
+  const L: LocalityOption[] = [
+    { code: '2600', name: 'אילת', aliases: ['Elat'] },
+    { code: '2630', name: 'קרית גת', aliases: ['Qiryat Gat'] },
+    { code: '7900', name: 'פתח תקווה', aliases: ['Petah Tiqwa'] },
+    { code: '3780', name: 'ביתר עילית', aliases: ['Betar Illit'] },
+    { code: '2610', name: 'בית שמש', aliases: ['Bet Shemesh'] },
+  ];
+  it('accepts common spellings of the official transliteration', () => {
+    expect(exactLocality(L, 'Eilat')?.code).toBe('2600');
+    expect(exactLocality(L, 'kiryat gat')?.code).toBe('2630');
+    expect(exactLocality(L, 'Petah Tikva')?.code).toBe('7900');
+    expect(exactLocality(L, 'Beitar Ilit')?.code).toBe('3780');
+    expect(exactLocality(L, 'Beit Shemesh')?.code).toBe('2610');
+  });
+});
+
+describe('loose Latin suggestions', () => {
+  const L: LocalityOption[] = [{ code: '2800', name: 'קרית שמונה', aliases: ['Qiryat Shemona'] }, { code: '9000', name: 'באר שבע', aliases: ["Be'er Sheva"] }];
+  it('suggests (but never auto-picks) when only vowels differ', () => {
+    expect(suggestLocalities(L, 'Kiryat Shmona').map((l) => l.code)).toEqual(['2800']);
+    expect(exactLocality(L, 'Kiryat Shmona')).toBeNull();
+  });
+});
