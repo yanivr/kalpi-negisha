@@ -62,9 +62,9 @@
     "version": "2026-10-20.2",
     "excerptSha256": "7b2bcbf728f597f203066136a9809d580e83e69b42d96bcbfaef72735da25f53",
     "officialDocSha256": "2781b6711cca12d306ece09498be1ca1582bf22ac7071a4a34d8ba7ff0954c62",
-    "verifiedAt": "2026-10-20T11:11:10.114Z"
+    "verifiedAt": "2026-10-20T11:27:50.077Z"
   },
-  "lastAttemptAt": "2026-10-20T11:11:10.114Z",
+  "lastAttemptAt": "2026-10-20T11:27:50.077Z",
   "lastAttemptResult": "failed",
   "blockingReasons": [],
   "attempts": [
@@ -180,6 +180,14 @@
     },
     {
       "at": "2026-10-20T11:11:10.114Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-10-20T11:27:50.077Z",
       "result": "failed",
       "detail": [
         "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
