@@ -108,6 +108,40 @@ for await (const item of createOSMStream(PBF, { withInfo: false, withTags: false
 }
 console.log(`pass2: ${coords.size} coordinates`);
 
+// ---- intermediate: OSM features assigned to localities (lets the matcher run without the PBF) ----
+{
+  const { gzipSync } = await import('node:zlib');
+  const assigned: Record<string, { ways: Array<[string[], Array<[number, number]>]>; addrs: Array<[string, string, number, number]> }> = {};
+  const r5 = (x: number) => Math.round(x * 1e5) / 1e5;
+  for (const w of streetWays) {
+    const pts = w.refs.map((r) => coords.get(r)).filter((p): p is [number, number] => !!p);
+    if (!pts.length) continue;
+    const mid = pts[Math.floor(pts.length / 2)]!;
+    const loc = assignLocality(mid[0], mid[1]);
+    if (!loc) continue;
+    const sampled: Array<[number, number]> = [];
+    let last: [number, number] | null = null;
+    for (let i = 0; i < pts.length; i++) {
+      const p = pts[i]!;
+      if (!last || i === pts.length - 1 || airDistanceMeters({ lat: last[0], lon: last[1] }, { lat: p[0], lon: p[1] }) >= SAMPLE_M) {
+        sampled.push([r5(p[0]), r5(p[1])]);
+        last = p;
+      }
+    }
+    (assigned[loc] ??= { ways: [], addrs: [] }).ways.push([w.names, sampled]);
+  }
+  const pushAddr = (street: string, house: string, p: [number, number] | undefined) => {
+    if (!p) return;
+    const loc = assignLocality(p[0], p[1]);
+    if (loc) (assigned[loc] ??= { ways: [], addrs: [] }).addrs.push([street, house, r5(p[0]), r5(p[1])]);
+  };
+  for (const [id, a] of addrNodes) pushAddr(a.street, a.house, coords.get(id));
+  for (const a of addrWays) pushAddr(a.street, a.house, coords.get(a.ref));
+  await mkdir(OUT, { recursive: true });
+  await writeFile(path.join(OUT, 'osm-assigned.json.gz'), gzipSync(JSON.stringify({ osmTimestamp: (header as any)?.osmosis_replication_timestamp ?? null, assigned })));
+  console.log('intermediate written');
+}
+
 // ---- official streets per locality ----
 const official = new Map<string, OfficialStreet[]>();
 for (const f of await readdir(STREETS_DIR)) {
