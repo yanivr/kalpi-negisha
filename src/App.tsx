@@ -240,8 +240,16 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     setFilter('');
     setQuery(next);
     setPhase('results');
-    requestAnimationFrame(() => resultsHeadingRef.current?.focus());
+    focusResults.current = true;
   };
+  // Move focus to the results heading once it is actually rendered (not on a timer that can race the render).
+  const focusResults = useRef(false);
+  useEffect(() => {
+    if (focusResults.current && phase === 'results' && resultsHeadingRef.current) {
+      focusResults.current = false;
+      resultsHeadingRef.current.focus();
+    }
+  });
 
   // Local, in-page filter for long locality lists (big cities). Nothing typed here leaves the device.
   const visibleResults = useMemo(() => {
@@ -818,11 +826,8 @@ function StatusBlock({
   const date = (iso: string | null) => formatDateTime(iso, locale) ?? t.never;
   switch (service.kind) {
     case 'active':
-      return service.degraded ? (
-        <div className="notice info">
-          <p>{format(t.statusDegraded, { date: date(service.lastVerifiedAt) })}</p>
-        </div>
-      ) : null;
+      // Owner decision: a failed daily refresh attempt is not shown on the page (the data stays valid; see Sources page).
+      return null;
     case 'uninitialized':
       return <Notice text={t.statusUninitialized} />;
     case 'blocked':

@@ -187,18 +187,44 @@ a:hover {
 }
 
 details.rules {
-  border: 2px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0 1rem;
-  margin-block: 1rem;
+  margin-block: 0.75rem 1rem;
 }
 details.rules summary {
   cursor: pointer;
-  min-block-size: 48px;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  font-weight: 700;
+  gap: 0.4em;
+  min-block-size: 44px;
   color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  list-style: none;
+}
+details.rules summary::-webkit-details-marker {
+  display: none;
+}
+details.rules summary::before {
+  content: '';
+  inline-size: 0.5em;
+  block-size: 0.5em;
+  border-block-end: 2px solid currentColor;
+  border-inline-end: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-block-start: -0.2em;
+  transition: transform 0.15s;
+}
+details.rules[open] summary::before {
+  transform: rotate(-135deg);
+  margin-block-start: 0.2em;
+}
+@media (prefers-reduced-motion: reduce) {
+  details.rules summary::before {
+    transition: none;
+  }
+}
+details.rules[open] .rules-body {
+  border-inline-start: 3px solid var(--border);
+  padding-inline-start: 1rem;
 }
 .rules-body {
   padding-block-end: 0.75rem;
@@ -433,7 +459,6 @@ input[type='search'] {
 @media (forced-colors: active) {
   .button,
   .card,
-  details.rules,
   .notice,
   select,
   input[type='text'] {

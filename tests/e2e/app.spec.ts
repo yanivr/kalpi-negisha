@@ -104,7 +104,8 @@ test('results: one card per building, institutions excluded, places without coor
   await expect(page.getByText('בית אבות בדיקה')).toHaveCount(0);
   await expect(page.locator('.results .note').filter({ hasText: 'בתי אבות' })).toBeVisible();
   // compound 2 has stations 4.1 and 4.2 in a single card
-  await expect(page.locator('.card').filter({ hasText: 'מתנ"ס בדיקה' }).locator('.num')).toHaveText(['4.1', '4.2']);
+  await expect(page.locator('.card').filter({ hasText: 'מתנ"ס בדיקה' })).toHaveCount(1);
+  await expect(page.locator('.card .num')).toHaveCount(0);
   // official access instructions are shown verbatim
   await expect(page.getByText('כניסה לבדיקה משער צדדי')).toBeVisible();
 
@@ -215,10 +216,11 @@ test('a dataset that does not match the manifest hash is rejected', async ({ pag
   await expect(page.locator('form.search')).toHaveCount(0);
 });
 
-test('degraded: last refresh failed — results still shown with a visible notice', async ({ page }) => {
+test('degraded: last refresh failed — results still shown, no notice on the search page', async ({ page }) => {
   await withManifest(page, { status: 'degraded', lastAttemptResult: 'failed' });
   await page.goto('/he/');
-  await expect(page.getByText('הבדיקה האחרונה מול המקור הרשמי לא הושלמה')).toBeVisible();
+  await expect(page.locator('#f-locality')).toBeVisible();
+  await expect(page.getByText('הבדיקה האחרונה מול המקור הרשמי לא הושלמה')).toHaveCount(0);
   await searchLocality(page, 'בדיקה-א');
 });
 

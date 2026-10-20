@@ -1,6 +1,5 @@
 import { useId } from 'react';
 import type { PlaceResult } from '../domain/match';
-import { compareStationNumbers } from '../domain/match';
 import { roundDistance } from '../domain/geo';
 import { isAllowedExternalUrl, navigationLinks } from '../domain/navigation';
 import { format, formatDate, formatNumber, type Dict, type Locale } from '../i18n';
@@ -21,7 +20,6 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
   const id = useId();
   const site = place.site;
   const nav = navigationLinks(site);
-  const numbers = [...new Set(place.specialStations.map((s) => s.officialNumber))].sort(compareStationNumbers);
   const instructions = [...new Set(place.specialStations.map((s) => s.accessInstructions).filter((x): x is string => !!x))];
 
   let distanceText: string | null = null;
@@ -57,17 +55,6 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
         </bdi>
       </p>
       <p className="classification">{t.classification}</p>
-      <p>
-        {t.stationsAtPlace}{' '}
-        {numbers.map((n, i) => (
-          <span key={n}>
-            {i > 0 && ', '}
-            <bdi dir="ltr" className="num">
-              {n}
-            </bdi>
-          </span>
-        ))}
-      </p>
       {instructions.length > 0 ? (
         <div className="instructions">
           <p>
