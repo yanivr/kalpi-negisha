@@ -2,9 +2,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DICTS, LOCALES, format, formatDateTime, isLocale, type Locale } from './i18n';
 import { deriveClock, evaluateState, type ServiceState } from './domain/freshness';
 import type { Dataset } from './domain/schema';
-import { RADIUS_STEPS_KM, searchByLocality, searchByPoint, type SearchOutcome } from './domain/match';
+import { RADIUS_STEPS_KM, searchByLocality, searchByPoint, searchNearPoints, type SearchOutcome } from './domain/match';
+import type { LatLon } from './domain/geo';
+import { exactStreet, normaliseHouse, suggestStreets, type OfficialStreet } from './domain/streets';
+import { loadLocalityStreets, type LocalityStreets } from './services/streets';
 import { loadDataset, loadManifest, loadRules, SnapshotError, type LoadedManifest, type PublicRules } from './services/snapshot';
-import { geocodeAddress, geocodingEnabled, needsConfirmation, type GeocodeCandidate } from './services/geocode';
 import { PlaceCard } from './components/PlaceCard';
 import { SourcesPage, PrivacyPage, AccessibilityPage } from './components/InfoPages';
 import { OFFICIAL_INFO_URL, OFFICIAL_LIST_URL } from './config';
@@ -33,14 +35,21 @@ export function pathFor(locale: Locale, view: View): string {
 type LoadState<T> = { status: 'idle' | 'loading' } | { status: 'ok'; value: T } | { status: 'error'; offline: boolean; detail?: string };
 
 type Query =
-  | { mode: 'locality'; localityCode: string }
-  | { mode: 'point'; label: string; candidate: GeocodeCandidate; localityCode: string }
-  | { mode: 'locality-nearby'; localityCode: string };
+  | { mode: 'locality'; localityCode: string; unlocatedStreet?: string }
+  | { mode: 'locality-nearby'; localityCode: string }
+  | {
+      mode: 'street';
+      localityCode: string;
+      label: string;
+      points: LatLon[];
+      /** True when the exact house number was found: distances are from the address itself. */
+      precise: boolean;
+      houseNotFound: string | null;
+    };
 
 interface FieldErrors {
   locality?: 'errorLocalityRequired';
-  street?: 'errorHouseWithoutStreet';
-  form?: 'errorAddressNotFound' | 'errorGeocodeUnavailable';
+  street?: 'errorStreetChoose';
 }
 
 export function App({ initialLocale, initialView }: { initialLocale: Locale; initialView: View }) {
@@ -140,18 +149,20 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   // ---- search ----
   const [localityCode, setLocalityCode] = useState('');
   const [street, setStreet] = useState('');
+  const [streetCode, setStreetCode] = useState<number | null>(null);
   const [house, setHouse] = useState('');
   const [errors, setErrors] = useState<FieldErrors>({});
-  const [phase, setPhase] = useState<'form' | 'searching' | 'choose' | 'results'>('form');
-  const [candidates, setCandidates] = useState<GeocodeCandidate[]>([]);
+  const [phase, setPhase] = useState<'form' | 'searching' | 'results'>('form');
   const [query, setQuery] = useState<Query | null>(null);
   const [radiusIdx, setRadiusIdx] = useState(0);
   const [filter, setFilter] = useState('');
   const [announce, setAnnounce] = useState('');
+  const [streets, setStreets] = useState<{ code: string; data: LocalityStreets } | null>(null);
   const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
-  const chooseHeadingRef = useRef<HTMLHeadingElement>(null);
   const errorSummaryRef = useRef<HTMLDivElement>(null);
   const localityRef = useRef<HTMLSelectElement>(null);
+  const streetRef = useRef<HTMLInputElement>(null);
+  const houseRef = useRef<HTMLInputElement>(null);
 
   const dataset = datasetState.status === 'ok' ? datasetState.value : null;
   const localities = useMemo(
@@ -160,20 +171,35 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   );
   const localityName = (code: string) => localities.find((l) => l.code === code)?.name ?? '';
 
+  // Street list of the chosen locality, loaded on demand (local data; nothing is sent anywhere).
+  useEffect(() => {
+    if (!localityCode) return;
+    let cancelled = false;
+    loadLocalityStreets(localityCode).then(
+      (data) => !cancelled && setStreets({ code: localityCode, data }),
+      () => !cancelled && setStreets({ code: localityCode, data: { list: [], geo: new Map() } }),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [localityCode]);
+  const streetList: OfficialStreet[] = streets && streets.code === localityCode ? streets.data.list : [];
+  const suggestions = useMemo(
+    () => (streetCode === null && street.trim() ? suggestStreets(streetList, street, 8) : []),
+    [streetList, street, streetCode],
+  );
+
   const outcome: SearchOutcome | null = useMemo(() => {
     if (!dataset || !query) return null;
-    if (query.mode === 'locality') {
-      const r = searchByLocality(dataset.sites, query.localityCode);
-      return r;
-    }
+    if (query.mode === 'locality') return searchByLocality(dataset.sites, query.localityCode);
     if (query.mode === 'locality-nearby') {
       const loc = dataset.localities.find((l) => l.code === query.localityCode);
       if (!loc?.centre) return { results: [], excludedInstitutional: 0, excludedConflict: 0, withoutCoordinatesInLocality: 0 };
       return searchByPoint(dataset.sites, { point: loc.centre, precise: false, radiusKm: RADIUS_STEPS_KM[radiusIdx]!, localityCode: null });
     }
-    return searchByPoint(dataset.sites, {
-      point: query.candidate.point,
-      precise: query.candidate.precise,
+    return searchNearPoints(dataset.sites, {
+      points: query.points,
+      precise: query.precise,
       radiusKm: RADIUS_STEPS_KM[radiusIdx]!,
       localityCode: query.localityCode,
     });
@@ -183,7 +209,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     // Validity is re-checked right before results are shown (spec §15).
     setTick((x) => x + 1);
     let next = q;
-    if (q.mode === 'locality' && dataset && searchByLocality(dataset.sites, q.localityCode).results.length === 0) {
+    if (q.mode === 'locality' && !q.unlocatedStreet && dataset && searchByLocality(dataset.sites, q.localityCode).results.length === 0) {
       next = { mode: 'locality-nearby', localityCode: q.localityCode };
     }
     setRadiusIdx(0);
@@ -203,11 +229,25 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     );
   }, [outcome, filter]);
 
+  // Widen the radius automatically until there are results (up to the largest step), so the user never has to.
+  useEffect(() => {
+    if (phase === 'results' && outcome && query && query.mode !== 'locality' && outcome.results.length === 0 && radiusIdx < RADIUS_STEPS_KM.length - 1) {
+      setRadiusIdx((r) => r + 1);
+    }
+  }, [phase, outcome, query, radiusIdx]);
+
   useEffect(() => {
     if (phase === 'results' && outcome) {
       setAnnounce(outcome.results.length === 1 ? t.resultsCountOne : format(t.resultsCount, { n: outcome.results.length }));
     }
   }, [phase, outcome, t]);
+
+  const chooseStreet = (s: OfficialStreet) => {
+    setStreet(s.nameHe);
+    setStreetCode(s.code);
+    setErrors((e) => ({ ...e, street: undefined }));
+    requestAnimationFrame(() => houseRef.current?.focus());
+  };
 
   // The search runs from the button's click (and Enter in a field), never from native form submission:
   // some hosts sandbox the page without allowing form submission, which would silently swallow the submit event.
@@ -225,41 +265,57 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     if (phase === 'searching') return;
     const errs: FieldErrors = {};
     if (!localityCode) errs.locality = 'errorLocalityRequired';
-    if (geocodingEnabled && house.trim() && !street.trim()) errs.street = 'errorHouseWithoutStreet';
+    const typed = street.trim();
+    let data: LocalityStreets | null = null;
+    let chosen: OfficialStreet | null = null;
+    if (localityCode && typed) {
+      setPhase('searching');
+      data = await loadLocalityStreets(localityCode).catch(() => ({ list: [], geo: new Map() }) as LocalityStreets);
+      setPhase('form');
+      chosen =
+        (streetCode !== null ? data.list.find((x) => x.code === streetCode) ?? null : null) ??
+        exactStreet(data.list, typed) ??
+        (() => {
+          const sug = suggestStreets(data!.list, typed, 2);
+          return sug.length === 1 ? sug[0]! : null;
+        })();
+      if (!chosen) errs.street = 'errorStreetChoose';
+    }
     setErrors(errs);
     if (errs.locality || errs.street) {
       requestAnimationFrame(() => errorSummaryRef.current?.focus());
       return;
     }
-    if (!geocodingEnabled || !street.trim()) {
+    if (!typed || !chosen || !data) {
       showResults({ mode: 'locality', localityCode });
       return;
     }
-    setPhase('searching');
-    setAnnounce(t.loading);
-    const res = await geocodeAddress({ locality: localityName(localityCode), street: street.trim(), house: house.trim() });
-    if (res.kind === 'ok') {
-      if (!needsConfirmation(res.candidates)) {
-        const c = res.candidates[0]!;
-        showResults({ mode: 'point', label: c.label, candidate: c, localityCode });
-      } else {
-        setCandidates(res.candidates);
-        setPhase('choose');
-        requestAnimationFrame(() => chooseHeadingRef.current?.focus());
-      }
+    setStreet(chosen.nameHe);
+    setStreetCode(chosen.code);
+    const geo = data.geo.get(chosen.code);
+    if (!geo) {
+      showResults({ mode: 'locality', localityCode, unlocatedStreet: chosen.nameHe });
       return;
     }
-    setPhase('form');
-    setErrors({ form: res.kind === 'not-found' ? 'errorAddressNotFound' : 'errorGeocodeUnavailable' });
-    requestAnimationFrame(() => errorSummaryRef.current?.focus());
+    const h = house.trim() ? normaliseHouse(house) : null;
+    const exact = h && geo.numbers?.[h] ? geo.numbers[h]! : null;
+    const label = `${chosen.nameHe}${h ? ` ${h}` : ''}, ${localityName(localityCode)}`;
+    showResults({
+      mode: 'street',
+      localityCode,
+      label,
+      points: exact ? [exact] : geo.points,
+      precise: !!exact,
+      houseNotFound: h && !exact ? h : null,
+    });
   };
 
   const clearSearch = () => {
     setLocalityCode('');
     setStreet('');
+    setStreetCode(null);
     setHouse('');
     setErrors({});
-    setCandidates([]);
     setQuery(null);
     setPhase('form');
     setAnnounce('');
@@ -268,7 +324,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   const changeAddress = () => {
     setPhase('form');
     setQuery(null);
-    requestAnimationFrame(() => localityRef.current?.focus());
+    requestAnimationFrame(() => streetRef.current?.focus());
   };
   const beforeNavigate = () => {
     const s = computeState();
@@ -282,7 +338,6 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     [
       errors.locality && { field: 'locality', text: t[errors.locality] },
       errors.street && { field: 'street', text: t[errors.street] },
-      errors.form && { field: errors.form === 'errorAddressNotFound' ? 'street' : 'locality', text: t[errors.form] },
     ].filter(Boolean) as Array<{ field: string; text: string }>
   );
 
@@ -336,7 +391,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
 
             {active && datasetState.status === 'loading' && <p role="status">{t.loadingData}</p>}
 
-            {active && dataset && phase !== 'results' && phase !== 'choose' && (
+            {active && dataset && phase !== 'results' && (
               <form className="search" onSubmit={onSubmit} noValidate>
                 {errorList.length > 0 && (
                   <div className="error-summary" ref={errorSummaryRef} tabIndex={-1} role="alert">
@@ -350,11 +405,6 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                         </li>
                       ))}
                     </ul>
-                    {errors.form && (
-                      <button type="button" className="button secondary" onClick={() => showResults({ mode: 'locality', localityCode })}>
-                        {t.searchByLocalityOnly}
-                      </button>
-                    )}
                   </div>
                 )}
                 <fieldset>
@@ -377,8 +427,11 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       id="f-locality"
                       ref={localityRef}
                       value={localityCode}
-                      onChange={(e) => setLocalityCode(e.target.value)}
-                      onKeyDown={onFieldKey}
+                      onChange={(e) => {
+                        setLocalityCode(e.target.value);
+                        setStreetCode(null);
+                        setErrors((x) => ({ ...x, locality: undefined }));
+                      }}
                       aria-invalid={errors.locality ? true : undefined}
                       aria-describedby={[t.localityHint && 'f-locality-hint', errors.locality && 'f-locality-error'].filter(Boolean).join(' ') || undefined}
                       autoComplete="off"
@@ -391,65 +444,85 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       ))}
                     </select>
                   </div>
-                  {geocodingEnabled && (
-                    <>
-                      <div className="field">
-                        <label htmlFor="f-street">{t.streetLabel}</label>
-                        {errors.street && (
-                          <p className="field-error" id="f-street-error">
-                            {t[errors.street]}
-                          </p>
-                        )}
-                        <input
-                          id="f-street"
-                          type="text"
-                          value={street}
-                          onChange={(e) => setStreet(e.target.value)}
-                          onKeyDown={onFieldKey}
-                          autoComplete="off"
-                          aria-invalid={errors.street ? true : undefined}
-                          aria-describedby={errors.street ? 'f-street-error' : undefined}
-                          dir="auto"
-                        />
+                  <div className="field">
+                    <label htmlFor="f-street">{t.streetLabel}</label>
+                    <p className="hint" id="f-street-hint">
+                      {t.streetHint}
+                    </p>
+                    {errors.street && (
+                      <p className="field-error" id="f-street-error">
+                        {t[errors.street]}
+                      </p>
+                    )}
+                    <input
+                      id="f-street"
+                      ref={streetRef}
+                      type="text"
+                      value={street}
+                      onChange={(e) => {
+                        setStreet(e.target.value);
+                        setStreetCode(null);
+                      }}
+                      onKeyDown={onFieldKey}
+                      autoComplete="off"
+                      aria-invalid={errors.street ? true : undefined}
+                      aria-describedby={['f-street-hint', errors.street && 'f-street-error'].filter(Boolean).join(' ')}
+                      aria-controls="street-suggestions"
+                      lang="he"
+                      dir="rtl"
+                      disabled={!localityCode}
+                      aria-disabled={!localityCode || undefined}
+                    />
+                    <p className="visually-hidden" aria-live="polite">
+                      {streetCode === null && street.trim() && localityCode
+                        ? suggestions.length
+                          ? format(t.streetSuggestionsCount, { n: suggestions.length })
+                          : t.streetNoMatch
+                        : ''}
+                    </p>
+                    {suggestions.length > 0 && (
+                      <div className="suggestions">
+                        <p id="street-suggestions-label" className="hint">
+                          {t.streetSuggestionsLabel}
+                        </p>
+                        <ul id="street-suggestions" aria-labelledby="street-suggestions-label">
+                          {suggestions.map((s) => (
+                            <li key={s.code}>
+                              <button type="button" className="suggestion" lang="he" dir="rtl" onClick={() => chooseStreet(s)}>
+                                {s.nameHe}
+                              </button>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <div className="field narrow">
-                        <label htmlFor="f-house">{t.houseLabel}</label>
-                        <input id="f-house" type="text" inputMode="numeric" value={house} onChange={(e) => setHouse(e.target.value)} onKeyDown={onFieldKey} autoComplete="off" dir="ltr" />
-                      </div>
-                    </>
-                  )}
+                    )}
+                    {streetCode === null && street.trim() && localityCode && streets?.code === localityCode && suggestions.length === 0 && (
+                      <p className="hint">{t.streetNoMatch}</p>
+                    )}
+                  </div>
+                  <div className="field narrow">
+                    <label htmlFor="f-house">{t.houseLabel}</label>
+                    <input
+                      id="f-house"
+                      ref={houseRef}
+                      type="text"
+                      inputMode="numeric"
+                      value={house}
+                      onChange={(e) => setHouse(e.target.value)}
+                      onKeyDown={onFieldKey}
+                      autoComplete="off"
+                      dir="ltr"
+                      disabled={!localityCode}
+                      aria-disabled={!localityCode || undefined}
+                    />
+                  </div>
                 </fieldset>
                 <button type="button" id="search-submit" className="button primary" onClick={() => void runSearch()} aria-disabled={phase === 'searching' || undefined}>
                   {phase === 'searching' ? t.loading : t.submit}
                 </button>
                 <p className="privacy-note">{t.noIdNeeded}</p>
-                <p className="privacy-note">{geocodingEnabled ? t.googleNotice : t.localOnlyNotice}</p>
+                <p className="privacy-note">{t.localOnlyNotice}</p>
               </form>
-            )}
-
-            {active && phase === 'choose' && (
-              <section className="choose" aria-labelledby="choose-h">
-                <h2 id="choose-h" ref={chooseHeadingRef} tabIndex={-1}>
-                  {t.chooseAddressTitle}
-                </h2>
-                <ul className="choice-list">
-                  {candidates.map((c) => (
-                    <li key={`${c.label}-${c.point.lat}`}>
-                      <button
-                        type="button"
-                        className="button secondary wide"
-                        onClick={() => showResults({ mode: 'point', label: c.label, candidate: c, localityCode })}
-                      >
-                        <bdi>{c.label}</bdi>
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-                <button type="button" className="button link" onClick={changeAddress}>
-                  {t.chooseAddressNone}
-                </button>
-                <p className="attribution">{t.googleAttribution}</p>
-              </section>
             )}
 
             {active && phase === 'results' && outcome && query && verifiedAt && (
@@ -458,10 +531,10 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                   {t.resultsTitle}
                 </h2>
                 <p className="searched">
-                  {query.mode === 'point' ? (
+                  {query.mode === 'street' ? (
                     <>
                       {format(t.resultsNear, { address: '' })}
-                      <bdi>{query.label}</bdi>
+                      <bdi lang="he">{query.label}</bdi>
                     </>
                   ) : (
                     <>
@@ -481,6 +554,12 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                 <p className="reminder">{t.conditionalReminder}</p>
                 {query.mode === 'locality-nearby' && (
                   <p>{format(t.localityNoResults, { locality: localityName(query.localityCode) })}</p>
+                )}
+                {query.mode === 'locality' && query.unlocatedStreet && (
+                  <p className="notice info">{format(t.streetUnlocatedNote, { street: query.unlocatedStreet })}</p>
+                )}
+                {query.mode === 'street' && !query.precise && (
+                  <p className="note">{query.houseNotFound ? format(t.houseNotFoundNote, { house: query.houseNotFound }) : t.streetApproxNote}</p>
                 )}
                 {outcome.results.length === 0 && (
                   <p className="empty">
@@ -522,8 +601,10 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                           query.mode === 'locality'
                             ? null
                             : i === 0
-                              ? p.distanceReliable
-                                ? t.labelNearest
+                              ? query.mode === 'street'
+                                ? query.precise
+                                  ? t.labelNearest
+                                  : t.labelNearestToStreet
                                 : t.labelInArea
                               : format(t.labelAlternative, { n: i })
                         }
@@ -531,6 +612,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                         locale={locale}
                         verifiedAt={verifiedAt}
                         beforeNavigate={beforeNavigate}
+                        distanceKind={query.mode === 'street' ? (query.precise ? 'address' : 'street') : 'approx'}
                       />
                     </li>
                   ))}
@@ -543,7 +625,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                 {outcome.withoutCoordinatesInLocality > 0 && <p className="note">{format(t.withoutCoordinates, { n: outcome.withoutCoordinatesInLocality })}</p>}
                 {outcome.excludedInstitutional > 0 && <p className="note">{format(t.excludedInstitutional, { n: outcome.excludedInstitutional })}</p>}
                 {outcome.excludedConflict > 0 && <p className="note">{format(t.excludedConflict, { n: outcome.excludedConflict })}</p>}
-                {query.mode === 'point' && <p className="attribution">{t.googleAttribution}</p>}
+                {query.mode === 'street' && <p className="attribution">{t.mapAttribution}</p>}
                 {(outcome.results.length === 0 || outcome.excludedInstitutional > 0) && <OfficialRoute locale={locale} />}
               </section>
             )}

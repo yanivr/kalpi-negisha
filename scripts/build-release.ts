@@ -14,6 +14,7 @@ import { computeExpiresAt, jerusalemDate } from '../src/domain/freshness';
 import { loadState, readJson, STATE_DIR } from './lib/state';
 import { sha256 } from './lib/xlsx';
 import { readFile } from 'node:fs/promises';
+import { emitGeo } from './geo/emit-geo';
 
 const OUT = path.resolve(process.env.RELEASE_OUT ?? 'public/data');
 const LOCALES = ['he', 'ar', 'ru', 'am'] as const;
@@ -157,6 +158,11 @@ export async function buildRelease(nowIso = new Date().toISOString()): Promise<R
     attempts: state.attempts.slice(-14),
   };
 
+  if (state.dataset) {
+    const ds = JSON.parse(await readFile(path.join(OUT, state.dataset.file), 'utf8')) as { localities: Array<{ code: string }> };
+    const geo = await emitGeo(OUT, ds.localities.map((l) => l.code));
+    await writeFile(path.join(OUT, 'geo.json'), JSON.stringify(geo) + '\n');
+  }
   await writeFile(path.join(OUT, 'rules.json'), JSON.stringify(publicRules) + '\n');
   await writeFile(path.join(OUT, 'report.json'), JSON.stringify(publicReport) + '\n');
   // Manifest last, so a reader never sees a manifest pointing to a file that is not there yet.

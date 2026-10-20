@@ -13,9 +13,11 @@ interface Props {
   verifiedAt: string;
   /** Called right before a navigation link opens; returning false cancels it (data no longer valid). */
   beforeNavigate: () => boolean;
+  /** How the distance is measured: from the exact address, from the user's street line, or approximate. */
+  distanceKind?: 'address' | 'street' | 'approx';
 }
 
-export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigate }: Props) {
+export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigate, distanceKind = 'approx' }: Props) {
   const id = useId();
   const site = place.site;
   const nav = navigationLinks(site);
@@ -26,7 +28,7 @@ export function PlaceCard({ place, heading, t, locale, verifiedAt, beforeNavigat
   if (place.distanceMeters !== null) {
     const r = roundDistance(place.distanceMeters);
     const d = `${formatNumber(r.value, locale)} ${r.unit === 'km' ? t.unitKm : t.unitM}`;
-    distanceText = format(place.distanceReliable ? t.distanceAir : t.distanceApprox, { distance: d });
+    distanceText = format(distanceKind === 'address' ? t.distanceAir : distanceKind === 'street' ? t.distanceFromStreet : t.distanceApprox, { distance: d });
   }
 
   const onNav = (e: React.MouseEvent<HTMLAnchorElement>) => {

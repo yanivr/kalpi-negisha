@@ -3,7 +3,6 @@ import type { ServiceState } from '../domain/freshness';
 import type { ReleaseManifest } from '../domain/schema';
 import { format, formatDate, formatDateTime, formatNumber, type Dict, type Locale } from '../i18n';
 import { loadReport, type PublicReport } from '../services/snapshot';
-import { geocodingEnabled } from '../services/geocode';
 import { A11Y_STATEMENT_DATE, CONTACT, OFFICIAL_INFO_URL, OFFICIAL_LIST_URL } from '../config';
 
 interface HeadingProps {
@@ -99,7 +98,7 @@ export function PrivacyPage({ t, headingRef }: { t: Dict } & HeadingProps) {
         {t.privacyPoints.map((p) => (
           <li key={p}>{p}</li>
         ))}
-        <li>{geocodingEnabled ? t.privacyGoogle : t.privacyNoGoogle}</li>
+        <li>{t.privacyNoGoogle}</li>
       </ul>
     </section>
   );

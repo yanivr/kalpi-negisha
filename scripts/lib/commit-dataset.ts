@@ -111,5 +111,24 @@ export async function ingestAndCommit(opts: {
     },
   };
   opts.state.blockingReasons = [];
+  await writeStateFile('geo-ref.json', JSON.stringify(buildGeoRef(result)) + '\n');
   return { ok: true, changed, result };
+}
+
+/**
+ * Reference geography derived from ALL official compounds (not only special ones):
+ * per-locality bounding boxes used to match street geometry to the right locality, and official
+ * (street, house number, coordinates) triples used to measure geocoding accuracy.
+ */
+export function buildGeoRef(result: IngestResult) {
+  const localities: Record<string, { name: string; bbox: [number, number, number, number]; n: number }> = {};
+  const compounds: Array<{ loc: string; street: string | null; house: string | null; lat: number; lon: number }> = [];
+  for (const s of result.sites) {
+    if (!s.point) continue;
+    const l = (localities[s.localityCode] ??= { name: s.localityName, bbox: [90, 180, -90, -180], n: 0 });
+    l.bbox = [Math.min(l.bbox[0], s.point.lat), Math.min(l.bbox[1], s.point.lon), Math.max(l.bbox[2], s.point.lat), Math.max(l.bbox[3], s.point.lon)];
+    l.n++;
+    compounds.push({ loc: s.localityCode, street: s.address.street, house: s.address.house, lat: s.point.lat, lon: s.point.lon });
+  }
+  return { generatedFrom: 'cec-k26 concentrations', localities, compounds };
 }

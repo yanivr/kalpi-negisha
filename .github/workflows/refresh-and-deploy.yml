@@ -70,10 +70,15 @@ jobs:
         run: |
           git fetch --depth=1 "https://github.com/${GITHUB_REPOSITORY}.git" "$STATE_BRANCH"
           git worktree add state FETCH_HEAD
+      - name: Fetch street index (if built)
+        run: |
+          if git ls-remote --exit-code --heads "https://github.com/${GITHUB_REPOSITORY}.git" geo-index >/dev/null; then
+            git fetch --depth=1 "https://github.com/${GITHUB_REPOSITORY}.git" geo-index && git worktree add geo-index FETCH_HEAD
+          fi
       - run: npm run typecheck
       - run: npm test
       - name: Build release (manifest + dataset as one unit)
-        run: npm run release
+        run: if [ -d geo-index/geo ]; then GEO_INDEX_DIR=geo-index npm run release; else npm run release; fi
       - name: Build site
         env:
           BASE_PATH: /${{ github.event.repository.name }}/

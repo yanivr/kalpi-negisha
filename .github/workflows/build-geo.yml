@@ -1,0 +1,63 @@
+# Builds the street geometry index (OpenStreetMap + official street list) and stores it on the `geo-index` branch.
+# OSM data © OpenStreetMap contributors, ODbL 1.0.
+name: build-geo
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 1 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/geo/**'
+      - 'src/domain/streets.ts'
+      - '.github/workflows/build-geo.yml'
+
+concurrency:
+  group: build-geo
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Reference geography from official compounds (data-state if present, else seed)
+        run: |
+          if git ls-remote --exit-code --heads origin data-state >/dev/null; then
+            git fetch --depth=1 origin data-state && git worktree add state origin/data-state
+          else
+            cp -r state-seed state
+          fi
+          test -f state/geo-ref.json || cp state-seed/geo-ref.json state/geo-ref.json
+      - name: Download OpenStreetMap extract (Geofabrik)
+        run: |
+          curl -fsSL --retry 3 -o osm.pbf https://download.geofabrik.de/asia/israel-and-palestine-latest.osm.pbf
+          ls -la osm.pbf
+      - name: Build index
+        run: NODE_OPTIONS=--max-old-space-size=6144 npx tsx scripts/geo/build-street-index.ts --pbf osm.pbf --out geo-index --georef state/geo-ref.json
+      - name: Publish to geo-index branch
+        run: |
+          cd geo-index
+          git init -q -b geo-index
+          git config user.name "kalpi-negisha-bot"
+          git config user.email "kalpi-negisha-bot@users.noreply.github.com"
+          echo "Street index generated $(date -u +%FT%TZ). OSM data © OpenStreetMap contributors (ODbL). Street names: data.gov.il." > README.md
+          git add -A && git commit -qm "geo index $(date -u +%FT%TZ)"
+          git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" geo-index
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Trigger site deployment
+        run: gh workflow run refresh-and-deploy.yml --ref main
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

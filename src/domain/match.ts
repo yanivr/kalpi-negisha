@@ -101,13 +101,29 @@ export interface PointQuery {
 }
 
 export function searchByPoint(sites: PollingSite[], q: PointQuery): SearchOutcome {
-  const radiusM = q.radiusKm * 1000;
-  const inRadius = (s: PollingSite) => s.point !== null && airDistanceMeters(q.point, s.point) <= radiusM;
+  return searchNearPoints(sites, { ...q, points: [q.point] });
+}
 
-  const candidates = sites.filter((s) => isCandidate(s) && inRadius(s));
+/**
+ * Same as searchByPoint, but the searched location is a set of points (e.g. sampled along the user's street when no
+ * house number is known); a place's distance is its distance to the nearest of those points.
+ */
+export function searchNearPoints(sites: PollingSite[], q: Omit<PointQuery, 'point'> & { points: LatLon[] }): SearchOutcome {
+  const radiusM = q.radiusKm * 1000;
+  const dist = (s: PollingSite) => {
+    let best = Infinity;
+    for (const p of q.points) {
+      const d = airDistanceMeters(p, s.point!);
+      if (d < best) best = d;
+    }
+    return best;
+  };
+  const withDist = sites.filter((s) => s.point !== null && isCandidate(s)).map((s) => ({ s, d: dist(s) }));
+  const candidates = withDist.filter((x) => x.d <= radiusM).map((x) => x.s);
   const recommendable = candidates.filter(isRecommendable);
+  const dOf = new Map(withDist.map((x) => [x.s.siteId, x.d]));
   const sorted = recommendable
-    .map((s) => ({ s, d: airDistanceMeters(q.point, s.point!) }))
+    .map((s) => ({ s, d: dOf.get(s.siteId)! }))
     .sort((a, b) => a.d - b.d || compareIds(a.s.siteId, b.s.siteId));
 
   const places = groupIntoPlaces(sorted.map((x) => x.s));
