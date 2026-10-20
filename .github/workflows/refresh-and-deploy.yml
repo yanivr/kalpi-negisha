@@ -119,6 +119,8 @@ jobs:
       - name: Check the live site (files and real street searches)
         run: |
           sleep 30
-          BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" node scripts/tools/verify-live.mjs
+          export BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+          # One retry: right after a deploy the Pages CDN can still serve the previous version for a short while.
+          node scripts/tools/verify-live.mjs || { echo "retrying in 90 s"; sleep 90; node scripts/tools/verify-live.mjs; }
       - name: Mobile and accessibility audit of the live site (7 screen sizes × 4 languages, WCAG 2.2 AA)
         run: BASE="https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/" node scripts/tools/audit-mobile.mjs
