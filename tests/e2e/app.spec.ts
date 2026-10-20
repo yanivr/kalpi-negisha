@@ -69,7 +69,11 @@ test('keyboard-only: skip link, choose locality, submit, focus moves to results,
   await page.keyboard.press('ArrowDown');
   const value = await page.locator('#f-locality').inputValue();
   expect(value).not.toBe('');
-  await page.keyboard.press('Tab'); // to submit button (no street fields without a geocoding key)
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#f-street')).toBeFocused();
+  await page.keyboard.press('Tab');
+  await expect(page.locator('#f-house')).toBeFocused();
+  await page.keyboard.press('Tab');
   await expect(page.locator('#search-submit')).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('#results-h')).toBeFocused();
@@ -254,4 +258,75 @@ test('works inside a sandboxed frame that forbids form submission (hosted embedd
   await fr.locator('#f-locality').selectOption({ label: 'בדיקה-ב' });
   await fr.locator('#f-locality').press('Enter');
   await expect(fr.locator('#results-h')).toBeVisible();
+});
+
+
+test.describe('search by street', () => {
+  test('type part of the street, pick it, add a house number: nearest place by exact address', async ({ page }) => {
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('הבד');
+    await page.getByRole('button', { name: 'הבדיקה' }).click();
+    await expect(page.locator('#f-house')).toBeFocused();
+    await page.keyboard.type('1');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('#results-h')).toBeFocused();
+    await expect(page.locator('.searched')).toContainText('הבדיקה 1, בדיקה-א');
+    await expect(page.locator('.card-label').first()).toHaveText('האפשרות הקרובה ביותר מבין התוצאות המאומתות');
+    await expect(page.locator('.card h3').first()).toHaveText('בי"ס בדיקה');
+    await expect(page.locator('.card').first()).toContainText('מרחק בקו אווירי');
+    expect(await page.locator('.cards > li').count()).toBeLessThanOrEqual(3);
+    expect(await axe(page)).toEqual([]);
+  });
+
+  test('street without house number: distance from the street, clearly labelled', async ({ page }) => {
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('הניסוי');
+    await page.locator('#f-street').press('Enter');
+    await expect(page.locator('.card-label').first()).toHaveText('האפשרות הקרובה ביותר לרחוב שהזנתם');
+    await expect(page.locator('.card h3').first()).toHaveText('מתנ"ס בדיקה');
+    await expect(page.locator('.card').first()).toContainText('מרחק מהרחוב');
+    await expect(page.getByText('המרחק מחושב מהרחוב כולו')).toBeVisible();
+  });
+
+  test('house number not on the map falls back to the street, and says so', async ({ page }) => {
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('הבדיקה');
+    await page.locator('#f-house').fill('99');
+    await page.locator('#search-submit').click();
+    await expect(page.getByText('מספר הבית 99 לא נמצא במפה')).toBeVisible();
+  });
+
+  test('unknown street: linked error, no guessing', async ({ page }) => {
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('רחוב שלא קיים');
+    await expect(page.getByText('לא נמצא רחוב בשם הזה ביישוב שבחרתם.').first()).toBeVisible();
+    await page.locator('#search-submit').click();
+    await expect(page.locator('.error-summary')).toBeFocused();
+    await expect(page.locator('#f-street')).toHaveAttribute('aria-invalid', 'true');
+  });
+
+  test('official street without map location: all places in the locality with an explanation', async ({ page }) => {
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('הנעלם');
+    await page.locator('#search-submit').click();
+    await expect(page.getByText('לא מצאנו את מיקום הרחוב הנעלם במפה')).toBeVisible();
+    await expect(page.locator('.cards > li')).toHaveCount(2);
+  });
+
+  test('street search sends nothing over the network', async ({ page }) => {
+    const external = watchExternal(page);
+    await page.goto('/he/');
+    await page.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+    await page.locator('#f-street').fill('הבדיקה');
+    await page.locator('#f-house').fill('1');
+    await page.locator('#search-submit').click();
+    await expect(page.locator('#results-h')).toBeVisible();
+    expect(external).toEqual([]);
+    expect(page.url()).toBe('http://127.0.0.1:4173/he/');
+  });
 });

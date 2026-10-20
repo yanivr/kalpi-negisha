@@ -432,6 +432,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                         setStreetCode(null);
                         setErrors((x) => ({ ...x, locality: undefined }));
                       }}
+                      onKeyDown={onFieldKey}
                       aria-invalid={errors.locality ? true : undefined}
                       aria-describedby={[t.localityHint && 'f-locality-hint', errors.locality && 'f-locality-error'].filter(Boolean).join(' ') || undefined}
                       autoComplete="off"
@@ -467,7 +468,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       autoComplete="off"
                       aria-invalid={errors.street ? true : undefined}
                       aria-describedby={['f-street-hint', errors.street && 'f-street-error'].filter(Boolean).join(' ')}
-                      aria-controls="street-suggestions"
+                      aria-controls={suggestions.length > 0 ? 'street-suggestions' : undefined}
                       lang="he"
                       dir="rtl"
                       disabled={!localityCode}

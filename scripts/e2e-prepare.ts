@@ -38,5 +38,23 @@ state.lastAttemptAt = now;
 state.lastAttemptResult = 'verified-unchanged';
 await saveState(state);
 const m = await buildRelease(now);
+// SYNTHETIC street files for the fixture localities (not real streets).
+{
+  const ds = JSON.parse(await readFile(path.join(out, m.datasetFile!), 'utf8'));
+  const p = (id: string) => ds.sites.find((x: any) => x.siteId === id)?.point;
+  const a = p('k26-9001-1');
+  const b = p('k26-9001-2');
+  const { writeFile: wf } = await import('node:fs/promises');
+  const line = (from: any, to: any) => Array.from({ length: 6 }, (_, i) => [from.lat + ((to.lat - from.lat) * i) / 5, from.lon + ((to.lon - from.lon) * i) / 5]);
+  await wf(path.join(out, 'geo', '9001.json'), JSON.stringify({
+    v: 1, loc: '9001',
+    streets: [
+      [1, 'הבדיקה', ['רחוב הבדיקה'], line(a, { lat: a.lat - 0.01, lon: a.lon }), { '1': [a.lat, a.lon], '7': [a.lat - 0.004, a.lon] }],
+      [2, 'הניסוי', [], line(b, { lat: b.lat + 0.01, lon: b.lon }), null],
+      [3, 'הנעלם', [], null, null],
+    ],
+  }));
+  await wf(path.join(out, 'geo', '9003.json'), JSON.stringify({ v: 1, loc: '9003', streets: [[1, 'השדה', [], [[a.lat + 0.02, a.lon + 0.02]], null]] }));
+}
 console.log(`e2e release ${m.releaseId} status=${m.status} → ${out}`);
 process.chdir(root);
