@@ -54,6 +54,24 @@ for (const v of ['מקורות ומצב עדכון', 'פרטיות', 'הצהרת
   results.push([v, await fr.locator('h1').innerText()]);
   if (v === 'מקורות ומצב עדכון') results.push(['sources status', (await fr.locator('.facts').innerText()).slice(0, 200).replace(/\n/g, ' | ')]);
 }
+{ // street search inside the sandboxed frame, data requests refused: must work from the embedded index alone
+  const ps = await b.newPage({ viewport: { width: 420, height: 950 } });
+  ps.on('pageerror', e => errors.push('pageerror ' + e.message));
+  await ps.goto('http://127.0.0.1:4181/host');
+  const g = ps.frameLocator('#f');
+  await g.locator('#f-locality').waitFor({ timeout: 20000 });
+  for (const [loc, street, house] of [['רחובות','הרצל','150'], ['ירושלים','יפו','97'], ['תל אביב - יפו','דיזנגוף','101'], ['חיפה','מוריה','']]) {
+    if (await g.locator('#results-h').count()) await g.getByRole('button', { name: 'ניקוי החיפוש' }).click();
+    await g.locator('#f-locality').selectOption({ label: loc });
+    await g.locator('#f-street').fill(street.slice(0, -1));
+    await g.locator('.suggestion', { hasText: new RegExp('(^| )' + street + '$') }).first().click({ timeout: 10000 });
+    if (house) await g.locator('#f-house').fill(house);
+    await g.locator('#search-submit').click();
+    await g.locator('#results-h').waitFor({ timeout: 10000 });
+    const first = await g.locator('.cards > li').first().innerText();
+    results.push([`street ${loc} ${street} ${house}`, await g.locator('.cards > li').count(), first.split('\n').find(l => l.includes('מרחק')) ?? '-', (await g.locator('.results .note').allInnerTexts()).join(' / ').slice(0, 160)]);
+  }
+}
 const ctx2 = await b.newContext(); const p2 = await ctx2.newPage(); await p2.goto('http://127.0.0.1:4181/'); await p2.locator('#f-locality').selectOption({ label: 'ירושלים' }); await p2.locator('#search-submit').click(); await p2.locator('#results-h').waitFor();
 const axe = await new AxeBuilder({ page: p2 }).withTags(['wcag2a','wcag2aa','wcag21aa','wcag22aa']).analyze().catch(e => ({ violations: [{ id: 'axe-error ' + e.message }] }));
 results.push(['axe violations (frame)', axe.violations.map(v => v.id)]);
