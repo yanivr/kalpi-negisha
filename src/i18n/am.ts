@@ -45,6 +45,10 @@ const am: Dict = {
   clearSearch: 'ፍለጋውን ያጽዱ',
   conditionalReminder:
     'ውጤቶቹ የምርጫ ኮሚቴው «ልዩ ተደራሽ የምርጫ ጣቢያ» ብሎ የሰየማቸው ቦታዎች ናቸው። በእነርሱ መምረጥ በዝግጅቱ ሁኔታዎች ላይ የተመሠረተ ነው፤ ድረ-ገጹ የግል ብቁነትን አይወስንም።',
+  filterLabel: 'በመንገድ ወይም በቦታ ስም ያጣሩ',
+  filterHint: 'በይፋዊ አድራሻዎቹ ላይ እንዳለው በዕብራይስጥ ይጻፉ።',
+  filterNoMatch: 'ከማጣሪያው ጋር የሚዛመድ ቦታ የለም።',
+  filterCount: 'ከ{total} ቦታዎች {shown} ይታያሉ።',
   labelNearest: 'ከተረጋገጡት ውጤቶች መካከል በጣም ቅርብ የሆነው አማራጭ',
   labelInArea: 'በፈለጉት አካባቢ ያለ አማራጭ',
   labelAlternative: 'ሌላ አማራጭ {n}',

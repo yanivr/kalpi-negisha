@@ -30,7 +30,7 @@ export function pathFor(locale: Locale, view: View): string {
   return `${import.meta.env.BASE_URL}${locale}/${view === 'search' ? '' : `${view}/`}`;
 }
 
-type LoadState<T> = { status: 'idle' | 'loading' } | { status: 'ok'; value: T } | { status: 'error'; offline: boolean };
+type LoadState<T> = { status: 'idle' | 'loading' } | { status: 'ok'; value: T } | { status: 'error'; offline: boolean; detail?: string };
 
 type Query =
   | { mode: 'locality'; localityCode: string }
@@ -60,7 +60,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
       setManifestState({ status: 'ok', value: m });
     } catch (e) {
       setManifestState((prev) =>
-        prev.status === 'ok' ? prev : { status: 'error', offline: e instanceof SnapshotError && e.offline },
+        prev.status === 'ok' ? prev : { status: 'error', offline: e instanceof SnapshotError && e.offline, detail: e instanceof Error ? e.message : String(e) },
       );
     }
   }, []);
@@ -104,7 +104,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     setDatasetState({ status: 'loading' });
     loadDataset(manifest).then(
       (d) => setDatasetState({ status: 'ok', value: d }),
-      (e) => setDatasetState({ status: 'error', offline: e instanceof SnapshotError && e.offline }),
+      (e) => setDatasetState({ status: 'error', offline: e instanceof SnapshotError && e.offline, detail: e instanceof Error ? e.message : String(e) }),
     );
   }, [service.kind, manifest, datasetState]);
 
@@ -146,6 +146,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   const [candidates, setCandidates] = useState<GeocodeCandidate[]>([]);
   const [query, setQuery] = useState<Query | null>(null);
   const [radiusIdx, setRadiusIdx] = useState(0);
+  const [filter, setFilter] = useState('');
   const [announce, setAnnounce] = useState('');
   const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
   const chooseHeadingRef = useRef<HTMLHeadingElement>(null);
@@ -186,10 +187,21 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
       next = { mode: 'locality-nearby', localityCode: q.localityCode };
     }
     setRadiusIdx(0);
+    setFilter('');
     setQuery(next);
     setPhase('results');
     requestAnimationFrame(() => resultsHeadingRef.current?.focus());
   };
+
+  // Local, in-page filter for long locality lists (big cities). Nothing typed here leaves the device.
+  const visibleResults = useMemo(() => {
+    if (!outcome) return [];
+    const q = filter.replace(/\s+/g, ' ').trim();
+    if (!q) return outcome.results;
+    return outcome.results.filter((p) =>
+      p.sites.some((x) => `${x.address.raw} ${x.officialName}`.replace(/\s+/g, ' ').includes(q)),
+    );
+  }, [outcome, filter]);
 
   useEffect(() => {
     if (phase === 'results' && outcome) {
@@ -197,8 +209,20 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
     }
   }, [phase, outcome, t]);
 
-  const onSubmit = async (e: React.FormEvent) => {
+  // The search runs from the button's click (and Enter in a field), never from native form submission:
+  // some hosts sandbox the page without allowing form submission, which would silently swallow the submit event.
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    void runSearch();
+  };
+  const onFieldKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      void runSearch();
+    }
+  };
+  const runSearch = async () => {
+    if (phase === 'searching') return;
     const errs: FieldErrors = {};
     if (!localityCode) errs.locality = 'errorLocalityRequired';
     if (geocodingEnabled && house.trim() && !street.trim()) errs.street = 'errorHouseWithoutStreet';
@@ -354,6 +378,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       ref={localityRef}
                       value={localityCode}
                       onChange={(e) => setLocalityCode(e.target.value)}
+                      onKeyDown={onFieldKey}
                       aria-invalid={errors.locality ? true : undefined}
                       aria-describedby={[t.localityHint && 'f-locality-hint', errors.locality && 'f-locality-error'].filter(Boolean).join(' ') || undefined}
                       autoComplete="off"
@@ -380,6 +405,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                           type="text"
                           value={street}
                           onChange={(e) => setStreet(e.target.value)}
+                          onKeyDown={onFieldKey}
                           autoComplete="off"
                           aria-invalid={errors.street ? true : undefined}
                           aria-describedby={errors.street ? 'f-street-error' : undefined}
@@ -388,12 +414,12 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       </div>
                       <div className="field narrow">
                         <label htmlFor="f-house">{t.houseLabel}</label>
-                        <input id="f-house" type="text" inputMode="numeric" value={house} onChange={(e) => setHouse(e.target.value)} autoComplete="off" dir="ltr" />
+                        <input id="f-house" type="text" inputMode="numeric" value={house} onChange={(e) => setHouse(e.target.value)} onKeyDown={onFieldKey} autoComplete="off" dir="ltr" />
                       </div>
                     </>
                   )}
                 </fieldset>
-                <button type="submit" className="button primary" disabled={phase === 'searching'} aria-disabled={phase === 'searching' || undefined}>
+                <button type="button" id="search-submit" className="button primary" onClick={() => void runSearch()} aria-disabled={phase === 'searching' || undefined}>
                   {phase === 'searching' ? t.loading : t.submit}
                 </button>
                 <p className="privacy-note">{t.noIdNeeded}</p>
@@ -463,8 +489,32 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
                       : format(t.noResultsInRadius, { km: RADIUS_STEPS_KM[radiusIdx]! })}
                   </p>
                 )}
+                {query.mode === 'locality' && outcome.results.length > 5 && (
+                  <div className="field filter">
+                    <label htmlFor="f-filter">{t.filterLabel}</label>
+                    <p className="hint" id="f-filter-hint">
+                      {t.filterHint}
+                    </p>
+                    <input
+                      id="f-filter"
+                      type="search"
+                      value={filter}
+                      onChange={(e) => setFilter(e.target.value)}
+                      onKeyDown={(e) => e.key === 'Enter' && e.preventDefault()}
+                      aria-describedby="f-filter-hint f-filter-count"
+                      autoComplete="off"
+                      lang="he"
+                      dir="rtl"
+                    />
+                    <p className="hint" id="f-filter-count" aria-live="polite">
+                      {visibleResults.length === 0
+                        ? t.filterNoMatch
+                        : format(t.filterCount, { shown: visibleResults.length, total: outcome.results.length })}
+                    </p>
+                  </div>
+                )}
                 <ol className="cards">
-                  {outcome.results.map((p, i) => (
+                  {visibleResults.map((p, i) => (
                     <li key={p.placeKey}>
                       <PlaceCard
                         place={p}
@@ -587,9 +637,15 @@ function StatusBlock({
   if (manifestState.status === 'loading') return <p role="status">{t.loadingData}</p>;
   if (manifestState.status === 'error' || datasetState.status === 'error') {
     const offline = (manifestState.status === 'error' && manifestState.offline) || (datasetState.status === 'error' && datasetState.offline);
+    const detail = (manifestState.status === 'error' && manifestState.detail) || (datasetState.status === 'error' && datasetState.detail) || '';
     return (
       <div className="notice warning" role="alert">
         <p>{offline ? t.statusOffline : t.statusLoadError}</p>
+        {detail && (
+          <p className="tech-detail">
+            <code dir="ltr">{detail}</code>
+          </p>
+        )}
         <button type="button" className="button secondary" onClick={() => (datasetState.status === 'error' ? window.location.reload() : onRetry())}>
           {t.retry}
         </button>

@@ -244,7 +244,8 @@ form.search legend h2 {
   font-size: 0.9rem;
 }
 select,
-input[type='text'] {
+input[type='text'],
+input[type='search'] {
   font: inherit;
   color: inherit;
   background: var(--bg);
@@ -495,4 +496,10 @@ fieldset {
 select {
   max-inline-size: 100%;
   text-overflow: ellipsis;
+}
+
+.tech-detail {
+  font-size: 0.8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
 }

@@ -22,7 +22,7 @@ async function axe(page: Page) {
 
 async function searchLocality(page: Page, name: string) {
   await page.locator('#f-locality').selectOption({ label: name });
-  await page.locator('form.search button[type=submit]').click();
+  await page.locator('#search-submit').click();
   await expect(page.locator('#results-h')).toBeFocused();
 }
 
@@ -70,7 +70,7 @@ test('keyboard-only: skip link, choose locality, submit, focus moves to results,
   const value = await page.locator('#f-locality').inputValue();
   expect(value).not.toBe('');
   await page.keyboard.press('Tab'); // to submit button (no street fields without a geocoding key)
-  await expect(page.locator('form.search button[type=submit]')).toBeFocused();
+  await expect(page.locator('#search-submit')).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('#results-h')).toBeFocused();
   // Reach the first navigation link with Tab.
@@ -84,7 +84,7 @@ test('keyboard-only: skip link, choose locality, submit, focus moves to results,
 
 test('submitting without a locality shows a linked error summary and marks the field invalid', async ({ page }) => {
   await page.goto('/he/');
-  await page.locator('form.search button[type=submit]').click();
+  await page.locator('#search-submit').click();
   await expect(page.locator('.error-summary')).toBeFocused();
   await expect(page.locator('#f-locality')).toHaveAttribute('aria-invalid', 'true');
   expect(await axe(page)).toEqual([]);
@@ -234,4 +234,24 @@ test.describe('without JavaScript', () => {
     await expect(page.locator('h1')).toHaveText('البحث عن صندوق اقتراع متاح خاص');
     await expect(page.locator('a[href*="gov.il"]').first()).toBeVisible();
   });
+});
+
+test('works inside a sandboxed frame that forbids form submission (hosted embedding)', async ({ page }) => {
+  await page.route('**/__host', (route) =>
+    route.fulfill({
+      contentType: 'text/html',
+      body: '<!doctype html><title>host</title><iframe id="f" src="/he/" sandbox="allow-scripts allow-same-origin allow-popups" style="width:420px;height:900px"></iframe>',
+    }),
+  );
+  await page.goto('/__host');
+  const fr = page.frameLocator('#f');
+  await fr.locator('#f-locality').selectOption({ label: 'בדיקה-א' });
+  await fr.locator('#search-submit').click();
+  await expect(fr.locator('#results-h')).toBeVisible();
+  await expect(fr.locator('.cards > li')).toHaveCount(2);
+  // Enter in the field also searches
+  await fr.getByRole('button', { name: 'שינוי כתובת' }).click();
+  await fr.locator('#f-locality').selectOption({ label: 'בדיקה-ב' });
+  await fr.locator('#f-locality').press('Enter');
+  await expect(fr.locator('#results-h')).toBeVisible();
 });
