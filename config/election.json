@@ -1,0 +1,20 @@
+{
+  "electionId": "knesset-26",
+  "nameHe": "הבחירות לכנסת ה־26",
+  "electionDate": "2026-10-27",
+  "timezone": "Asia/Jerusalem",
+  "pollsCloseAt": "2026-10-27T22:00:00+02:00",
+  "pollsCloseNote": "סגירת רוב הקלפיות ב־22:00 שעון ישראל (שעון חורף, UTC+2, החל מ־25.10.2026). הארכה רשמית תעודכן כאן באופן מתועד בלבד.",
+  "officialExtensionUntil": null,
+  "suspended": false,
+  "evidence": [
+    { "claim": "מועד הבחירות 27.10.2026", "source": "https://www.bechirot.gov.il/home/", "note": "נצפה ב־HTML הרשמי לפי האפיון (S17); מאושר גם ב'כל זכות' (עודכן 30.07.2026)" },
+    { "claim": "שעות 07:00–22:00 ברוב הקלפיות", "source": "https://www.kolzchut.org.il/he/קלפי", "note": "מקור משני; משמש רק לקביעת מעבר לארכיון" }
+  ],
+  "freshness": {
+    "policy": "no-expiry",
+    "policyDecidedBy": "בעל המוצר, 20.10.2026: אין תפוגה; ניסיון רענון יומי בלבד. שינוי שזוהה במקור עדיין חוסם המלצות.",
+    "ttlHours": null,
+    "electionDayTtlHours": null
+  }
+}

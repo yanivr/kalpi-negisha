@@ -1,0 +1,10 @@
+node_modules/
+dist/
+dist-e2e/
+public/data/
+public-e2e/
+state/
+test-results/
+playwright-report/
+*.xlsx
+.env*

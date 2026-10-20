@@ -1,0 +1,10 @@
+import { chromium } from '/home/claude/kalpi-negisha/node_modules/playwright/index.mjs';
+const b = await chromium.launch({ executablePath: '/tmp/chromium', args: ['--no-sandbox','--no-zygote'] });
+const p = await b.newPage();
+p.on('console', m => console.log('console', m.type(), m.text()));
+p.on('pageerror', e => console.log('pageerror', e.message));
+p.on('requestfailed', r => console.log('failed', r.url(), r.failure()?.errorText));
+await p.goto('http://127.0.0.1:4174/he/');
+await p.waitForTimeout(4000);
+console.log(await p.evaluate(() => document.querySelector('main')?.innerText.slice(0,400)));
+await b.close();

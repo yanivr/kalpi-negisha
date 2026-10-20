@@ -1,0 +1,101 @@
+# Daily refresh of the official sources + atomic deployment of site and data (spec §15, §18).
+# Schedules run on UTC; GitHub may delay or skip scheduled runs, so this is best effort, not an SLA.
+name: refresh-and-deploy
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+    - cron: '47 15 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+concurrency:
+  group: refresh-and-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+env:
+  STATE_BRANCH: data-state
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # only this job writes, and only to the data-state branch
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Check out persistent state (data-state branch), seeding it on first run
+        run: |
+          if git ls-remote --exit-code --heads origin "$STATE_BRANCH" >/dev/null; then
+            git fetch --depth=1 origin "$STATE_BRANCH"
+            git worktree add state "origin/$STATE_BRANCH"
+          else
+            git worktree add --detach state
+            (cd state && git checkout --orphan "$STATE_BRANCH" && git rm -rqf . && cp -r ../state-seed/. .)
+          fi
+      - name: Refresh from official sources (never invents data; failures are recorded, not hidden)
+        run: npm run refresh
+      - name: Persist state
+        working-directory: state
+        run: |
+          git config user.name "kalpi-negisha-bot"
+          git config user.email "kalpi-negisha-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "state: refresh $(date -u +%Y-%m-%dT%H:%MZ)" || echo "no state change"
+          git push origin "HEAD:refs/heads/$STATE_BRANCH"
+
+  build:
+    needs: refresh
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Fetch state
+        run: |
+          git fetch --depth=1 "https://github.com/${GITHUB_REPOSITORY}.git" "$STATE_BRANCH"
+          git worktree add state FETCH_HEAD
+      - run: npm run typecheck
+      - run: npm test
+      - name: Build release (manifest + dataset as one unit)
+        run: npm run release
+      - name: Build site
+        env:
+          BASE_PATH: /${{ github.event.repository.name }}/
+          # Browser key restricted (HTTP referrer) to the Pages domain. Optional: without it the site searches by locality only.
+          VITE_GOOGLE_MAPS_BROWSER_KEY: ${{ vars.GOOGLE_MAPS_BROWSER_KEY }}
+        run: npx vite build && npx tsx scripts/build-pages.ts dist
+      - name: Privacy guard on the built bundle
+        run: npx tsx scripts/check-bundle.ts dist
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

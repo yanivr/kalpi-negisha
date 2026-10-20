@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "1",
+  "officialListPage": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+  "sources": [
+    {
+      "sourceId": "cec-k26-stations",
+      "role": "stations",
+      "status": "approved",
+      "title": "קובץ קלפיות סופי",
+      "publisher": "ועדת הבחירות המרכזית לכנסת",
+      "purpose": "רשימת כל הקלפיות הרגילות, כולל סימון נגישה ונגישה מיוחדת",
+      "pageUrl": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "acquisitionNote": "הורד ידנית מהעמוד הרשמי על ידי בעל המוצר והועבר ב־20.10.2026. קישור ההורדה הישיר טרם תועד.",
+      "format": "xlsx",
+      "parser": "cec-k26@1"
+    },
+    {
+      "sourceId": "cec-k26-report104",
+      "role": "report104",
+      "status": "approved",
+      "title": "דוח 104 קלפיות למוגבלי ניידות",
+      "publisher": "ועדת הבחירות המרכזית לכנסת",
+      "purpose": "קלפיות נגישות, סימון נגישה מיוחדת והוראות גישה לאנשים עם מוגבלות בניידות",
+      "pageUrl": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "acquisitionNote": "הורד ידנית מהעמוד הרשמי על ידי בעל המוצר והועבר ב־20.10.2026.",
+      "format": "xlsx",
+      "parser": "cec-k26@1"
+    },
+    {
+      "sourceId": "cec-k26-concentrations",
+      "role": "concentrations",
+      "status": "approved",
+      "title": "קובץ ריכוזים (ריכוזים שלישי 1330 סופי)",
+      "publisher": "ועדת הבחירות המרכזית לכנסת",
+      "purpose": "ריכוזי קלפיות (מבנים), סוג מקום וקואורדינטות ITM",
+      "pageUrl": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "acquisitionNote": "הורד ידנית מהעמוד הרשמי על ידי בעל המוצר והועבר ב־20.10.2026.",
+      "format": "xlsx",
+      "parser": "cec-k26@1"
+    },
+    {
+      "sourceId": "cec-k26-report137",
+      "role": "report137",
+      "status": "approved",
+      "title": "דוח 137 טופס ב' סופי",
+      "publisher": "ועדת הבחירות המרכזית לכנסת",
+      "purpose": "סיכומים לפי ועדה אזורית וסיכום ארצי, לבדיקת שלמות",
+      "pageUrl": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "acquisitionNote": "הורד ידנית מהעמוד הרשמי על ידי בעל המוצר והועבר ב־20.10.2026.",
+      "format": "xlsx",
+      "parser": "cec-k26@1"
+    },
+    {
+      "sourceId": "cec-k26-conversion",
+      "role": null,
+      "status": "not-used",
+      "title": "דוח המרה לקלפיות",
+      "publisher": "ועדת הבחירות המרכזית לכנסת",
+      "purpose": "מיפוי קלפי אם/קלפיות לאחר איזון. לא נדרש למוצר.",
+      "pageUrl": "https://www.gov.il/he/pages/26elections-info?chapterIndex=2",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "format": "xlsx",
+      "parser": null
+    },
+    {
+      "sourceId": "moin-local-2025-north-accessible",
+      "role": null,
+      "status": "rejected",
+      "title": "קלפיות נגישות — בחירות מקומיות בצפון, פברואר 2025",
+      "publisher": "משרד הפנים",
+      "purpose": "נבדק ונפסל: מערכת בחירות אחרת (S6)",
+      "pageUrl": "https://www.gov.il/he/departments/dynamiccollectors/accessible-polling?skip=0",
+      "downloadUrl": null,
+      "acquisition": "manual",
+      "format": null,
+      "parser": null
+    }
+  ]
+}
