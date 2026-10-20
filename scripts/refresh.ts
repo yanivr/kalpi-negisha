@@ -17,7 +17,6 @@ import path from 'node:path';
 import { loadState, readJson, saveState, type PipelineState } from './lib/state';
 import { ingestAndCommit, type RegistrySource } from './lib/commit-dataset';
 import { sha256 } from './lib/xlsx';
-import { extractRuleExcerpt } from './lib/rules';
 import type { SourceFile } from './sources/cec-k26';
 
 const MAX_BYTES = 30 * 1024 * 1024;
@@ -101,23 +100,29 @@ export async function refresh(now = new Date().toISOString()): Promise<PipelineS
     }
   }
 
-  // Official rule text re-check (only meaningful once a rule was approved against the official page).
-  const rulesCfg = await readJson<{ rules: Array<{ electionId: string; version: string; status: string; sources: Array<{ id: string; url: string; role: string; anchors?: string[]; excerptStart?: string; excerptEnd?: string }> }> }>('config/rules.json');
+  // Official rule source re-check: download the official document and compare its SHA-256.
+  // First successful download records the baseline (trust on first use, documented in docs/legal-rules.md);
+  // any later change blocks recommendations until a person reviews the new text.
+  const rulesCfg = await readJson<{ rules: Array<{ electionId: string; version: string; status: string; sources: Array<{ id: string; url: string; role: string }> }> }>('config/rules.json');
   const rule = rulesCfg.rules.find((r) => r.electionId === election.electionId);
   const official = rule?.sources.find((s) => s.role === 'official');
-  if (rule?.status === 'approved' && state.rules && official?.excerptStart && official.excerptEnd) {
+  if (rule?.status === 'approved' && state.rules && official) {
     try {
       const res = await fetch(official.url, { headers: { 'user-agent': USER_AGENT } });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const excerpt = extractRuleExcerpt(await res.text(), official.excerptStart, official.excerptEnd);
-      if (!excerpt) throw new Error('excerpt anchors not found (page layout changed or content not server-rendered)');
-      const h = sha256(excerpt);
-      if (h === state.rules.excerptSha256) {
+      const buf = Buffer.from(await res.arrayBuffer());
+      if (buf.subarray(0, 5).toString('latin1') !== '%PDF-') throw new Error('not a PDF (possibly a block page)');
+      const h = sha256(buf);
+      if (!state.rules.officialDocSha256) {
+        state.rules.officialDocSha256 = h;
         state.rules.verifiedAt = now;
-        detail.push('rules: official excerpt unchanged');
+        detail.push(`rules: baseline recorded for official document (${h.slice(0, 12)})`);
+      } else if (h === state.rules.officialDocSha256) {
+        state.rules.verifiedAt = now;
+        detail.push('rules: official document unchanged');
       } else {
-        state.blockingReasons = [...new Set([...state.blockingReasons, 'rules:official-text-changed'])];
-        detail.push('rules: OFFICIAL TEXT CHANGED — recommendations blocked until reviewed');
+        state.blockingReasons = [...new Set([...state.blockingReasons, 'rules:official-document-changed'])];
+        detail.push('rules: OFFICIAL DOCUMENT CHANGED — recommendations blocked until reviewed');
       }
     } catch (e) {
       detail.push(`rules: check failed — ${(e as Error).message} (previous verification kept)`);

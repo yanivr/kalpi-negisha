@@ -22,6 +22,8 @@ async function setup(rulesApproved: boolean, downloadUrls: boolean) {
   if (rulesApproved) {
     rules.rules[0].status = 'approved';
     rules.rules[0].localeReview.he = { status: 'approved' };
+  } else {
+    rules.rules[0].status = 'pending-official-text';
   }
   await writeFile(path.join(cwd, 'config/rules.json'), JSON.stringify(rules));
   process.chdir(cwd);

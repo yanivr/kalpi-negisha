@@ -31,6 +31,8 @@ export interface PipelineState {
     ruleId: string;
     version: string;
     excerptSha256: string;
+    /** SHA-256 of the official rule document as last downloaded by the refresh job (null until first success). */
+    officialDocSha256?: string | null;
     verifiedAt: string;
   };
   lastAttemptAt: string | null;

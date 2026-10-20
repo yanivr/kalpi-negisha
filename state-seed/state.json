@@ -57,7 +57,13 @@
       "recommendableSites": 3182
     }
   },
-  "rules": null,
+  "rules": {
+    "ruleId": "k26-special-accessible-mobility",
+    "version": "2026-10-20.2",
+    "excerptSha256": "7b2bcbf728f597f203066136a9809d580e83e69b42d96bcbfaef72735da25f53",
+    "officialDocSha256": null,
+    "verifiedAt": "2026-10-20T09:59:01.586Z"
+  },
   "lastAttemptAt": "2026-10-20T09:29:09.777Z",
   "lastAttemptResult": "verified-changed",
   "blockingReasons": [],

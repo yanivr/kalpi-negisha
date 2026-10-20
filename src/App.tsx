@@ -12,13 +12,21 @@ import { OFFICIAL_INFO_URL, OFFICIAL_LIST_URL } from './config';
 export type View = 'search' | 'sources' | 'privacy' | 'accessibility';
 const VIEWS: View[] = ['search', 'sources', 'privacy', 'accessibility'];
 
+/** 'memory' routing is used when the site is embedded in a host that does not support path routes (e.g. a hosted artifact). */
+const MEMORY_ROUTER = import.meta.env.VITE_ROUTER === 'memory';
+
 export function parsePath(pathname: string): { locale: Locale; view: View } {
+  if (MEMORY_ROUTER) {
+    const [l, v] = window.location.hash.replace(/^#/, '').split('-');
+    return { locale: isLocale(l) ? l : 'he', view: VIEWS.includes(v as View) ? (v as View) : 'search' };
+  }
   const base = import.meta.env.BASE_URL;
   const rest = pathname.startsWith(base) ? pathname.slice(base.length) : pathname.replace(/^\//, '');
   const [l, v] = rest.split('/').filter(Boolean);
   return { locale: isLocale(l) ? l : 'he', view: VIEWS.includes(v as View) ? (v as View) : 'search' };
 }
 export function pathFor(locale: Locale, view: View): string {
+  if (MEMORY_ROUTER) return `#${locale}${view === 'search' ? '' : `-${view}`}`;
   return `${import.meta.env.BASE_URL}${locale}/${view === 'search' ? '' : `${view}/`}`;
 }
 
@@ -119,13 +127,13 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
   }, []);
   const mainHeadingRef = useRef<HTMLHeadingElement>(null);
   const goView = (v: View) => {
-    window.history.pushState(null, '', pathFor(locale, v));
+    if (!MEMORY_ROUTER) window.history.pushState(null, '', pathFor(locale, v));
     setView(v);
     requestAnimationFrame(() => mainHeadingRef.current?.focus());
   };
   const switchLocale = (l: Locale) => {
     // The address and results stay in memory; nothing about the search goes into the URL (spec §9).
-    window.history.replaceState(null, '', pathFor(l, view));
+    if (!MEMORY_ROUTER) window.history.replaceState(null, '', pathFor(l, view));
     setLocale(l);
   };
 

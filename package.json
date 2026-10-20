@@ -12,7 +12,8 @@
     "ingest:files": "tsx scripts/ingest-files.ts",
     "refresh": "tsx scripts/refresh.ts",
     "release": "tsx scripts/build-release.ts",
-    "rules:approve": "tsx scripts/approve-rules.ts"
+    "rules:approve": "tsx scripts/approve-rules.ts",
+    "rules:record": "tsx scripts/record-rules-verification.ts"
   },
   "author": "",
   "license": "MIT",

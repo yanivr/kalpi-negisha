@@ -56,8 +56,14 @@ async function getJson(url: string): Promise<{ body: unknown; date: string | nul
   }
   if (!res.ok) throw new SnapshotError(`HTTP ${res.status} for ${url}`);
   const ct = res.headers.get('content-type') ?? '';
-  if (!ct.includes('json')) throw new SnapshotError(`unexpected content type ${ct} for ${url}`);
-  return { body: await res.json(), date: res.headers.get('date') };
+  if (ct.includes('text/html')) throw new SnapshotError(`unexpected HTML for ${url}`);
+  let body: unknown;
+  try {
+    body = JSON.parse(await res.text());
+  } catch {
+    throw new SnapshotError(`invalid JSON for ${url}`);
+  }
+  return { body, date: res.headers.get('date') };
 }
 
 export async function loadManifest(): Promise<LoadedManifest> {

@@ -16,11 +16,11 @@
   --error: #b00020; /* 6.5:1 on white */
   --card-label-bg: #e8f1fb;
   --font: 'Noto Sans', 'Noto Sans Hebrew', 'Noto Sans Arabic', 'Noto Sans Ethiopic', system-ui, Arial, sans-serif;
-  color-scheme: light dark;
+  color-scheme: light;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='light']) {
     --bg: #101317;
     --surface: #1b2027;
     --text: #f1f3f5;
@@ -37,7 +37,27 @@
     --info-border: #8cc4ff;
     --error: #ff8a9a;
     --card-label-bg: #13253a;
+    color-scheme: dark;
   }
+}
+:root[data-theme='dark'] {
+    --bg: #101317;
+    --surface: #1b2027;
+    --text: #f1f3f5;
+    --muted: #c9d0d7;
+    --border: #8d98a4;
+    --primary: #8cc4ff;
+    --primary-text: #0b1a2a;
+    --primary-hover: #b5d8ff;
+    --focus: #ffbf47;
+    --focus-outline: #ffffff;
+    --warn-bg: #2b2112;
+    --warn-border: #ffb15c;
+    --info-bg: #13253a;
+    --info-border: #8cc4ff;
+    --error: #ff8a9a;
+    --card-label-bg: #13253a;
+  color-scheme: dark;
 }
 
 *,
@@ -68,7 +88,8 @@ html:lang(am) {
 #root {
   max-inline-size: 46rem;
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-left: max(1rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1rem, env(safe-area-inset-right, 0px));
 }
 
 h1 {
