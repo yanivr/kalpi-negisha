@@ -38,6 +38,7 @@ const he = {
   errorGeocodeUnavailable: 'שירות איתור הכתובות אינו זמין כרגע. אפשר לחפש לפי יישוב בלבד.',
   searchByLocalityOnly: 'חיפוש לפי יישוב בלבד',
   loading: 'מחפשים…',
+  loadingInfo: 'טוענים את המידע…',
   loadingData: 'טוענים את נתוני הקלפיות…',
   chooseAddressTitle: 'מצאנו כמה כתובות אפשריות. בחרו את הכתובת הנכונה:',
   chooseAddressNone: 'אף אחת מאלה — חזרה לטופס',

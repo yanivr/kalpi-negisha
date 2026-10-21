@@ -736,7 +736,7 @@ export function App({ initialLocale, initialView }: { initialLocale: Locale; ini
           </>
         )}
 
-        {view === 'sources' && <SourcesPage t={t} locale={locale} manifest={manifest} service={service} headingRef={mainHeadingRef} />}
+        {view === 'sources' && <SourcesPage t={t} locale={locale} manifest={manifest} service={service} loading={manifestState.status === 'loading'} headingRef={mainHeadingRef} />}
         {view === 'privacy' && <PrivacyPage t={t} headingRef={mainHeadingRef} />}
         {view === 'accessibility' && <AccessibilityPage t={t} locale={locale} headingRef={mainHeadingRef} />}
       </main>

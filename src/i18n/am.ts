@@ -40,6 +40,7 @@ const am: Dict = {
   errorGeocodeUnavailable: 'የአድራሻ ፍለጋ አገልግሎቱ አሁን አይሠራም። በከተማ ብቻ መፈለግ ይችላሉ።',
   searchByLocalityOnly: 'በከተማ ወይም በመንደር ብቻ ይፈልጉ',
   loading: 'በመፈለግ ላይ…',
+  loadingInfo: 'መረጃው እየተጫነ ነው…',
   loadingData: 'የምርጫ ጣቢያዎች መረጃ በመጫን ላይ…',
   chooseAddressTitle: 'ብዙ ሊሆኑ የሚችሉ አድራሻዎች አግኝተናል። ትክክለኛውን ይምረጡ፦',
   chooseAddressNone: 'ከእነዚህ አንዳቸውም አይደሉም — ወደ ቅጹ ይመለሱ',

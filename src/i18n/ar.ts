@@ -40,6 +40,7 @@ const ar: Dict = {
   errorGeocodeUnavailable: 'خدمة تحديد العناوين غير متاحة حاليًّا. يمكن البحث حسب البلدة فقط.',
   searchByLocalityOnly: 'البحث حسب البلدة فقط',
   loading: 'جارٍ البحث…',
+  loadingInfo: 'جارٍ تحميل المعلومات…',
   loadingData: 'جارٍ تحميل بيانات صناديق الاقتراع…',
   chooseAddressTitle: 'وجدنا عدّة عناوين محتملة. اختاروا العنوان الصحيح:',
   chooseAddressNone: 'لا شيء ممّا سبق — العودة إلى النموذج',
