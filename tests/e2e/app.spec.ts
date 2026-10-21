@@ -370,3 +370,12 @@ test.describe('search by street', () => {
     expect(page.url()).toBe('http://127.0.0.1:4173/he/');
   });
 });
+
+for (const l of ['he', 'ar', 'ru', 'am']) {
+  test(`${l}: language bar stays on one row on a 320px phone`, async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto(`/${l}/`);
+    const tops = await page.locator('.lang-list a').evaluateAll((as) => as.map((a) => Math.round(a.getBoundingClientRect().top)));
+    expect(new Set(tops).size).toBe(1);
+  });
+}

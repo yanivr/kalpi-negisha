@@ -181,8 +181,8 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-block-size: 44px;
-  min-inline-size: 44px;
+  min-block-size: 48px; /* product target (spec §accessibility): 48×48 */
+  min-inline-size: 48px;
   padding-inline: 0.5rem;
   white-space: nowrap;
   border: 2px solid transparent;
@@ -224,7 +224,7 @@ details.rules summary {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  min-block-size: 44px;
+  min-block-size: 48px;
   color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -622,7 +622,7 @@ details.diff summary {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;
-  min-block-size: 44px;
+  min-block-size: 48px;
   color: var(--primary);
   text-decoration: underline;
   text-underline-offset: 0.2em;
