@@ -1,0 +1,6767 @@
+{
+  "osmTimestamp": "2026-10-25T21:21:21.000Z",
+  "officialStreetsSource": "data.gov.il רשימת רחובות בישראל (resource bf185c7f-1a4e-4662-88c5-fa118a244bda) via @il-address/data",
+  "matchStats": {
+    "exact": 80904,
+    "tokens": 1066,
+    "core": 2918,
+    "subset": 2878,
+    "unmatchedWays": 12562
+  },
+  "totals": {
+    "streets": 63580,
+    "withGeometry": 31919,
+    "withNumbers": 11162
+  },
+  "accuracy": {
+    "compoundsWithStreet": 4368,
+    "resolved": 2764,
+    "resolvedByHouseNumber": 662,
+    "streetNotInOfficialList": 7,
+    "streetWithoutGeometry": 1597,
+    "medianM": 54,
+    "p90M": 109,
+    "p95M": 144,
+    "p99M": 418,
+    "within300m": 2724,
+    "over500m": 24
+  },
+  "over500mSample": [
+    [
+      "1137",
+      "הדגן",
+      "5",
+      628
+    ],
+    [
+      "246",
+      "ורדימון יצחק",
+      "16140",
+      2058
+    ],
+    [
+      "2630",
+      "גאון הירדן",
+      "2",
+      573
+    ],
+    [
+      "3000",
+      "רפאל יצחק",
+      "4",
+      873
+    ],
+    [
+      "31",
+      "הרב אבוחצירה",
+      "5",
+      1335
+    ],
+    [
+      "3560",
+      "משעול ספיר",
+      "14",
+      652
+    ],
+    [
+      "3574",
+      "מבוא התקומה",
+      null,
+      538
+    ],
+    [
+      "3611",
+      "סולם אלדד",
+      "1",
+      683
+    ],
+    [
+      "3616",
+      "הצור",
+      "32",
+      586
+    ],
+    [
+      "3616",
+      "דרך קדם",
+      "40",
+      876
+    ],
+    [
+      "3617",
+      "המייסדים",
+      "8",
+      862
+    ],
+    [
+      "3617",
+      "הדבש",
+      null,
+      655
+    ],
+    [
+      "3617",
+      "דן",
+      null,
+      557
+    ],
+    [
+      "3660",
+      "בית ישראל",
+      "1",
+      883
+    ],
+    [
+      "3788",
+      "נריה",
+      null,
+      1215
+    ],
+    [
+      "5000",
+      "שלונסקי",
+      "6",
+      8437
+    ],
+    [
+      "582",
+      "הזית",
+      null,
+      653
+    ],
+    [
+      "666",
+      "הדר",
+      null,
+      1215
+    ],
+    [
+      "666",
+      "דפנה",
+      null,
+      1429
+    ],
+    [
+      "666",
+      "הדר",
+      null,
+      1215
+    ],
+    [
+      "8500",
+      "רזיאל דוד",
+      null,
+      543
+    ],
+    [
+      "8600",
+      "כפר אז\"ר",
+      null,
+      725
+    ],
+    [
+      "9000",
+      "יהודה הנשיא",
+      "140",
+      1477
+    ],
+    [
+      "9300",
+      "שירה",
+      "5",
+      633
+    ]
+  ],
+  "coverage": {
+    "7": {
+      "streets": 8,
+      "withGeometry": 7,
+      "withNumbers": 1
+    },
+    "10": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "11": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "13": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "15": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "16": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "18": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "21": {
+      "streets": 29,
+      "withGeometry": 2,
+      "withNumbers": 2
+    },
+    "22": {
+      "streets": 12,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "23": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "24": {
+      "streets": 10,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "26": {
+      "streets": 92,
+      "withGeometry": 40,
+      "withNumbers": 7
+    },
+    "27": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "28": {
+      "streets": 147,
+      "withGeometry": 122,
+      "withNumbers": 4
+    },
+    "29": {
+      "streets": 24,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "31": {
+      "streets": 472,
+      "withGeometry": 346,
+      "withNumbers": 111
+    },
+    "32": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "33": {
+      "streets": 13,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "35": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "36": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "37": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "39": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "41": {
+      "streets": 47,
+      "withGeometry": 40,
+      "withNumbers": 0
+    },
+    "43": {
+      "streets": 48,
+      "withGeometry": 35,
+      "withNumbers": 8
+    },
+    "44": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "46": {
+      "streets": 69,
+      "withGeometry": 41,
+      "withNumbers": 1
+    },
+    "47": {
+      "streets": 137,
+      "withGeometry": 80,
+      "withNumbers": 5
+    },
+    "48": {
+      "streets": 25,
+      "withGeometry": 16,
+      "withNumbers": 1
+    },
+    "49": {
+      "streets": 15,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "52": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "53": {
+      "streets": 141,
+      "withGeometry": 79,
+      "withNumbers": 9
+    },
+    "55": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "57": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "58": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "59": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "62": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "63": {
+      "streets": 33,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "64": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "65": {
+      "streets": 44,
+      "withGeometry": 29,
+      "withNumbers": 5
+    },
+    "66": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "67": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "69": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "70": {
+      "streets": 715,
+      "withGeometry": 543,
+      "withNumbers": 194
+    },
+    "71": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "72": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "74": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "76": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "77": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "78": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "79": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "80": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "82": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "84": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "85": {
+      "streets": 5,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "86": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "88": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "89": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "90": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "92": {
+      "streets": 29,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "94": {
+      "streets": 10,
+      "withGeometry": 8,
+      "withNumbers": 2
+    },
+    "95": {
+      "streets": 3,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "96": {
+      "streets": 66,
+      "withGeometry": 48,
+      "withNumbers": 28
+    },
+    "97": {
+      "streets": 13,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "98": {
+      "streets": 15,
+      "withGeometry": 4,
+      "withNumbers": 2
+    },
+    "99": {
+      "streets": 83,
+      "withGeometry": 48,
+      "withNumbers": 11
+    },
+    "102": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "103": {
+      "streets": 21,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "104": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "106": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "107": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "112": {
+      "streets": 16,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "113": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "115": {
+      "streets": 11,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "122": {
+      "streets": 104,
+      "withGeometry": 66,
+      "withNumbers": 4
+    },
+    "126": {
+      "streets": 30,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "127": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "128": {
+      "streets": 5,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "130": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "132": {
+      "streets": 10,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "133": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "134": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "135": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "139": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "140": {
+      "streets": 27,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "141": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "142": {
+      "streets": 17,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "143": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "144": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "145": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "146": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "147": {
+      "streets": 9,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "154": {
+      "streets": 138,
+      "withGeometry": 101,
+      "withNumbers": 23
+    },
+    "155": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "156": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "157": {
+      "streets": 30,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "158": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "159": {
+      "streets": 7,
+      "withGeometry": 2,
+      "withNumbers": 1
+    },
+    "160": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "162": {
+      "streets": 25,
+      "withGeometry": 17,
+      "withNumbers": 0
+    },
+    "163": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "164": {
+      "streets": 5,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "165": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "166": {
+      "streets": 257,
+      "withGeometry": 208,
+      "withNumbers": 11
+    },
+    "167": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "168": {
+      "streets": 193,
+      "withGeometry": 162,
+      "withNumbers": 17
+    },
+    "170": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "171": {
+      "streets": 102,
+      "withGeometry": 71,
+      "withNumbers": 8
+    },
+    "173": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "174": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "175": {
+      "streets": 25,
+      "withGeometry": 16,
+      "withNumbers": 6
+    },
+    "176": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "177": {
+      "streets": 21,
+      "withGeometry": 8,
+      "withNumbers": 4
+    },
+    "178": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "182": {
+      "streets": 233,
+      "withGeometry": 153,
+      "withNumbers": 30
+    },
+    "183": {
+      "streets": 15,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "184": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "186": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "187": {
+      "streets": 18,
+      "withGeometry": 15,
+      "withNumbers": 2
+    },
+    "188": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "189": {
+      "streets": 15,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "190": {
+      "streets": 28,
+      "withGeometry": 21,
+      "withNumbers": 5
+    },
+    "191": {
+      "streets": 22,
+      "withGeometry": 13,
+      "withNumbers": 9
+    },
+    "192": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "193": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "194": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "195": {
+      "streets": 256,
+      "withGeometry": 164,
+      "withNumbers": 10
+    },
+    "196": {
+      "streets": 7,
+      "withGeometry": 6,
+      "withNumbers": 2
+    },
+    "197": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "198": {
+      "streets": 16,
+      "withGeometry": 11,
+      "withNumbers": 2
+    },
+    "199": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "200": {
+      "streets": 12,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "202": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "204": {
+      "streets": 14,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "205": {
+      "streets": 14,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "206": {
+      "streets": 34,
+      "withGeometry": 18,
+      "withNumbers": 0
+    },
+    "207": {
+      "streets": 11,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "208": {
+      "streets": 20,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "212": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "213": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "217": {
+      "streets": 10,
+      "withGeometry": 2,
+      "withNumbers": 1
+    },
+    "218": {
+      "streets": 13,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "219": {
+      "streets": 9,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "220": {
+      "streets": 11,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "223": {
+      "streets": 11,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "224": {
+      "streets": 7,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "225": {
+      "streets": 23,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "229": {
+      "streets": 80,
+      "withGeometry": 50,
+      "withNumbers": 10
+    },
+    "230": {
+      "streets": 10,
+      "withGeometry": 6,
+      "withNumbers": 1
+    },
+    "232": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "233": {
+      "streets": 19,
+      "withGeometry": 11,
+      "withNumbers": 6
+    },
+    "234": {
+      "streets": 10,
+      "withGeometry": 5,
+      "withNumbers": 1
+    },
+    "235": {
+      "streets": 9,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "237": {
+      "streets": 53,
+      "withGeometry": 39,
+      "withNumbers": 0
+    },
+    "239": {
+      "streets": 17,
+      "withGeometry": 14,
+      "withNumbers": 0
+    },
+    "240": {
+      "streets": 134,
+      "withGeometry": 98,
+      "withNumbers": 21
+    },
+    "241": {
+      "streets": 17,
+      "withGeometry": 12,
+      "withNumbers": 1
+    },
+    "242": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "246": {
+      "streets": 278,
+      "withGeometry": 221,
+      "withNumbers": 39
+    },
+    "247": {
+      "streets": 26,
+      "withGeometry": 15,
+      "withNumbers": 3
+    },
+    "248": {
+      "streets": 20,
+      "withGeometry": 5,
+      "withNumbers": 1
+    },
+    "249": {
+      "streets": 15,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "250": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "252": {
+      "streets": 13,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "253": {
+      "streets": 59,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "254": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "255": {
+      "streets": 26,
+      "withGeometry": 19,
+      "withNumbers": 0
+    },
+    "256": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "257": {
+      "streets": 10,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "259": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "262": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "263": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "264": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "265": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "267": {
+      "streets": 60,
+      "withGeometry": 25,
+      "withNumbers": 6
+    },
+    "268": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "269": {
+      "streets": 21,
+      "withGeometry": 16,
+      "withNumbers": 1
+    },
+    "270": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "272": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "273": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "274": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "276": {
+      "streets": 38,
+      "withGeometry": 20,
+      "withNumbers": 0
+    },
+    "278": {
+      "streets": 34,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "280": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "281": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "282": {
+      "streets": 41,
+      "withGeometry": 22,
+      "withNumbers": 3
+    },
+    "284": {
+      "streets": 20,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "285": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "286": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "287": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "288": {
+      "streets": 17,
+      "withGeometry": 13,
+      "withNumbers": 1
+    },
+    "289": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "290": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "292": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "293": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "294": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "295": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "296": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "297": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "298": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "300": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "301": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "302": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "303": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "304": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "305": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "306": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "307": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "308": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "309": {
+      "streets": 22,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "310": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "311": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "312": {
+      "streets": 28,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "313": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "315": {
+      "streets": 17,
+      "withGeometry": 3,
+      "withNumbers": 1
+    },
+    "316": {
+      "streets": 9,
+      "withGeometry": 7,
+      "withNumbers": 1
+    },
+    "317": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "318": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "319": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "320": {
+      "streets": 25,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "322": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "324": {
+      "streets": 7,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "325": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "326": {
+      "streets": 43,
+      "withGeometry": 17,
+      "withNumbers": 1
+    },
+    "327": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "328": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "329": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "330": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "331": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "334": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "335": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "336": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "338": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "339": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "340": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "342": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "343": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "344": {
+      "streets": 43,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "345": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "346": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "347": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "348": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "351": {
+      "streets": 33,
+      "withGeometry": 26,
+      "withNumbers": 0
+    },
+    "352": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "353": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "354": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "355": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "356": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "357": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "358": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "359": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "360": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "362": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "363": {
+      "streets": 18,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "364": {
+      "streets": 16,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "365": {
+      "streets": 16,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "366": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "367": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "368": {
+      "streets": 3,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "369": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "370": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "371": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "372": {
+      "streets": 28,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "373": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "374": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "375": {
+      "streets": 29,
+      "withGeometry": 4,
+      "withNumbers": 1
+    },
+    "376": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "377": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "378": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "379": {
+      "streets": 16,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "380": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "382": {
+      "streets": 16,
+      "withGeometry": 11,
+      "withNumbers": 2
+    },
+    "383": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "385": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "386": {
+      "streets": 26,
+      "withGeometry": 14,
+      "withNumbers": 2
+    },
+    "387": {
+      "streets": 8,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "388": {
+      "streets": 21,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "389": {
+      "streets": 17,
+      "withGeometry": 14,
+      "withNumbers": 3
+    },
+    "390": {
+      "streets": 34,
+      "withGeometry": 33,
+      "withNumbers": 7
+    },
+    "392": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "393": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "394": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "395": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "396": {
+      "streets": 18,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "397": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "398": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "399": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "400": {
+      "streets": 28,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "402": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "403": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "405": {
+      "streets": 27,
+      "withGeometry": 4,
+      "withNumbers": 1
+    },
+    "406": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "407": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "408": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "409": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "412": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "413": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "414": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "415": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "416": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "417": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "418": {
+      "streets": 30,
+      "withGeometry": 25,
+      "withNumbers": 7
+    },
+    "419": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "421": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "422": {
+      "streets": 10,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "423": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "424": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "425": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "426": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "427": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "428": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "429": {
+      "streets": 22,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "430": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "431": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "432": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "433": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "434": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "435": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "436": {
+      "streets": 29,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "437": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "439": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "440": {
+      "streets": 20,
+      "withGeometry": 17,
+      "withNumbers": 7
+    },
+    "442": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "443": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "444": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "445": {
+      "streets": 23,
+      "withGeometry": 19,
+      "withNumbers": 0
+    },
+    "446": {
+      "streets": 24,
+      "withGeometry": 18,
+      "withNumbers": 3
+    },
+    "447": {
+      "streets": 39,
+      "withGeometry": 20,
+      "withNumbers": 2
+    },
+    "448": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "449": {
+      "streets": 13,
+      "withGeometry": 11,
+      "withNumbers": 6
+    },
+    "450": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "452": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "453": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "454": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "456": {
+      "streets": 14,
+      "withGeometry": 11,
+      "withNumbers": 1
+    },
+    "457": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "460": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "462": {
+      "streets": 13,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "463": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "464": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "465": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "466": {
+      "streets": 61,
+      "withGeometry": 43,
+      "withNumbers": 3
+    },
+    "469": {
+      "streets": 114,
+      "withGeometry": 73,
+      "withNumbers": 1
+    },
+    "472": {
+      "streets": 69,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "473": {
+      "streets": 161,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "475": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "478": {
+      "streets": 156,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "480": {
+      "streets": 304,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "481": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "482": {
+      "streets": 85,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "483": {
+      "streets": 16,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "485": {
+      "streets": 119,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "487": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "489": {
+      "streets": 116,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "490": {
+      "streets": 72,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "492": {
+      "streets": 119,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "493": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "494": {
+      "streets": 414,
+      "withGeometry": 70,
+      "withNumbers": 0
+    },
+    "496": {
+      "streets": 110,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "497": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "498": {
+      "streets": 95,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "499": {
+      "streets": 274,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "502": {
+      "streets": 272,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "504": {
+      "streets": 87,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "505": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "507": {
+      "streets": 124,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "508": {
+      "streets": 102,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "509": {
+      "streets": 157,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "510": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "511": {
+      "streets": 189,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "512": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "514": {
+      "streets": 56,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "516": {
+      "streets": 306,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "517": {
+      "streets": 54,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "518": {
+      "streets": 56,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "520": {
+      "streets": 187,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "521": {
+      "streets": 62,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "522": {
+      "streets": 144,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "523": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "524": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "525": {
+      "streets": 39,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "526": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "527": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "528": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "529": {
+      "streets": 22,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "530": {
+      "streets": 86,
+      "withGeometry": 16,
+      "withNumbers": 1
+    },
+    "531": {
+      "streets": 380,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "532": {
+      "streets": 168,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "534": {
+      "streets": 274,
+      "withGeometry": 22,
+      "withNumbers": 0
+    },
+    "535": {
+      "streets": 51,
+      "withGeometry": 21,
+      "withNumbers": 0
+    },
+    "536": {
+      "streets": 104,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "537": {
+      "streets": 30,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "538": {
+      "streets": 52,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "539": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "540": {
+      "streets": 38,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "541": {
+      "streets": 81,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "542": {
+      "streets": 319,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "543": {
+      "streets": 114,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "546": {
+      "streets": 38,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "547": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "549": {
+      "streets": 22,
+      "withGeometry": 18,
+      "withNumbers": 1
+    },
+    "553": {
+      "streets": 5,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "555": {
+      "streets": 8,
+      "withGeometry": 6,
+      "withNumbers": 6
+    },
+    "559": {
+      "streets": 15,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "562": {
+      "streets": 7,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "563": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "564": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "565": {
+      "streets": 77,
+      "withGeometry": 50,
+      "withNumbers": 10
+    },
+    "566": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "567": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "570": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "571": {
+      "streets": 7,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "572": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "573": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "574": {
+      "streets": 43,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "575": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "576": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "577": {
+      "streets": 54,
+      "withGeometry": 36,
+      "withNumbers": 1
+    },
+    "578": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "579": {
+      "streets": 11,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "580": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "582": {
+      "streets": 10,
+      "withGeometry": 9,
+      "withNumbers": 1
+    },
+    "584": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "585": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "586": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "587": {
+      "streets": 91,
+      "withGeometry": 32,
+      "withNumbers": 2
+    },
+    "588": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "589": {
+      "streets": 19,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "590": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "591": {
+      "streets": 22,
+      "withGeometry": 16,
+      "withNumbers": 16
+    },
+    "592": {
+      "streets": 38,
+      "withGeometry": 31,
+      "withNumbers": 2
+    },
+    "593": {
+      "streets": 12,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "594": {
+      "streets": 8,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "595": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "596": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "597": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "598": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "599": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "602": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "603": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "604": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "605": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "606": {
+      "streets": 16,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "607": {
+      "streets": 14,
+      "withGeometry": 13,
+      "withNumbers": 1
+    },
+    "609": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "610": {
+      "streets": 21,
+      "withGeometry": 19,
+      "withNumbers": 1
+    },
+    "612": {
+      "streets": 9,
+      "withGeometry": 7,
+      "withNumbers": 2
+    },
+    "613": {
+      "streets": 16,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "614": {
+      "streets": 10,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "615": {
+      "streets": 17,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "616": {
+      "streets": 16,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "617": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "618": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "619": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "620": {
+      "streets": 21,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "622": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "623": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "627": {
+      "streets": 87,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "628": {
+      "streets": 261,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "633": {
+      "streets": 40,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "634": {
+      "streets": 184,
+      "withGeometry": 39,
+      "withNumbers": 0
+    },
+    "635": {
+      "streets": 67,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "636": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "637": {
+      "streets": 276,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "638": {
+      "streets": 185,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "648": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "649": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "652": {
+      "streets": 23,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "654": {
+      "streets": 425,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "658": {
+      "streets": 22,
+      "withGeometry": 21,
+      "withNumbers": 0
+    },
+    "661": {
+      "streets": 31,
+      "withGeometry": 27,
+      "withNumbers": 1
+    },
+    "662": {
+      "streets": 25,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "663": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "664": {
+      "streets": 9,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "665": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "666": {
+      "streets": 152,
+      "withGeometry": 92,
+      "withNumbers": 6
+    },
+    "667": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "668": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "670": {
+      "streets": 7,
+      "withGeometry": 2,
+      "withNumbers": 1
+    },
+    "672": {
+      "streets": 11,
+      "withGeometry": 9,
+      "withNumbers": 2
+    },
+    "673": {
+      "streets": 15,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "674": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "675": {
+      "streets": 12,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "676": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "677": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "678": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "679": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "680": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "681": {
+      "streets": 117,
+      "withGeometry": 90,
+      "withNumbers": 16
+    },
+    "682": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "683": {
+      "streets": 18,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "684": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "685": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "686": {
+      "streets": 13,
+      "withGeometry": 11,
+      "withNumbers": 1
+    },
+    "687": {
+      "streets": 8,
+      "withGeometry": 5,
+      "withNumbers": 1
+    },
+    "688": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "689": {
+      "streets": 14,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "690": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "692": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "693": {
+      "streets": 41,
+      "withGeometry": 18,
+      "withNumbers": 2
+    },
+    "694": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "695": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "696": {
+      "streets": 54,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "697": {
+      "streets": 5,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "698": {
+      "streets": 6,
+      "withGeometry": 5,
+      "withNumbers": 1
+    },
+    "699": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "700": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "701": {
+      "streets": 18,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "702": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "703": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "705": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "706": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "707": {
+      "streets": 10,
+      "withGeometry": 2,
+      "withNumbers": 1
+    },
+    "708": {
+      "streets": 11,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "709": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "710": {
+      "streets": 18,
+      "withGeometry": 16,
+      "withNumbers": 1
+    },
+    "711": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "712": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "713": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "714": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "715": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "716": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "717": {
+      "streets": 15,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "718": {
+      "streets": 14,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "719": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "720": {
+      "streets": 27,
+      "withGeometry": 24,
+      "withNumbers": 4
+    },
+    "721": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "722": {
+      "streets": 19,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "723": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "726": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "727": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "729": {
+      "streets": 21,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "730": {
+      "streets": 13,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "731": {
+      "streets": 10,
+      "withGeometry": 5,
+      "withNumbers": 2
+    },
+    "732": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "734": {
+      "streets": 15,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "735": {
+      "streets": 15,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "736": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "737": {
+      "streets": 6,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "738": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "739": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "740": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "741": {
+      "streets": 8,
+      "withGeometry": 6,
+      "withNumbers": 1
+    },
+    "742": {
+      "streets": 8,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "743": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "744": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "745": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "746": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "747": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "748": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "749": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "750": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "751": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "752": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "753": {
+      "streets": 19,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "755": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "756": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "757": {
+      "streets": 18,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "758": {
+      "streets": 28,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "759": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "760": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "761": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "762": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "763": {
+      "streets": 17,
+      "withGeometry": 16,
+      "withNumbers": 0
+    },
+    "764": {
+      "streets": 15,
+      "withGeometry": 11,
+      "withNumbers": 10
+    },
+    "765": {
+      "streets": 13,
+      "withGeometry": 9,
+      "withNumbers": 9
+    },
+    "766": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "767": {
+      "streets": 19,
+      "withGeometry": 17,
+      "withNumbers": 1
+    },
+    "768": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "769": {
+      "streets": 32,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "771": {
+      "streets": 18,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "772": {
+      "streets": 7,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "773": {
+      "streets": 6,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "774": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "775": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "776": {
+      "streets": 10,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "777": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "778": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "779": {
+      "streets": 17,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "780": {
+      "streets": 18,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "783": {
+      "streets": 13,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "784": {
+      "streets": 7,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "785": {
+      "streets": 11,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "786": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "787": {
+      "streets": 15,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "788": {
+      "streets": 5,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "789": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "791": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "792": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "793": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "794": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "795": {
+      "streets": 9,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "796": {
+      "streets": 14,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "797": {
+      "streets": 9,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "798": {
+      "streets": 5,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "799": {
+      "streets": 5,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "800": {
+      "streets": 15,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "801": {
+      "streets": 20,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "802": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "803": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "804": {
+      "streets": 7,
+      "withGeometry": 4,
+      "withNumbers": 1
+    },
+    "805": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "806": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "807": {
+      "streets": 9,
+      "withGeometry": 7,
+      "withNumbers": 1
+    },
+    "808": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "809": {
+      "streets": 7,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "810": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "811": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "812": {
+      "streets": 89,
+      "withGeometry": 31,
+      "withNumbers": 1
+    },
+    "813": {
+      "streets": 18,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "814": {
+      "streets": 9,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "815": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "816": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "817": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "818": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "819": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "820": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "821": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "822": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "823": {
+      "streets": 7,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "824": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "825": {
+      "streets": 16,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "826": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "827": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "828": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "829": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "831": {
+      "streets": 184,
+      "withGeometry": 128,
+      "withNumbers": 7
+    },
+    "833": {
+      "streets": 18,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "836": {
+      "streets": 11,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "837": {
+      "streets": 5,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "838": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "839": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "840": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "841": {
+      "streets": 17,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "842": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "843": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "844": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "845": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "846": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "848": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "849": {
+      "streets": 51,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "850": {
+      "streets": 14,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "851": {
+      "streets": 9,
+      "withGeometry": 6,
+      "withNumbers": 1
+    },
+    "852": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "853": {
+      "streets": 10,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "854": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "856": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "857": {
+      "streets": 5,
+      "withGeometry": 4,
+      "withNumbers": 2
+    },
+    "858": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "859": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "861": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "862": {
+      "streets": 9,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "863": {
+      "streets": 17,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "864": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "865": {
+      "streets": 7,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "866": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "868": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "870": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "871": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "872": {
+      "streets": 14,
+      "withGeometry": 7,
+      "withNumbers": 5
+    },
+    "873": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "874": {
+      "streets": 230,
+      "withGeometry": 170,
+      "withNumbers": 22
+    },
+    "875": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "877": {
+      "streets": 18,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "880": {
+      "streets": 26,
+      "withGeometry": 19,
+      "withNumbers": 2
+    },
+    "882": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "885": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "886": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "888": {
+      "streets": 10,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "889": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "890": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "892": {
+      "streets": 16,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "897": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "913": {
+      "streets": 80,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "916": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "917": {
+      "streets": 11,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "919": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "921": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "922": {
+      "streets": 55,
+      "withGeometry": 37,
+      "withNumbers": 33
+    },
+    "926": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "932": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "935": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "939": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "942": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "944": {
+      "streets": 43,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "948": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "956": {
+      "streets": 5,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "957": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "958": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "959": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "960": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "961": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "962": {
+      "streets": 59,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "963": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "964": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "965": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "966": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "967": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "968": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "969": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "970": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "972": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "975": {
+      "streets": 257,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "976": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "978": {
+      "streets": 163,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "986": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "989": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "990": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "993": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "994": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "997": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "998": {
+      "streets": 70,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1015": {
+      "streets": 186,
+      "withGeometry": 124,
+      "withNumbers": 26
+    },
+    "1020": {
+      "streets": 142,
+      "withGeometry": 112,
+      "withNumbers": 16
+    },
+    "1024": {
+      "streets": 8,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "1031": {
+      "streets": 416,
+      "withGeometry": 335,
+      "withNumbers": 40
+    },
+    "1034": {
+      "streets": 184,
+      "withGeometry": 113,
+      "withNumbers": 6
+    },
+    "1041": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1042": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1043": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1044": {
+      "streets": 7,
+      "withGeometry": 2,
+      "withNumbers": 2
+    },
+    "1045": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1046": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1047": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1050": {
+      "streets": 16,
+      "withGeometry": 5,
+      "withNumbers": 3
+    },
+    "1051": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1052": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1053": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1054": {
+      "streets": 53,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1056": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1057": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1058": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1059": {
+      "streets": 29,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1060": {
+      "streets": 137,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1061": {
+      "streets": 196,
+      "withGeometry": 116,
+      "withNumbers": 14
+    },
+    "1063": {
+      "streets": 305,
+      "withGeometry": 173,
+      "withNumbers": 12
+    },
+    "1064": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1065": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1066": {
+      "streets": 75,
+      "withGeometry": 32,
+      "withNumbers": 0
+    },
+    "1067": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1068": {
+      "streets": 30,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1069": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1070": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1071": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1072": {
+      "streets": 6,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1076": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1077": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1079": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1080": {
+      "streets": 12,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1081": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1082": {
+      "streets": 36,
+      "withGeometry": 27,
+      "withNumbers": 0
+    },
+    "1083": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1084": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1085": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1094": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1095": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1098": {
+      "streets": 20,
+      "withGeometry": 17,
+      "withNumbers": 2
+    },
+    "1102": {
+      "streets": 12,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "1103": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1104": {
+      "streets": 17,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "1105": {
+      "streets": 15,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "1108": {
+      "streets": 22,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1110": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1111": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1112": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1113": {
+      "streets": 78,
+      "withGeometry": 55,
+      "withNumbers": 5
+    },
+    "1114": {
+      "streets": 15,
+      "withGeometry": 6,
+      "withNumbers": 2
+    },
+    "1115": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1117": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1123": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1124": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1125": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1126": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1127": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1128": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1129": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1130": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1132": {
+      "streets": 13,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1133": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1134": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1136": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1137": {
+      "streets": 35,
+      "withGeometry": 20,
+      "withNumbers": 16
+    },
+    "1138": {
+      "streets": 12,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "1139": {
+      "streets": 255,
+      "withGeometry": 188,
+      "withNumbers": 81
+    },
+    "1140": {
+      "streets": 58,
+      "withGeometry": 41,
+      "withNumbers": 2
+    },
+    "1141": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1143": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1144": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1145": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1146": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1147": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1148": {
+      "streets": 18,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1149": {
+      "streets": 20,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1150": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1151": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1152": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1153": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1154": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1155": {
+      "streets": 15,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "1156": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1157": {
+      "streets": 8,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "1158": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1160": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1161": {
+      "streets": 348,
+      "withGeometry": 9,
+      "withNumbers": 2
+    },
+    "1162": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1163": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1165": {
+      "streets": 33,
+      "withGeometry": 19,
+      "withNumbers": 2
+    },
+    "1166": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1167": {
+      "streets": 154,
+      "withGeometry": 30,
+      "withNumbers": 16
+    },
+    "1169": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1170": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1171": {
+      "streets": 10,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1172": {
+      "streets": 20,
+      "withGeometry": 16,
+      "withNumbers": 0
+    },
+    "1173": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1174": {
+      "streets": 31,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "1175": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1176": {
+      "streets": 15,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "1177": {
+      "streets": 32,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1178": {
+      "streets": 18,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "1179": {
+      "streets": 23,
+      "withGeometry": 20,
+      "withNumbers": 3
+    },
+    "1180": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1181": {
+      "streets": 16,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "1182": {
+      "streets": 10,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1183": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1184": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1185": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1186": {
+      "streets": 13,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1187": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1188": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1190": {
+      "streets": 18,
+      "withGeometry": 3,
+      "withNumbers": 1
+    },
+    "1191": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1192": {
+      "streets": 91,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1195": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1196": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1197": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1198": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1199": {
+      "streets": 24,
+      "withGeometry": 17,
+      "withNumbers": 0
+    },
+    "1200": {
+      "streets": 527,
+      "withGeometry": 403,
+      "withNumbers": 98
+    },
+    "1201": {
+      "streets": 14,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "1202": {
+      "streets": 16,
+      "withGeometry": 6,
+      "withNumbers": 1
+    },
+    "1203": {
+      "streets": 16,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1204": {
+      "streets": 26,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "1205": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1206": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1207": {
+      "streets": 19,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "1208": {
+      "streets": 7,
+      "withGeometry": 6,
+      "withNumbers": 2
+    },
+    "1209": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1210": {
+      "streets": 9,
+      "withGeometry": 3,
+      "withNumbers": 0
+    },
+    "1211": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1212": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1213": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1214": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1219": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1220": {
+      "streets": 13,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1221": {
+      "streets": 18,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "1222": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1223": {
+      "streets": 5,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1224": {
+      "streets": 143,
+      "withGeometry": 106,
+      "withNumbers": 4
+    },
+    "1225": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1226": {
+      "streets": 32,
+      "withGeometry": 26,
+      "withNumbers": 9
+    },
+    "1227": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1228": {
+      "streets": 20,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "1229": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1230": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1231": {
+      "streets": 4,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1232": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1233": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1234": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1235": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1236": {
+      "streets": 14,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "1237": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1238": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1239": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1240": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1241": {
+      "streets": 6,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "1242": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1243": {
+      "streets": 28,
+      "withGeometry": 22,
+      "withNumbers": 1
+    },
+    "1244": {
+      "streets": 23,
+      "withGeometry": 20,
+      "withNumbers": 0
+    },
+    "1245": {
+      "streets": 51,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1246": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1247": {
+      "streets": 64,
+      "withGeometry": 55,
+      "withNumbers": 27
+    },
+    "1248": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1249": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1251": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1252": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1253": {
+      "streets": 11,
+      "withGeometry": 4,
+      "withNumbers": 1
+    },
+    "1254": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1255": {
+      "streets": 27,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1256": {
+      "streets": 37,
+      "withGeometry": 24,
+      "withNumbers": 0
+    },
+    "1257": {
+      "streets": 15,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1258": {
+      "streets": 26,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "1259": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1260": {
+      "streets": 16,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1261": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1262": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1263": {
+      "streets": 90,
+      "withGeometry": 65,
+      "withNumbers": 7
+    },
+    "1264": {
+      "streets": 17,
+      "withGeometry": 14,
+      "withNumbers": 0
+    },
+    "1265": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1266": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1267": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1268": {
+      "streets": 163,
+      "withGeometry": 118,
+      "withNumbers": 5
+    },
+    "1271": {
+      "streets": 132,
+      "withGeometry": 83,
+      "withNumbers": 0
+    },
+    "1272": {
+      "streets": 27,
+      "withGeometry": 12,
+      "withNumbers": 1
+    },
+    "1274": {
+      "streets": 25,
+      "withGeometry": 22,
+      "withNumbers": 0
+    },
+    "1275": {
+      "streets": 10,
+      "withGeometry": 6,
+      "withNumbers": 1
+    },
+    "1276": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1278": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1279": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1280": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1282": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1283": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1284": {
+      "streets": 29,
+      "withGeometry": 17,
+      "withNumbers": 1
+    },
+    "1285": {
+      "streets": 10,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "1286": {
+      "streets": 79,
+      "withGeometry": 31,
+      "withNumbers": 0
+    },
+    "1287": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1288": {
+      "streets": 21,
+      "withGeometry": 16,
+      "withNumbers": 0
+    },
+    "1290": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1291": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1292": {
+      "streets": 157,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1293": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "1294": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1295": {
+      "streets": 156,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1296": {
+      "streets": 143,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1297": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1298": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1303": {
+      "streets": 148,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1304": {
+      "streets": 143,
+      "withGeometry": 80,
+      "withNumbers": 21
+    },
+    "1309": {
+      "streets": 71,
+      "withGeometry": 45,
+      "withNumbers": 40
+    },
+    "1310": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 1
+    },
+    "1311": {
+      "streets": 20,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1313": {
+      "streets": 12,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "1314": {
+      "streets": 22,
+      "withGeometry": 20,
+      "withNumbers": 14
+    },
+    "1315": {
+      "streets": 26,
+      "withGeometry": 18,
+      "withNumbers": 2
+    },
+    "1316": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1317": {
+      "streets": 17,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1318": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1319": {
+      "streets": 48,
+      "withGeometry": 33,
+      "withNumbers": 6
+    },
+    "1320": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1321": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1322": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1323": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1324": {
+      "streets": 7,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "1325": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1326": {
+      "streets": 106,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "1327": {
+      "streets": 26,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1329": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1330": {
+      "streets": 26,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "1331": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1332": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1333": {
+      "streets": 10,
+      "withGeometry": 9,
+      "withNumbers": 1
+    },
+    "1334": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1335": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1336": {
+      "streets": 41,
+      "withGeometry": 30,
+      "withNumbers": 2
+    },
+    "1337": {
+      "streets": 24,
+      "withGeometry": 19,
+      "withNumbers": 0
+    },
+    "1338": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1339": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1340": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1341": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1342": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1343": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1344": {
+      "streets": 16,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "1345": {
+      "streets": 12,
+      "withGeometry": 11,
+      "withNumbers": 4
+    },
+    "1346": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1347": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1348": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1349": {
+      "streets": 26,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1358": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1359": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1360": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1361": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 2
+    },
+    "1362": {
+      "streets": 20,
+      "withGeometry": 14,
+      "withNumbers": 1
+    },
+    "1363": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1364": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1365": {
+      "streets": 12,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "1366": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1367": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1368": {
+      "streets": 30,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "1369": {
+      "streets": 20,
+      "withGeometry": 11,
+      "withNumbers": 1
+    },
+    "1370": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1371": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "1372": {
+      "streets": 10,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "1373": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1374": {
+      "streets": 10,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "1375": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1376": {
+      "streets": 26,
+      "withGeometry": 24,
+      "withNumbers": 22
+    },
+    "1377": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1378": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1401": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1411": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1412": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1413": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1414": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1415": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1416": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1418": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "1419": {
+      "streets": 84,
+      "withGeometry": 58,
+      "withNumbers": 0
+    },
+    "2002": {
+      "streets": 22,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "2003": {
+      "streets": 20,
+      "withGeometry": 17,
+      "withNumbers": 0
+    },
+    "2006": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2008": {
+      "streets": 10,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "2009": {
+      "streets": 24,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2010": {
+      "streets": 6,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "2011": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2012": {
+      "streets": 6,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "2013": {
+      "streets": 8,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "2014": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2015": {
+      "streets": 18,
+      "withGeometry": 15,
+      "withNumbers": 0
+    },
+    "2016": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2018": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2021": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2023": {
+      "streets": 34,
+      "withGeometry": 22,
+      "withNumbers": 0
+    },
+    "2024": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2026": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2029": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2030": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2033": {
+      "streets": 9,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "2034": {
+      "streets": 120,
+      "withGeometry": 61,
+      "withNumbers": 4
+    },
+    "2035": {
+      "streets": 18,
+      "withGeometry": 7,
+      "withNumbers": 1
+    },
+    "2038": {
+      "streets": 21,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "2039": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2042": {
+      "streets": 4,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2043": {
+      "streets": 21,
+      "withGeometry": 10,
+      "withNumbers": 2
+    },
+    "2044": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2045": {
+      "streets": 9,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "2046": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2047": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2048": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2049": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2050": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2051": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2052": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2053": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2054": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2055": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2057": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2059": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2060": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2061": {
+      "streets": 11,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2062": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2063": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2064": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2100": {
+      "streets": 141,
+      "withGeometry": 69,
+      "withNumbers": 17
+    },
+    "2200": {
+      "streets": 424,
+      "withGeometry": 254,
+      "withNumbers": 17
+    },
+    "2300": {
+      "streets": 146,
+      "withGeometry": 82,
+      "withNumbers": 24
+    },
+    "2400": {
+      "streets": 244,
+      "withGeometry": 170,
+      "withNumbers": 35
+    },
+    "2500": {
+      "streets": 154,
+      "withGeometry": 99,
+      "withNumbers": 34
+    },
+    "2530": {
+      "streets": 169,
+      "withGeometry": 113,
+      "withNumbers": 31
+    },
+    "2550": {
+      "streets": 319,
+      "withGeometry": 233,
+      "withNumbers": 13
+    },
+    "2560": {
+      "streets": 265,
+      "withGeometry": 154,
+      "withNumbers": 11
+    },
+    "2600": {
+      "streets": 790,
+      "withGeometry": 351,
+      "withNumbers": 34
+    },
+    "2610": {
+      "streets": 461,
+      "withGeometry": 354,
+      "withNumbers": 162
+    },
+    "2620": {
+      "streets": 230,
+      "withGeometry": 164,
+      "withNumbers": 36
+    },
+    "2630": {
+      "streets": 437,
+      "withGeometry": 287,
+      "withNumbers": 47
+    },
+    "2640": {
+      "streets": 448,
+      "withGeometry": 332,
+      "withNumbers": 46
+    },
+    "2650": {
+      "streets": 432,
+      "withGeometry": 299,
+      "withNumbers": 91
+    },
+    "2660": {
+      "streets": 271,
+      "withGeometry": 198,
+      "withNumbers": 69
+    },
+    "2710": {
+      "streets": 475,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "2720": {
+      "streets": 439,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "2730": {
+      "streets": 21,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2742": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "2800": {
+      "streets": 187,
+      "withGeometry": 111,
+      "withNumbers": 27
+    },
+    "3000": {
+      "streets": 4383,
+      "withGeometry": 2093,
+      "withNumbers": 1282
+    },
+    "3400": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3488": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3499": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3555": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3556": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3557": {
+      "streets": 86,
+      "withGeometry": 23,
+      "withNumbers": 1
+    },
+    "3558": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3560": {
+      "streets": 63,
+      "withGeometry": 54,
+      "withNumbers": 8
+    },
+    "3561": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3563": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3564": {
+      "streets": 31,
+      "withGeometry": 23,
+      "withNumbers": 0
+    },
+    "3565": {
+      "streets": 27,
+      "withGeometry": 18,
+      "withNumbers": 1
+    },
+    "3566": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3567": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3568": {
+      "streets": 13,
+      "withGeometry": 10,
+      "withNumbers": 1
+    },
+    "3569": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3570": {
+      "streets": 131,
+      "withGeometry": 109,
+      "withNumbers": 95
+    },
+    "3571": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3572": {
+      "streets": 12,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "3573": {
+      "streets": 38,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "3574": {
+      "streets": 128,
+      "withGeometry": 94,
+      "withNumbers": 1
+    },
+    "3575": {
+      "streets": 18,
+      "withGeometry": 12,
+      "withNumbers": 0
+    },
+    "3576": {
+      "streets": 33,
+      "withGeometry": 11,
+      "withNumbers": 2
+    },
+    "3578": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3579": {
+      "streets": 17,
+      "withGeometry": 10,
+      "withNumbers": 0
+    },
+    "3598": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3599": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3601": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3602": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3603": {
+      "streets": 19,
+      "withGeometry": 17,
+      "withNumbers": 1
+    },
+    "3604": {
+      "streets": 30,
+      "withGeometry": 18,
+      "withNumbers": 0
+    },
+    "3605": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3606": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3607": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3608": {
+      "streets": 10,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "3609": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3610": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3611": {
+      "streets": 26,
+      "withGeometry": 15,
+      "withNumbers": 5
+    },
+    "3612": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3613": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3614": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3615": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3616": {
+      "streets": 167,
+      "withGeometry": 70,
+      "withNumbers": 22
+    },
+    "3617": {
+      "streets": 60,
+      "withGeometry": 36,
+      "withNumbers": 3
+    },
+    "3618": {
+      "streets": 24,
+      "withGeometry": 21,
+      "withNumbers": 2
+    },
+    "3619": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3620": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3638": {
+      "streets": 59,
+      "withGeometry": 40,
+      "withNumbers": 1
+    },
+    "3639": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3640": {
+      "streets": 108,
+      "withGeometry": 59,
+      "withNumbers": 7
+    },
+    "3641": {
+      "streets": 68,
+      "withGeometry": 45,
+      "withNumbers": 2
+    },
+    "3642": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3643": {
+      "streets": 67,
+      "withGeometry": 1,
+      "withNumbers": 0
+    },
+    "3644": {
+      "streets": 34,
+      "withGeometry": 24,
+      "withNumbers": 0
+    },
+    "3645": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3646": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3647": {
+      "streets": 29,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "3648": {
+      "streets": 16,
+      "withGeometry": 10,
+      "withNumbers": 4
+    },
+    "3649": {
+      "streets": 21,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "3650": {
+      "streets": 108,
+      "withGeometry": 52,
+      "withNumbers": 5
+    },
+    "3651": {
+      "streets": 19,
+      "withGeometry": 17,
+      "withNumbers": 0
+    },
+    "3652": {
+      "streets": 73,
+      "withGeometry": 56,
+      "withNumbers": 4
+    },
+    "3653": {
+      "streets": 12,
+      "withGeometry": 9,
+      "withNumbers": 1
+    },
+    "3654": {
+      "streets": 52,
+      "withGeometry": 8,
+      "withNumbers": 5
+    },
+    "3655": {
+      "streets": 22,
+      "withGeometry": 20,
+      "withNumbers": 2
+    },
+    "3656": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3657": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3658": {
+      "streets": 11,
+      "withGeometry": 5,
+      "withNumbers": 4
+    },
+    "3659": {
+      "streets": 14,
+      "withGeometry": 12,
+      "withNumbers": 10
+    },
+    "3660": {
+      "streets": 46,
+      "withGeometry": 19,
+      "withNumbers": 10
+    },
+    "3709": {
+      "streets": 57,
+      "withGeometry": 54,
+      "withNumbers": 0
+    },
+    "3710": {
+      "streets": 20,
+      "withGeometry": 15,
+      "withNumbers": 14
+    },
+    "3711": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3712": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3713": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3715": {
+      "streets": 19,
+      "withGeometry": 14,
+      "withNumbers": 1
+    },
+    "3717": {
+      "streets": 9,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3719": {
+      "streets": 7,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "3722": {
+      "streets": 2,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3723": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3724": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3725": {
+      "streets": 16,
+      "withGeometry": 13,
+      "withNumbers": 2
+    },
+    "3726": {
+      "streets": 27,
+      "withGeometry": 9,
+      "withNumbers": 1
+    },
+    "3727": {
+      "streets": 33,
+      "withGeometry": 12,
+      "withNumbers": 1
+    },
+    "3729": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3730": {
+      "streets": 112,
+      "withGeometry": 74,
+      "withNumbers": 15
+    },
+    "3743": {
+      "streets": 14,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3744": {
+      "streets": 15,
+      "withGeometry": 9,
+      "withNumbers": 1
+    },
+    "3745": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3746": {
+      "streets": 4,
+      "withGeometry": 2,
+      "withNumbers": 2
+    },
+    "3747": {
+      "streets": 11,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "3748": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3749": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3750": {
+      "streets": 84,
+      "withGeometry": 53,
+      "withNumbers": 5
+    },
+    "3751": {
+      "streets": 16,
+      "withGeometry": 7,
+      "withNumbers": 1
+    },
+    "3752": {
+      "streets": 14,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "3754": {
+      "streets": 9,
+      "withGeometry": 4,
+      "withNumbers": 0
+    },
+    "3756": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3757": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3758": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3759": {
+      "streets": 13,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3760": {
+      "streets": 105,
+      "withGeometry": 86,
+      "withNumbers": 5
+    },
+    "3762": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3763": {
+      "streets": 39,
+      "withGeometry": 24,
+      "withNumbers": 1
+    },
+    "3764": {
+      "streets": 13,
+      "withGeometry": 1,
+      "withNumbers": 1
+    },
+    "3765": {
+      "streets": 65,
+      "withGeometry": 41,
+      "withNumbers": 2
+    },
+    "3766": {
+      "streets": 11,
+      "withGeometry": 7,
+      "withNumbers": 0
+    },
+    "3767": {
+      "streets": 13,
+      "withGeometry": 11,
+      "withNumbers": 0
+    },
+    "3768": {
+      "streets": 12,
+      "withGeometry": 8,
+      "withNumbers": 2
+    },
+    "3769": {
+      "streets": 33,
+      "withGeometry": 26,
+      "withNumbers": 8
+    },
+    "3770": {
+      "streets": 34,
+      "withGeometry": 25,
+      "withNumbers": 1
+    },
+    "3777": {
+      "streets": 7,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3779": {
+      "streets": 50,
+      "withGeometry": 26,
+      "withNumbers": 10
+    },
+    "3780": {
+      "streets": 138,
+      "withGeometry": 88,
+      "withNumbers": 60
+    },
+    "3781": {
+      "streets": 18,
+      "withGeometry": 9,
+      "withNumbers": 0
+    },
+    "3782": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3783": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3784": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3785": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3786": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3787": {
+      "streets": 18,
+      "withGeometry": 11,
+      "withNumbers": 4
+    },
+    "3788": {
+      "streets": 70,
+      "withGeometry": 8,
+      "withNumbers": 1
+    },
+    "3790": {
+      "streets": 8,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3791": {
+      "streets": 23,
+      "withGeometry": 12,
+      "withNumbers": 2
+    },
+    "3793": {
+      "streets": 24,
+      "withGeometry": 6,
+      "withNumbers": 0
+    },
+    "3794": {
+      "streets": 3,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3795": {
+      "streets": 19,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "3796": {
+      "streets": 15,
+      "withGeometry": 14,
+      "withNumbers": 3
+    },
+    "3797": {
+      "streets": 71,
+      "withGeometry": 56,
+      "withNumbers": 45
+    },
+    "3815": {
+      "streets": 9,
+      "withGeometry": 5,
+      "withNumbers": 3
+    },
+    "3822": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3823": {
+      "streets": 26,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3824": {
+      "streets": 9,
+      "withGeometry": 5,
+      "withNumbers": 0
+    },
+    "3825": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3826": {
+      "streets": 64,
+      "withGeometry": 43,
+      "withNumbers": 2
+    },
+    "3861": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3862": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3863": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3864": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3865": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3868": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3869": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3870": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3871": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3872": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3873": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3874": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3875": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3876": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3877": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3878": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3879": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3880": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3887": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3889": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3890": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3891": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3892": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3893": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3894": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3895": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3896": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3897": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3898": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3899": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3901": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3902": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3903": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3904": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3905": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3906": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3907": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3908": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3909": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3910": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3922": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3923": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "3987": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4000": {
+      "streets": 1439,
+      "withGeometry": 1059,
+      "withNumbers": 417
+    },
+    "4001": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4002": {
+      "streets": 26,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4003": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4004": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4005": {
+      "streets": 36,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4006": {
+      "streets": 34,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4007": {
+      "streets": 23,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4008": {
+      "streets": 10,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4009": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4010": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4011": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4012": {
+      "streets": 39,
+      "withGeometry": 22,
+      "withNumbers": 0
+    },
+    "4013": {
+      "streets": 6,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4014": {
+      "streets": 21,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4015": {
+      "streets": 27,
+      "withGeometry": 15,
+      "withNumbers": 1
+    },
+    "4017": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4019": {
+      "streets": 25,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4021": {
+      "streets": 27,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4022": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4024": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4025": {
+      "streets": 15,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4026": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4028": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4029": {
+      "streets": 12,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4035": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4100": {
+      "streets": 224,
+      "withGeometry": 117,
+      "withNumbers": 6
+    },
+    "4101": {
+      "streets": 20,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4201": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4203": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4204": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4301": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4303": {
+      "streets": 7,
+      "withGeometry": 3,
+      "withNumbers": 1
+    },
+    "4304": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4501": {
+      "streets": 33,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4502": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4503": {
+      "streets": 21,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4551": {
+      "streets": 19,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4701": {
+      "streets": 29,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "4702": {
+      "streets": 1,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "5000": {
+      "streets": 2768,
+      "withGeometry": 1961,
+      "withNumbers": 1842
+    },
+    "6000": {
+      "streets": 229,
+      "withGeometry": 2,
+      "withNumbers": 0
+    },
+    "6100": {
+      "streets": 443,
+      "withGeometry": 361,
+      "withNumbers": 338
+    },
+    "6200": {
+      "streets": 288,
+      "withGeometry": 231,
+      "withNumbers": 100
+    },
+    "6300": {
+      "streets": 164,
+      "withGeometry": 137,
+      "withNumbers": 88
+    },
+    "6400": {
+      "streets": 775,
+      "withGeometry": 611,
+      "withNumbers": 185
+    },
+    "6500": {
+      "streets": 673,
+      "withGeometry": 495,
+      "withNumbers": 247
+    },
+    "6600": {
+      "streets": 645,
+      "withGeometry": 519,
+      "withNumbers": 153
+    },
+    "6700": {
+      "streets": 325,
+      "withGeometry": 225,
+      "withNumbers": 90
+    },
+    "6800": {
+      "streets": 352,
+      "withGeometry": 209,
+      "withNumbers": 16
+    },
+    "6900": {
+      "streets": 587,
+      "withGeometry": 463,
+      "withNumbers": 122
+    },
+    "7000": {
+      "streets": 518,
+      "withGeometry": 298,
+      "withNumbers": 139
+    },
+    "7100": {
+      "streets": 1106,
+      "withGeometry": 812,
+      "withNumbers": 154
+    },
+    "7200": {
+      "streets": 320,
+      "withGeometry": 253,
+      "withNumbers": 223
+    },
+    "7300": {
+      "streets": 787,
+      "withGeometry": 19,
+      "withNumbers": 1
+    },
+    "7400": {
+      "streets": 1049,
+      "withGeometry": 717,
+      "withNumbers": 401
+    },
+    "7500": {
+      "streets": 104,
+      "withGeometry": 13,
+      "withNumbers": 0
+    },
+    "7600": {
+      "streets": 427,
+      "withGeometry": 247,
+      "withNumbers": 22
+    },
+    "7700": {
+      "streets": 452,
+      "withGeometry": 313,
+      "withNumbers": 115
+    },
+    "7800": {
+      "streets": 462,
+      "withGeometry": 284,
+      "withNumbers": 103
+    },
+    "7900": {
+      "streets": 1166,
+      "withGeometry": 863,
+      "withNumbers": 447
+    },
+    "8000": {
+      "streets": 292,
+      "withGeometry": 171,
+      "withNumbers": 54
+    },
+    "8200": {
+      "streets": 143,
+      "withGeometry": 104,
+      "withNumbers": 13
+    },
+    "8300": {
+      "streets": 1344,
+      "withGeometry": 1078,
+      "withNumbers": 698
+    },
+    "8400": {
+      "streets": 698,
+      "withGeometry": 532,
+      "withNumbers": 449
+    },
+    "8500": {
+      "streets": 416,
+      "withGeometry": 304,
+      "withNumbers": 42
+    },
+    "8600": {
+      "streets": 690,
+      "withGeometry": 516,
+      "withNumbers": 272
+    },
+    "8700": {
+      "streets": 410,
+      "withGeometry": 337,
+      "withNumbers": 157
+    },
+    "8800": {
+      "streets": 870,
+      "withGeometry": 8,
+      "withNumbers": 0
+    },
+    "8900": {
+      "streets": 375,
+      "withGeometry": 0,
+      "withNumbers": 0
+    },
+    "9000": {
+      "streets": 1298,
+      "withGeometry": 1006,
+      "withNumbers": 167
+    },
+    "9100": {
+      "streets": 316,
+      "withGeometry": 231,
+      "withNumbers": 21
+    },
+    "9200": {
+      "streets": 242,
+      "withGeometry": 163,
+      "withNumbers": 7
+    },
+    "9300": {
+      "streets": 242,
+      "withGeometry": 179,
+      "withNumbers": 146
+    },
+    "9400": {
+      "streets": 168,
+      "withGeometry": 121,
+      "withNumbers": 14
+    },
+    "9500": {
+      "streets": 188,
+      "withGeometry": 146,
+      "withNumbers": 17
+    },
+    "9600": {
+      "streets": 181,
+      "withGeometry": 127,
+      "withNumbers": 20
+    },
+    "9700": {
+      "streets": 471,
+      "withGeometry": 380,
+      "withNumbers": 77
+    },
+    "9800": {
+      "streets": 235,
+      "withGeometry": 122,
+      "withNumbers": 12
+    }
+  }
+}
