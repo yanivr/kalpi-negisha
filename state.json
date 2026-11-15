@@ -64,18 +64,10 @@
     "officialDocSha256": "2781b6711cca12d306ece09498be1ca1582bf22ac7071a4a34d8ba7ff0954c62",
     "verifiedAt": "2026-11-14T20:05:51.192Z"
   },
-  "lastAttemptAt": "2026-11-14T20:05:51.192Z",
+  "lastAttemptAt": "2026-11-15T10:54:11.322Z",
   "lastAttemptResult": "failed",
   "blockingReasons": [],
   "attempts": [
-    {
-      "at": "2026-10-20T12:34:41.015Z",
-      "result": "failed",
-      "detail": [
-        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
-        "rules: official document unchanged"
-      ]
-    },
     {
       "at": "2026-10-20T18:47:54.281Z",
       "result": "failed",
@@ -546,6 +538,14 @@
       "detail": [
         "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
         "rules: official document unchanged"
+      ]
+    },
+    {
+      "at": "2026-11-15T10:54:11.322Z",
+      "result": "failed",
+      "detail": [
+        "no documented download URL for: cec-k26-stations, cec-k26-report104, cec-k26-concentrations, cec-k26-report137",
+        "rules: check failed — HTTP 403 (previous verification kept)"
       ]
     }
   ]
